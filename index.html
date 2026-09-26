@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security+ SY0-701 Domain 1.0: General Security Concepts — Explained | ByteBar Study Hub</title>
+<meta name="description" content="CompTIA Security+ SY0-701 Domain 1.0 explained in plain English: security controls, CIA triad, AAA, Zero Trust, change management, and crypto basics.">
+<link rel="canonical" href="https://bytebarhq.github.io/bytebar-study/security-plus/sy0-701-domain-1-general-security-concepts/">
+<meta property="og:title" content="Security+ SY0-701 Domain 1.0: General Security Concepts — Explained">
+<meta property="og:description" content="Security controls, CIA triad, AAA, Zero Trust, change management, and crypto basics in plain English — with sample questions. Free from ByteBar.">
+<meta property="og:type" content="article">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article",
+"headline":"CompTIA Security+ (SY0-701) Domain 1.0: General Security Concepts — Explained",
+"description":"Plain-English explanation of Security+ SY0-701 Domain 1.0: security controls, CIA triad, AAA, Zero Trust, change management, and cryptography basics.",
+"author":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"}}
+</script>
+<style>
+:root{--navy:#0a1628;--navy2:#0e1e38;--navy3:#132a4d;--cyan:#22d3ee;--slate:#94a3b8;--white:#f1f5f9;--green:#34d399;--amber:#fbbf24}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--navy);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header.site{border-bottom:1px solid #1e293b;padding:18px 0}
+.masthead{font-weight:800;letter-spacing:.55em;color:var(--cyan);font-size:15px;text-decoration:none}
+nav.main{margin-top:10px;font-size:14px}
+nav.main a{color:var(--slate);text-decoration:none;margin-right:18px}
+nav.main a:hover{color:var(--cyan)}
+.crumb{font-size:13px;color:var(--slate);margin:26px 0 8px}
+.crumb a{color:var(--cyan);text-decoration:none}
+article h1{font-size:29px;line-height:1.3;margin-bottom:10px}
+.lede{color:var(--slate);font-size:17px;margin-bottom:8px}
+.meta{font-size:13px;color:var(--slate);margin-bottom:30px}
+.meta b{color:var(--cyan)}
+article h2{font-size:22px;margin:38px 0 12px;color:var(--cyan)}
+article h3{font-size:17px;margin:24px 0 8px}
+article p{margin:0 0 14px}
+article ul,article ol{margin:0 0 14px 22px}
+article li{margin-bottom:6px}
+.def{background:var(--navy2);border-left:3px solid var(--cyan);padding:12px 16px;border-radius:0 8px 8px 0;margin:16px 0;font-size:15px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #1e293b;vertical-align:top}
+th{color:var(--cyan);font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+tr:hover td{background:var(--navy2)}
+.q{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:16px 0}
+.q .stem{font-weight:600;margin-bottom:10px}
+.q ol{list-style:none;margin:0 0 4px}
+.q ol li{background:var(--navy3);border-radius:8px;padding:8px 12px;margin-bottom:6px;font-size:14px}
+.q details{margin-top:8px}
+.q summary{cursor:pointer;color:var(--green);font-weight:600;font-size:14px}
+.q .why{font-size:14px;color:var(--slate);margin-top:8px}
+.cta{background:linear-gradient(135deg,#0e2a4a,#0a3a3f);border:1px solid var(--cyan);border-radius:14px;padding:26px;margin:44px 0;text-align:center}
+.cta h2{color:var(--white);margin:0 0 10px;font-size:22px}
+.cta p{color:var(--slate);font-size:15px;max-width:520px;margin:0 auto 18px}
+.btn{display:inline-block;background:var(--cyan);color:#04202a;font-weight:700;text-decoration:none;padding:12px 26px;border-radius:10px;margin:6px;font-size:15px}
+.btn.ghost{background:transparent;color:var(--cyan);border:1px solid var(--cyan)}
+footer.site{border-top:1px solid #1e293b;padding:24px 0;color:var(--slate);font-size:13px;text-align:center;margin-top:20px}
+footer.site a{color:var(--cyan);text-decoration:none}
+.nextbox{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:30px 0;font-size:14px;color:var(--slate)}
+.nextbox a{color:var(--cyan);text-decoration:none;font-weight:600}
+@media(max-width:560px){article h1{font-size:24px}.btn{display:block;margin:8px 0}}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="masthead" href="https://bytebarhq.github.io/bytebar-study/">B Y T E B A R</a>
+<nav class="main">
+<a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a>
+<a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a>
+<a href="https://bytebarhq.com">Store</a>
+</nav>
+</div></header>
+<main class="wrap"><article>
+<p class="crumb"><a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a> / <a href="https://bytebarhq.github.io/bytebar-study/">Security+ SY0-701</a> / Domain 1.0</p>
+<h1>CompTIA Security+ (SY0-701) Domain 1.0: General Security Concepts — Explained</h1>
+<p class="lede">Domain 1.0 is the vocabulary the rest of the exam is written in: the controls organizations use to manage risk, the principles every defense serves, the discipline that keeps change from breaking security, and the cryptography that makes trust technically possible.</p>
+<p class="meta">Exam weight: <b>12%</b> · 4 objectives (1.1–1.4) · Free study guide from ByteBar</p>
+
+<h2>1.1 — Security controls: categories and types</h2>
+<p>Every security control answers two questions: <em>what kind of control is it?</em> (its <strong>category</strong>) and <em>what is it trying to do?</em> (its <strong>type</strong>). One control usually has one of each — a firewall, for example, is a <em>technical</em> control of the <em>preventive</em> type.</p>
+<h3>Categories</h3>
+<ul>
+<li><strong>Technical</strong> — enforced by systems: firewalls, encryption, antivirus.</li>
+<li><strong>Managerial</strong> — enforced by policy: security policies, risk assessments, onboarding procedures.</li>
+<li><strong>Operational</strong> — enforced by people and process: security training, incident drills, log reviews.</li>
+<li><strong>Physical</strong> — enforced by the real world: locks, guards, fences, badge readers.</li>
+</ul>
+<h3>Types</h3>
+<div class="def">Think of the types as a timeline: <strong>prevent</strong> it → <strong>deter</strong> them from trying → <strong>detect</strong> it happening → <strong>correct</strong> it after. <strong>Compensating</strong> and <strong>directive</strong> sit outside the timeline.</div>
+<ul>
+<li><strong>Preventive</strong> — stops the incident before it happens. Firewall rules, door locks, encryption.</li>
+<li><strong>Deterrent</strong> — discourages the attempt. Warning banners, "smile, you're on camera" signs, visible guards.</li>
+<li><strong>Detective</strong> — finds the incident while or after it happens. IDS alerts, log monitoring, audits.</li>
+<li><strong>Corrective</strong> — fixes things after detection. Restoring from backup, patching the exploited flaw, quarantining a host.</li>
+<li><strong>Compensating</strong> — a backup control used when the primary one can't be applied. Can't patch a legacy server? Isolate it on its own VLAN instead.</li>
+<li><strong>Directive</strong> — tells people what to do. Policies, procedures, "acceptable use" documents.</li>
+</ul>
+
+<h2>1.2 — Fundamental security concepts</h2>
+<h3>The CIA triad</h3>
+<p>The three goals behind nearly every security decision:</p>
+<ul>
+<li><strong>Confidentiality</strong> — only the right eyes see the data. Encryption, access controls, classification labels.</li>
+<li><strong>Integrity</strong> — the data hasn't been altered. Hashing, checksums, digital signatures.</li>
+<li><strong>Availability</strong> — the data and systems are there when needed. Backups, redundancy, DDoS protection.</li>
+</ul>
+<div class="def">Exam-day intuition: <strong>stolen</strong> data = confidentiality. <strong>Altered</strong> data = integrity. <strong>Unreachable</strong> systems = availability. Ransomware that encrypts your files hits availability first (you can't reach them) — and confidentiality too, since the attacker now holds them.</div>
+<h3>Non-repudiation</h3>
+<p>Proof that someone did something, so they can't deny it later. Digitally signing a contract gives you non-repudiation: the signature proves <em>who</em> signed and that the document <em>wasn't changed</em> after.</p>
+<h3>AAA: authentication, authorization, accounting</h3>
+<ul>
+<li><strong>Authentication</strong> — proving who you are (password, badge, biometrics).</li>
+<li><strong>Authorization</strong> — what you're allowed to do once inside (your permissions).</li>
+<li><strong>Accounting</strong> — the record of what you did (logs, audit trails).</li>
+</ul>
+<h3>Gap analysis</h3>
+<p>Comparing where your security <em>is</em> against where it <em>should be</em> (a framework or regulation), then closing the difference. It's the "you are here" map for a security program.</p>
+<h3>Zero Trust</h3>
+<p>"Never trust, always verify." No device or user is trusted just because it's inside the network — every request is authenticated and authorized. Two planes make it work:</p>
+<ul>
+<li><strong>Control plane</strong> — makes the decisions (the policy engine and policy administrator evaluate each request).</li>
+<li><strong>Data plane</strong> — enforces the decisions (policy enforcement points allow or block the traffic).</li>
+</ul>
+<h3>Physical security and deception</h3>
+<p>Physical controls — bollards, fencing, access badges, guards, lighting, sensors — protect the building so nobody needs to hack the network. <strong>Deception technology</strong> flips the script: honeypots, honeynets, honeyfiles, and honeytokens are fake assets that lure attackers in so you can study them safely away from real systems.</p>
+
+<h2>1.3 — Change management</h2>
+<p>Most outages — and plenty of breaches — are caused by <em>changes</em>, not attackers: an untested firewall rule, a patch applied at noon, a config "improvement" nobody documented. Change management is the discipline that keeps evolution from breaking security.</p>
+<p>A proper change process includes:</p>
+<ul>
+<li><strong>Approval process</strong> — someone with authority signs off before the change happens.</li>
+<li><strong>Ownership and stakeholders</strong> — one person owns the change; everyone affected is identified up front.</li>
+<li><strong>Impact analysis</strong> — what could this break? Dependencies, downtime, service restarts, legacy apps that might not survive it.</li>
+<li><strong>Backout plan</strong> — exactly how to undo the change if it goes wrong, decided <em>before</em> anything is touched.</li>
+<li><strong>Maintenance window</strong> — the change happens in an agreed low-impact time slot, not Friday at 4 PM.</li>
+<li><strong>Documentation and version control</strong> — diagrams, policies, and procedures are updated; every version is tracked so you can always see what changed and roll back.</li>
+</ul>
+<div class="def">The exam loves the <strong>backout plan</strong>: it's the specific piece that turns a risky change into a recoverable one. No backout plan, no approved change.</div>
+
+<h2>1.4 — Cryptographic solutions: the building blocks</h2>
+<p>Cryptography is how confidentiality, integrity, and trust become technically real. You need the concepts here; the deep protocol details live in later domains.</p>
+<ul>
+<li><strong>Symmetric encryption</strong> — one shared key locks and unlocks. Fast, but both sides must somehow share the key securely first (the key-distribution problem).</li>
+<li><strong>Asymmetric encryption</strong> — a mathematically linked key <em>pair</em>: the public key encrypts, the private key decrypts. Slower, but it solves distribution — you can hand your public key to anyone.</li>
+<li><strong>Hashing</strong> — a one-way fingerprint of data. You can't reverse a hash back into the original, so it's perfect for proving <em>integrity</em>: hash a file now, hash it later, compare.</li>
+<li><strong>Salting</strong> — random data mixed into a password before hashing, so identical passwords produce different hashes (defeats rainbow tables).</li>
+<li><strong>Digital signatures</strong> — a hash encrypted with the sender's <em>private</em> key. Anyone can verify it with the public key, proving the message is unaltered <em>and</em> who sent it — integrity, authenticity, and non-repudiation in one.</li>
+<li><strong>PKI and certificates</strong> — public key infrastructure is the trust system that ties it together: certificate authorities vouch for identities, certificates bind a public key to an owner, and revocation lists (CRLs) handle the ones that can't be trusted anymore.</li>
+</ul>
+
+<h2>The must-memorize table: control types</h2>
+<p>If you take one table from this page, take this one. Given a scenario, name the control <em>type</em> by what it's trying to do:</p>
+<table>
+<tr><th>Type</th><th>Goal</th><th>Example</th></tr>
+<tr><td><strong>Preventive</strong></td><td>Stop it before it happens</td><td>Firewall deny rule, door lock, disk encryption</td></tr>
+<tr><td><strong>Deterrent</strong></td><td>Discourage the attempt</td><td>"Monitored by cameras" sign, warning banner, visible guard</td></tr>
+<tr><td><strong>Detective</strong></td><td>Find it during or after</td><td>IDS alert, SIEM log review, security audit</td></tr>
+<tr><td><strong>Corrective</strong></td><td>Fix it after detection</td><td>Restore from backup, patch the flaw, quarantine the host</td></tr>
+<tr><td><strong>Compensating</strong></td><td>Backup control when the primary can't apply</td><td>Isolating an unpatchable legacy server on its own VLAN</td></tr>
+<tr><td><strong>Directive</strong></td><td>Tell people what to do</td><td>Acceptable-use policy, security procedure</td></tr>
+</table>
+
+<h2>Try it: 4 sample questions</h2>
+<p>Free samples from the way the exam actually asks about this domain. Answers and full reasoning are tucked under each one.</p>
+
+<div class="q">
+<p class="stem">1. A company installs a mantrap at the data-center entrance and posts "This area is under video surveillance" signs at every door. Which control TYPES are these?</p>
+<ol><li>A. Preventive and detective</li><li>B. Preventive and deterrent</li><li>C. Detective and corrective</li><li>D. Physical and operational</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p class="why"><strong>B.</strong> The mantrap <em>prevents</em> tailgating — it physically stops unauthorized entry, so it's preventive. The signs don't stop anyone; they <em>discourage</em> the attempt, which is the definition of deterrent. Watch out for D: "physical" and "operational" are control <em>categories</em>, not types — the question asked for types.</p>
+</details>
+</div>
+
+<div class="q">
+<p class="stem">2. Ransomware encrypts a hospital's patient-record system. Staff can no longer open any charts, and the attackers threaten to publish the data. Which leg of the CIA triad is hit FIRST?</p>
+<ol><li>A. Confidentiality — the attackers can read the records</li><li>B. Integrity — the records have been altered</li><li>C. Availability — staff cannot access the records</li><li>D. Non-repudiation — the hospital can't prove what happened</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p class="why"><strong>C.</strong> The immediate damage is that legitimate users <em>can't reach</em> the system — that's availability. Confidentiality is threatened too (the leak threat), but the question asks what breaks first: the moment encryption lands, access is gone. Note the records weren't altered in transit (not an integrity hit), and non-repudiation isn't part of the CIA triad at all.</p>
+</details>
+</div>
+
+<div class="q">
+<p class="stem">3. An administrator wants to push a firewall rule change on Friday at 4 PM with no ticket and no review. Which change-management element is the most critical missing piece?</p>
+<ol><li>A. A maintenance window</li><li>B. An approval process</li><li>C. Updated network diagrams</li><li>D. A longer password policy</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p class="why"><strong>B.</strong> Without an approval process, nobody with authority has evaluated the risk — the change is rogue by definition. A maintenance window (A) matters, but even a perfectly timed unapproved change is still unapproved. Documentation (C) comes after the change is properly authorized. The approval gate is what makes the rest of the process exist.</p>
+</details>
+</div>
+
+<div class="q">
+<p class="stem">4. Two analysts need to exchange sensitive files. They agree on a single shared passphrase that both encrypts and decrypts the files. What kind of encryption is this, and what is its biggest practical weakness?</p>
+<ol><li>A. Asymmetric — the private key could be factored</li><li>B. Symmetric — the shared key must be exchanged securely first</li><li>C. Hashing — the passphrase cannot be reversed</li><li>D. Steganography — the files are hidden, not encrypted</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p class="why"><strong>B.</strong> One shared key for both directions is the definition of symmetric encryption. Its classic weakness is key distribution: the key itself has to travel between the analysts, and anyone who intercepts <em>that</em> exchange owns everything. Asymmetric encryption (A) was invented largely to solve this exact problem. Hashing (C) isn't encryption at all — it's one-way.</p>
+</details>
+</div>
+
+<div class="cta">
+<h2>Know the concepts? Now get the reps.</h2>
+<p>Reading about controls won't pass the exam — drilling 100 exam-style questions will. The Security+ Practice Pack is 100 questions with full explanations. The Complete Bundle adds the full study guide and lab workbook.</p>
+<a class="btn" href="https://bytebarhq.com">Get the Security+ Bundle — $7</a>
+<a class="btn ghost" href="https://bytebarhq.com">Practice Pack — $3</a>
+<p style="margin-top:14px;font-size:13px">Or warm up free: <a href="https://bytebarhq.github.io/bytebar-quiz/" style="color:var(--cyan)">take the 15-question Security+ quiz</a></p>
+</div>
+
+<div class="nextbox">
+<strong>Continue the series:</strong> <a href="https://bytebarhq.github.io/bytebar-study/">back to the Study Hub</a> — more Security+ domains and exams coming soon.
+</div>
+
+</article></main>
+<footer class="site"><div class="wrap">
+<p>© 2026 ByteBar · Free study resources. Not affiliated with CompTIA, Cisco, AWS, or Microsoft.<br>
+<a href="https://bytebarhq.com">bytebarhq.com</a> · <a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a></p>
+</div></footer>
+</body>
+</html>
