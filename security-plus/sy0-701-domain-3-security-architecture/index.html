@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security+ SY0-701 Domain 3.0: Security Architecture — Explained | ByteBar Study Hub</title>
+<meta name="description" content="CompTIA Security+ SY0-701 Domain 3.0 explained in plain English: secure protocols, virtualization, cloud models, resilience, and physical security concepts.">
+<link rel="canonical" href="https://bytebarhq.github.io/bytebar-study/security-plus/sy0-701-domain-3-security-architecture/">
+<meta property="og:title" content="Security+ SY0-701 Domain 3.0: Security Architecture — Explained">
+<meta property="og:description" content="Secure protocols, virtualization, cloud security models, and resilience concepts in plain English — with sample questions. Free preview from ByteBar.">
+<meta property="og:type" content="article">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article",
+"headline":"Security+ SY0-701 Domain 3.0: Security Architecture — Explained",
+"description":"CompTIA Security+ SY0-701 Domain 3.0 explained in plain English: secure protocols, virtualization, cloud models, resilience, and physical security concepts.",
+"author":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"}}
+</script>
+<style>
+:root{--navy:#0a1628;--navy2:#0e1e38;--navy3:#132a4d;--cyan:#22d3ee;--slate:#94a3b8;--white:#f1f5f9;--green:#34d399;--amber:#fbbf24}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--navy);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header.site{border-bottom:1px solid #1e293b;padding:18px 0}
+.masthead{font-weight:800;letter-spacing:.55em;color:var(--cyan);font-size:15px;text-decoration:none}
+nav.main{margin-top:10px;font-size:14px}
+nav.main a{color:var(--slate);text-decoration:none;margin-right:18px}
+nav.main a:hover{color:var(--cyan)}
+.crumb{font-size:13px;color:var(--slate);margin:26px 0 8px}
+.crumb a{color:var(--cyan);text-decoration:none}
+article h1{font-size:29px;line-height:1.3;margin-bottom:10px}
+.lede{color:var(--slate);font-size:17px;margin-bottom:8px}
+.meta{font-size:13px;color:var(--slate);margin-bottom:30px}
+.meta b{color:var(--cyan)}
+article h2{font-size:22px;margin:38px 0 12px;color:var(--cyan)}
+article h3{font-size:17px;margin:24px 0 8px}
+article p{margin:0 0 14px}
+article ul,article ol{margin:0 0 14px 22px}
+article li{margin-bottom:6px}
+.def{background:var(--navy2);border-left:3px solid var(--cyan);padding:12px 16px;border-radius:0 8px 8px 0;margin:16px 0;font-size:15px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #1e293b;vertical-align:top}
+th{color:var(--cyan);font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+tr:hover td{background:var(--navy2)}
+.q{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:16px 0}
+.q .stem{font-weight:600;margin-bottom:10px}
+.q ol{list-style:none;margin:0 0 4px}
+.q ol li{background:var(--navy3);border-radius:8px;padding:8px 12px;margin-bottom:6px;font-size:14px}
+.q details{margin-top:8px}
+.q summary{cursor:pointer;color:var(--green);font-weight:600;font-size:14px}
+.q .why{font-size:14px;color:var(--slate);margin-top:8px}
+.cta{background:linear-gradient(135deg,#0e2a4a,#0a3a3f);border:1px solid var(--cyan);border-radius:14px;padding:26px;margin:44px 0;text-align:center}
+.cta h2{color:var(--white);margin:0 0 10px;font-size:22px}
+.cta p{color:var(--slate);font-size:15px;max-width:520px;margin:0 auto 18px}
+.btn{display:inline-block;background:var(--cyan);color:#04202a;font-weight:700;text-decoration:none;padding:12px 26px;border-radius:10px;margin:6px;font-size:15px}
+.btn.ghost{background:transparent;color:var(--cyan);border:1px solid var(--cyan)}
+footer.site{border-top:1px solid #1e293b;padding:24px 0;color:var(--slate);font-size:13px;text-align:center;margin-top:20px}
+footer.site a{color:var(--cyan);text-decoration:none}
+.nextbox{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:30px 0;font-size:14px;color:var(--slate)}
+.nextbox a{color:var(--cyan);text-decoration:none;font-weight:600}
+@media(max-width:560px){article h1{font-size:24px}.btn{display:block;margin:8px 0}}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="masthead" href="https://bytebarhq.github.io/bytebar-study/">B Y T E B A R</a>
+<nav class="main">
+<a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a>
+<a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a>
+<a href="https://bytebarhq.com">Store</a>
+</nav>
+</div></header>
+<main class="wrap"><article>
+<p class="crumb"><a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a> / <a href="https://bytebarhq.github.io/bytebar-study/security-plus/">CompTIA Security+ (SY0-701)</a> / Domain 3.0</p>
+<h1>CompTIA Security+ (SY0-701) Domain 3.0: Security Architecture — Explained</h1>
+<p class="lede">Domain 3.0 is about how secure systems are <em>designed</em>: the protocols that protect traffic, the virtualization that changed the data center, the cloud models that changed everything else, and the resilience thinking that keeps it all running when pieces fail.</p>
+<p class="meta">Exam weight: <b>18%</b> · objectives 3.1–3.4 · Free study preview from ByteBar</p>
+<h2>3.1 — Secure protocols</h2>
+<p>Protocols are the agreed languages devices speak. The "secure" versions of common protocols exist because the originals sent everything in plaintext — anyone watching the wire could read it all.</p>
+<ul>
+<li><strong>HTTPS (port 443)</strong> — HTTP wrapped in TLS. Encrypts the entire web session: the page content, the form you submit, the cookies that identify you.</li>
+<li><strong>SSH (port 22)</strong> — encrypted remote shell, replacing Telnet (port 23), which sent passwords in the clear.</li>
+<li><strong>SFTP / FTPS</strong> — secure file transfer. SFTP runs over SSH; FTPS is FTP with TLS layered on. Both replace plaintext FTP (ports 20/21).</li>
+<li><strong>SNMPv3</strong> — network monitoring with authentication and encryption. SNMPv1 and v2c used community strings ("public"/"private") sent in plaintext — effectively no security at all.</li>
+<li><strong>LDAPS (port 636)</strong> — LDAP over TLS for directory lookups; plain LDAP (389) leaks credentials and queries.</li>
+<li><strong>DNSSEC</strong> — adds cryptographic signatures to DNS answers so resolvers can verify the response is genuine, not spoofed.</li>
+</ul>
+<div class="def">The pattern to internalize: every legacy plaintext protocol has a secure successor, and it's worth knowing which replaced which — Telnet → SSH, FTP → SFTP/FTPS, HTTP → HTTPS, LDAP → LDAPS, SNMPv1/2 → SNMPv3.</div>
+<h2>3.2 — Virtualization and cloud concepts</h2>
+<p>Virtualization decouples software from hardware: a <strong>hypervisor</strong> lets one physical machine run many virtual machines, each believing it owns the hardware.</p>
+<ul>
+<li><strong>Type 1 (bare-metal) hypervisors</strong> — run directly on hardware (VMware ESXi, Hyper-V). Used in data centers.</li>
+<li><strong>Type 2 (hosted) hypervisors</strong> — run as an app on an OS (VirtualBox, VMware Workstation). Used for labs and testing.</li>
+<li><strong>Containers</strong> — share the host OS kernel instead of virtualizing hardware. Lighter and faster to start than VMs, but with weaker isolation between workloads.</li>
+<li><strong>Virtual networking</strong> — virtual switches, virtual NICs, and virtual firewalls recreate network topology in software.</li>
+</ul>
+<p>Cloud builds on virtualization with three service models — a core cloud question:</p>
+<ul>
+<li><strong>IaaS</strong> — rent the infrastructure (VMs, storage, networks). You manage the OS and apps. Example: EC2.</li>
+<li><strong>PaaS</strong> — rent the platform (runtime, database, OS handled for you). You deploy code. Example: Heroku, Azure App Service.</li>
+<li><strong>SaaS</strong> — rent the finished software. You just use it. Example: Gmail, Salesforce.</li>
+</ul>
+<div class="def">Move up the stack (IaaS → PaaS → SaaS) and <em>your</em> responsibility shrinks while the provider's grows. That shifting line is the shared responsibility model.</div>
+<h2>3.3 — Resilience and redundancy</h2>
+<p>Resilience is designing so that failures are <em>expected events</em>, not emergencies. The vocabulary:</p>
+<ul>
+<li><strong>High availability (HA)</strong> — systems stay up through component failure, usually via clustering or failover pairs.</li>
+<li><strong>Redundancy</strong> — duplicate critical components: dual power supplies, RAID disks, multiple ISP links. No single point of failure.</li>
+<li><strong>Load balancing</strong> — spreading traffic across servers so no one server is overwhelmed — and so one can die unnoticed.</li>
+<li><strong>Backups: full, incremental, differential</strong> — full copies everything; incremental copies only what changed since the <em>last backup of any kind</em> (fast backup, slow restore); differential copies what changed since the <em>last full</em> (slower backup, faster restore).</li>
+<li><strong>RAID levels</strong> — RAID 1 mirrors (redundancy, no speed gain), RAID 5 stripes with parity (one disk can fail), RAID 6 double parity (two disks can fail), RAID 10 mirrors + stripes (fast and redundant, costs half your disks).</li>
+<li><strong>RTO and RPO</strong> — Recovery Time Objective (how <em>fast</em> you must be back) and Recovery Point Objective (how much data you can afford to <em>lose</em>).</li>
+</ul>
+<h2>3.4 — Infrastructure and data considerations</h2>
+<p>The last objective ties architecture to the data it protects:</p>
+<ul>
+<li><strong>Data classification</strong> — labeling data (public, internal, confidential, restricted) so protections match sensitivity. Classification drives everything downstream: encryption, access, retention.</li>
+<li><strong>Encryption at rest vs. in transit vs. in use</strong> — data on disk, data on the wire, and data in memory each need different protections.</li>
+<li><strong>Data sovereignty</strong> — some data legally can't leave a country or region, which constrains where cloud workloads can run.</li>
+<li><strong>Secure baselines and hardening</strong> — starting from a known-good configuration: unnecessary services disabled, default credentials changed, patches applied.</li>
+<li><strong>Decommissioning</strong> — data must be destroyed when hardware retires: wiping, degaussing, or physical destruction, matched to the data's classification.</li>
+</ul>
+<h2>The must-memorize table: plaintext protocols and their secure replacements</h2>
+<p>One table, high value: know what replaced what.</p>
+<table>
+<thead><tr><th>Plaintext protocol</th><th>Port</th><th>Secure replacement</th></tr></thead>
+<tbody>
+<tr><td>HTTP</td><td>80</td><td>HTTPS (443) — HTTP over TLS</td></tr>
+<tr><td>Telnet</td><td>23</td><td>SSH (22) — encrypted remote shell</td></tr>
+<tr><td>FTP</td><td>20/21</td><td>SFTP (over SSH) or FTPS (FTP over TLS)</td></tr>
+<tr><td>LDAP</td><td>389</td><td>LDAPS (636) — LDAP over TLS</td></tr>
+<tr><td>SNMP v1/v2c</td><td>161</td><td>SNMPv3 — auth + encryption</td></tr>
+<tr><td>DNS</td><td>53</td><td>DNSSEC — signed, verifiable answers</td></tr>
+<tr><td>SMTP</td><td>25</td><td>SMTPS / STARTTLS — encrypted mail transport</td></tr>
+</tbody>
+</table>
+<h2>Try it: 4 sample questions</h2>
+<p>Sample questions to check your understanding of this domain. Answers and full reasoning are tucked under each one.</p>
+<div class="q"><p><strong>1. An administrator needs to replace Telnet access to network switches. Which protocol should they deploy, and why?</strong></p>
+<ol type="A"><li>A. A. HTTPS, because it encrypts web traffic on port 443</li><li>B. B. SSH, because it provides an encrypted remote shell on port 22</li><li>C. C. SFTP, because it encrypts file transfers over port 22</li><li>D. D. SNMPv3, because it encrypts management traffic</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> Telnet sends everything — including passwords — in plaintext. SSH is its direct encrypted replacement: an interactive remote shell on port 22. SFTP (C) does run over SSH, but it transfers <em>files</em>; the need here is interactive switch administration. SNMPv3 (D) is for monitoring, not shell access.</p></details></div>
+<div class="q"><p><strong>2. A company moves its customer database to a SaaS CRM. Under the shared responsibility model, who is now responsible for patching the database servers?</strong></p>
+<ol type="A"><li>A. A. The customer, because data ownership never transfers</li><li>B. B. The SaaS provider, because infrastructure and platform are their responsibility</li><li>C. C. Both equally, as with all cloud models</li><li>D. D. Nobody — SaaS applications never need patching</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> In SaaS, the provider manages everything below the application — servers, OS, database engine, patching. The customer's responsibility shrinks to their data, user accounts, and access configuration. That shrinking line of customer responsibility is the whole point of the shared responsibility model.</p></details></div>
+<div class="q"><p><strong>3. A backup strategy needs the fastest possible nightly backups, and restore speed is a secondary concern. Which method fits?</strong></p>
+<ol type="A"><li>A. A. Full backup every night</li><li>B. B. Incremental backup nightly after one full backup</li><li>C. C. Differential backup nightly after one full backup</li><li>D. D. RAID 6 across the backup targets</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> Incremental backups copy only what changed since the <em>last backup of any kind</em>, so each nightly run is tiny and fast. The tradeoff — slower restores, since you replay the full plus every incremental — is acceptable here because the requirement prioritizes backup speed. Differential (C) is the middle ground; full (A) is slowest nightly. RAID (D) is disk redundancy, not a backup method.</p></details></div>
+<div class="q"><p><strong>4. A file server holds data classified as "restricted." It is being decommissioned. Which destruction method is appropriate?</strong></p>
+<ol type="A"><li>A. A. Reformatting the drives and reinstalling the OS</li><li>B. B. Degaussing or physical destruction of the drives</li><li>C. C. Moving the data to a cloud archive first</li><li>D. D. Deleting the file shares and disabling the accounts</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> "Restricted" is the highest sensitivity tier — simple deletion or reformatting (A, D) leaves recoverable data on the platters. Degaussing (for magnetic media) or physical destruction guarantees the data cannot be recovered. The destruction method must match the classification: the more sensitive the data, the more certain the destruction.</p></details></div>
+<div class="cta">
+<h2>This was one domain. The guide covers all 5.</h2>
+<p>This free preview covered <strong>Security Architecture (Domain 3.0, 18%)</strong>. Not covered here: Threats, Vulnerabilities & Mitigations (Domain 2.0, 22%); Security Operations (Domain 4.0, 28%). The two highest-weight domains — hands-on threat scenarios, incident response, and security operations — stay in the paid guide and practice bank. The $5 Security+ Study Guide covers every domain in condensed review form; the $7 complete bundle adds the practice pack with full question explanations.</p>
+<a class="btn" href="https://bytebarhq.com">Get the Study Guide — $5</a>
+<a class="btn ghost" href="https://bytebarhq.com">Complete Bundle — $7</a>
+<p class="quizline">Want reps? <a href="https://bytebarhq.github.io/bytebar-quiz/">Try the free Security+ quiz</a>.</p>
+</div>
+<div class="nextbox">
+<strong>Continue the series:</strong> <a href="https://bytebarhq.github.io/bytebar-study/security-plus/sy0-701-domain-5-security-program-management/">Security+ SY0-701 Domain 5.0: Security Program Management — Explained</a>
+</div>
+</article></main>
+<footer class="site"><div class="wrap">
+<p>© 2026 ByteBar · Free study resources. Not affiliated with CompTIA, Inc..<br>
+<a href="https://bytebarhq.com">bytebarhq.com</a> · <a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a></p>
+</div></footer>
+</body>
+</html>
