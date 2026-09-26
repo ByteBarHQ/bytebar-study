@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AWS AI Practitioner AIF-C01 Domain 1.0: AI &amp; ML Fundamentals — Explained | ByteBar Study Hub</title>
+<meta name="description" content="AWS AIF-C01 Domain 1.0 explained in plain English: AI vs ML vs deep learning, training concepts, model types, and ML lifecycle basics.">
+<link rel="canonical" href="https://bytebarhq.github.io/bytebar-study/aws-aif-c01/aif-c01-domain-1-ai-ml-fundamentals/">
+<meta property="og:title" content="AWS AI Practitioner AIF-C01 Domain 1.0: AI &amp; ML Fundamentals — Explained">
+<meta property="og:description" content="AI vs ML vs deep learning, training concepts, and the ML lifecycle in plain English — with sample questions. Free preview from ByteBar.">
+<meta property="og:type" content="article">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article",
+"headline":"AWS AI Practitioner AIF-C01 Domain 1.0: AI & ML Fundamentals — Explained",
+"description":"AWS AIF-C01 Domain 1.0 explained in plain English: AI vs ML vs deep learning, training concepts, model types, and ML lifecycle basics.",
+"author":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"}}
+</script>
+<style>
+:root{--navy:#0a1628;--navy2:#0e1e38;--navy3:#132a4d;--cyan:#22d3ee;--slate:#94a3b8;--white:#f1f5f9;--green:#34d399;--amber:#fbbf24}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--navy);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header.site{border-bottom:1px solid #1e293b;padding:18px 0}
+.masthead{font-weight:800;letter-spacing:.55em;color:var(--cyan);font-size:15px;text-decoration:none}
+nav.main{margin-top:10px;font-size:14px}
+nav.main a{color:var(--slate);text-decoration:none;margin-right:18px}
+nav.main a:hover{color:var(--cyan)}
+.crumb{font-size:13px;color:var(--slate);margin:26px 0 8px}
+.crumb a{color:var(--cyan);text-decoration:none}
+article h1{font-size:29px;line-height:1.3;margin-bottom:10px}
+.lede{color:var(--slate);font-size:17px;margin-bottom:8px}
+.meta{font-size:13px;color:var(--slate);margin-bottom:30px}
+.meta b{color:var(--cyan)}
+article h2{font-size:22px;margin:38px 0 12px;color:var(--cyan)}
+article h3{font-size:17px;margin:24px 0 8px}
+article p{margin:0 0 14px}
+article ul,article ol{margin:0 0 14px 22px}
+article li{margin-bottom:6px}
+.def{background:var(--navy2);border-left:3px solid var(--cyan);padding:12px 16px;border-radius:0 8px 8px 0;margin:16px 0;font-size:15px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #1e293b;vertical-align:top}
+th{color:var(--cyan);font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+tr:hover td{background:var(--navy2)}
+.q{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:16px 0}
+.q .stem{font-weight:600;margin-bottom:10px}
+.q ol{list-style:none;margin:0 0 4px}
+.q ol li{background:var(--navy3);border-radius:8px;padding:8px 12px;margin-bottom:6px;font-size:14px}
+.q details{margin-top:8px}
+.q summary{cursor:pointer;color:var(--green);font-weight:600;font-size:14px}
+.q .why{font-size:14px;color:var(--slate);margin-top:8px}
+.cta{background:linear-gradient(135deg,#0e2a4a,#0a3a3f);border:1px solid var(--cyan);border-radius:14px;padding:26px;margin:44px 0;text-align:center}
+.cta h2{color:var(--white);margin:0 0 10px;font-size:22px}
+.cta p{color:var(--slate);font-size:15px;max-width:520px;margin:0 auto 18px}
+.btn{display:inline-block;background:var(--cyan);color:#04202a;font-weight:700;text-decoration:none;padding:12px 26px;border-radius:10px;margin:6px;font-size:15px}
+.btn.ghost{background:transparent;color:var(--cyan);border:1px solid var(--cyan)}
+footer.site{border-top:1px solid #1e293b;padding:24px 0;color:var(--slate);font-size:13px;text-align:center;margin-top:20px}
+footer.site a{color:var(--cyan);text-decoration:none}
+.nextbox{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:30px 0;font-size:14px;color:var(--slate)}
+.nextbox a{color:var(--cyan);text-decoration:none;font-weight:600}
+@media(max-width:560px){article h1{font-size:24px}.btn{display:block;margin:8px 0}}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="masthead" href="https://bytebarhq.github.io/bytebar-study/">B Y T E B A R</a>
+<nav class="main">
+<a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a>
+<a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a>
+<a href="https://bytebarhq.com">Store</a>
+</nav>
+</div></header>
+<main class="wrap"><article>
+<p class="crumb"><a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a> / <a href="https://bytebarhq.github.io/bytebar-study/aws-aif-c01/">AWS Certified AI Practitioner (AIF-C01)</a> / Domain 1.0</p>
+<h1>AWS AI Practitioner (AIF-C01) Domain 1.0: Fundamentals of AI and ML — Explained</h1>
+<p class="lede">Domain 1.0 is the vocabulary of artificial intelligence: what AI, machine learning, and deep learning actually are, how models learn from data, and the lifecycle every ML project follows. No math required — just the concepts the rest of the exam assumes.</p>
+<p class="meta">Exam weight: <b>20%</b> · Free study preview from ByteBar</p>
+<h2>AI, ML, and deep learning: the nesting dolls</h2>
+<ul>
+<li><strong>Artificial intelligence</strong> — the broadest term: any system performing tasks that normally need human intelligence (reasoning, perception, language).</li>
+<li><strong>Machine learning</strong> — AI's biggest subset: systems that <em>learn patterns from data</em> instead of following hand-written rules. A spam filter trained on a million emails is ML; a spam filter with hand-written keyword rules is just software.</li>
+<li><strong>Deep learning</strong> — ML's subset using <em>neural networks</em> with many layers. Excels at images, speech, and language — at the cost of more data and more compute.</li>
+<li><strong>Generative AI</strong> — models that <em>create</em> new content (text, images, code) rather than classifying or predicting. A subset of deep learning, and its own exam domain later.</li>
+</ul>
+<div class="def">AI ⊃ ML ⊃ deep learning ⊃ generative AI. If a question asks "which term," pick the <em>most specific</em> one that fits.</div>
+<h2>How models learn: the core vocabulary</h2>
+<ul>
+<li><strong>Training</strong> — feeding labeled (or unlabeled) data to an algorithm so it adjusts its internal parameters. Training is expensive; <em>inference</em> (using the trained model) is comparatively cheap.</li>
+<li><strong>Supervised learning</strong> — learns from labeled examples: "this email IS spam." Used for classification (spam/not spam) and regression (predicting a number, like a house price).</li>
+<li><strong>Unsupervised learning</strong> — finds structure in unlabeled data: clustering customers by behavior, anomaly detection. No "right answers" provided up front.</li>
+<li><strong>Reinforcement learning</strong> — learns by trial and error against a reward signal: game-playing agents, robotics. The model explores actions and reinforces what scores well.</li>
+<li><strong>Overfitting vs. underfitting</strong> — overfitting memorizes the training data (great on training, fails on new data); underfitting never learned the pattern at all. The goal is generalization: performing on data it hasn't seen.</li>
+<li><strong>Training / validation / test split</strong> — train on one slice, tune on a second, and evaluate <em>once</em> on a third the model never saw during development. Testing on training data proves nothing.</li>
+</ul>
+<h2>The ML lifecycle and where AWS fits (conceptually)</h2>
+<ul>
+<li><strong>Business problem → data → train → evaluate → deploy → monitor</strong> — the lifecycle to know by heart. Most real projects fail at "data," not at "model."</li>
+<li><strong>Data quality beats model cleverness</strong> — biased, incomplete, or mislabeled data produces biased, unreliable models. "Garbage in, garbage out" is an exam answer in plain clothes.</li>
+<li><strong>Deployment concepts</strong> — batch inference (predictions on a schedule, e.g., nightly churn scores) vs. real-time inference (predictions on demand, e.g., fraud checks at checkout).</li>
+<li><strong>Monitoring</strong> — models <em>decay</em>: the world changes and yesterday's patterns stop working (model drift). Production ML needs retraining pipelines, not one-time training.</li>
+<li><strong>Human in the loop</strong> — for high-stakes decisions (hiring, lending, medical), a human reviews or approves model outputs. The exam treats this as a responsible-AI requirement, not an optional nicety.</li>
+</ul>
+<h2>The must-memorize table: learning types</h2>
+<p>Match the scenario to the learning type.</p>
+<table>
+<thead><tr><th>Type</th><th>Data</th><th>Example task</th></tr></thead>
+<tbody>
+<tr><td>Supervised — classification</td><td>Labeled (categories)</td><td>Spam vs. not spam; fraud vs. legitimate</td></tr>
+<tr><td>Supervised — regression</td><td>Labeled (numbers)</td><td>Predict house price; forecast demand</td></tr>
+<tr><td>Unsupervised — clustering</td><td>Unlabeled</td><td>Group customers by behavior</td></tr>
+<tr><td>Unsupervised — anomaly detection</td><td>Unlabeled (mostly normal)</td><td>Flag unusual transactions</td></tr>
+<tr><td>Reinforcement learning</td><td>Reward signal</td><td>Game agent; robot control</td></tr>
+</tbody>
+</table>
+<h2>Try it: 4 sample questions</h2>
+<p>Sample questions to check your understanding of this domain. Answers and full reasoning are tucked under each one.</p>
+<div class="q"><p><strong>1. A bank wants a model that predicts a numeric loan-risk score from applicant data. Which ML approach fits?</strong></p>
+<ol type="A"><li>A. A. Supervised regression — predicting a number from labeled examples</li><li>B. B. Unsupervised clustering — grouping applicants</li><li>C. C. Reinforcement learning — trial and error</li><li>D. D. Generative AI — creating new applicants</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>A.</strong> Predicting a <em>number</em> from labeled historical data is regression, a supervised task: past applicants labeled with their actual outcomes train the model. Clustering (B) groups without predicting; reinforcement (C) needs a reward loop; generative (D) creates content rather than predicting values.</p></details></div>
+<div class="q"><p><strong>2. A model scores 99% on its training data but 61% on new customer data. What happened, and what is the goal it missed?</strong></p>
+<ol type="A"><li>A. A. Underfitting — it never learned the pattern</li><li>B. B. Overfitting — it memorized training data and failed to generalize</li><li>C. C. Data drift — the customers changed overnight</li><li>D. D. Label leakage — the test data was too easy</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> Huge training accuracy plus poor new-data accuracy is the textbook signature of <em>overfitting</em>: the model memorized noise in the training set instead of learning the underlying pattern. The missed goal is <em>generalization</em> — performing on unseen data, which is the only performance that matters.</p></details></div>
+<div class="q"><p><strong>3. A retailer wants to group shoppers by purchasing behavior without any predefined categories. Which approach fits?</strong></p>
+<ol type="A"><li>A. A. Supervised classification</li><li>B. B. Unsupervised clustering</li><li>C. C. Reinforcement learning</li><li>D. D. Regression</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> No predefined categories and no labels means unsupervised learning; finding <em>groups</em> in the data is clustering. Supervised methods (A, D) need labeled examples that don't exist here; reinforcement (C) needs a reward signal, not a pile of purchase histories.</p></details></div>
+<div class="q"><p><strong>4. After deployment, a demand-forecasting model's accuracy slowly declines over six months although nothing in the code changed. What is the most likely cause?</strong></p>
+<ol type="A"><li>A. A. Overfitting during the original training</li><li>B. B. Model drift — real-world patterns shifted away from the training data</li><li>C. C. The inference hardware is too slow</li><li>D. D. The training labels were mislabeled</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> The world moves on: seasons change, competitors act, customer habits evolve — and a model frozen at training time decays. That's <em>model drift</em>, and the fix is monitoring plus retraining pipelines, not a one-time training event. Slow hardware (C) affects latency, not accuracy.</p></details></div>
+<div class="cta">
+<h2>This was one domain. The guide covers all 5.</h2>
+<p>This free preview covered <strong>Fundamentals of AI & ML (Domain 1.0, 20%)</strong>. Not covered here: Applications of Foundation Models (Domain 3.0, 28%); Security, Compliance & Governance for AI Solutions (Domain 5.0, 14%). The applied domains — foundation-model use cases and AI security/governance — stay in the paid guide and practice bank. The $5 AWS AI Practitioner Study Guide covers every domain in condensed review form; the $7 complete bundle adds the practice pack with full question explanations.</p>
+<a class="btn" href="https://bytebarhq.com">Get the Study Guide — $5</a>
+<a class="btn ghost" href="https://bytebarhq.com">Complete Bundle — $7</a>
+
+</div>
+<div class="nextbox">
+<strong>Continue the series:</strong> <a href="https://bytebarhq.github.io/bytebar-study/aws-aif-c01/aif-c01-domain-2-generative-ai-fundamentals/">AIF-C01 Domain 2.0: Fundamentals of Generative AI — Explained</a>
+</div>
+</article></main>
+<footer class="site"><div class="wrap">
+<p>© 2026 ByteBar · Free study resources. Not affiliated with Amazon Web Services, Inc..<br>
+<a href="https://bytebarhq.com">bytebarhq.com</a> · <a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a></p>
+</div></footer>
+</body>
+</html>
