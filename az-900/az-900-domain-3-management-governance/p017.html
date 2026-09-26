@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AZ-900 Domain 3.0: Management &amp; Governance — Explained | ByteBar Study Hub</title>
+<meta name="description" content="AZ-900 Domain 3.0 explained in plain English: resource groups, Azure Policy, RBAC, locks, tags, and cost management concepts.">
+<link rel="canonical" href="https://bytebarhq.github.io/bytebar-study/az-900/az-900-domain-3-management-governance/">
+<meta property="og:title" content="AZ-900 Domain 3.0: Management &amp; Governance — Explained">
+<meta property="og:description" content="Azure Policy, RBAC, resource locks, tags, and cost tools in plain English — with sample questions. Free preview from ByteBar.">
+<meta property="og:type" content="article">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article",
+"headline":"AZ-900 Domain 3.0: Management & Governance — Explained",
+"description":"AZ-900 Domain 3.0 explained in plain English: resource groups, Azure Policy, RBAC, locks, tags, and cost management concepts.",
+"author":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"},
+"publisher":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"},
+"datePublished":"2026-09-26"}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "An auditor needs read-only visibility into all Azure resources but must not change anything. What is the correct assignment?", "acceptedAnswer": {"@type": "Answer", "text": "B. Reader = view everything, change nothing — exactly the requirement — and subscription scope covers all resource groups beneath it. Owner (A) is wildly excessive; Contributor (C) allows changes; a lock (D) blocks deletion but isn't an access grant at all."}}, {"@type": "Question", "name": "The company requires every VM to carry an \"Owner\" tag and forbids VMs in regions outside the US. Which control enforces both?", "acceptedAnswer": {"@type": "Answer", "text": "C. Both requirements are about what resources may exist — Azure Policy's exact job, evaluated at deployment and continuously. RBAC (A) governs who acts; locks (B) block actions on specific resources; subscriptions (D) are billing boundaries, not rule engines."}}, {"@type": "Question", "name": "A production database must be protected against accidental deletion, but administrators still need to modify its configuration. Which lock fits?", "acceptedAnswer": {"@type": "Answer", "text": "B. CanNotDelete is precisely \"you may change it, you may not destroy it.\" ReadOnly (A) would block the needed config changes. A policy (C) is the wrong tool for per-resource protection; removing RBAC (D) just breaks legitimate administration."}}, {"@type": "Question", "name": "Before requesting budget for a new Azure deployment, the team needs a monthly cost projection. Which tool?", "acceptedAnswer": {"@type": "Answer", "text": "B. The Pricing Calculator is the \"before\" tool: model the planned architecture, get a monthly estimate. Cost Management (A) and Advisor (C) analyze existing spend; Budgets (D) watch ongoing thresholds. Before → Calculator, every time."}}]}
+</script>
+<style>
+:root{--navy:#0a1628;--navy2:#0e1e38;--navy3:#132a4d;--cyan:#22d3ee;--slate:#94a3b8;--white:#f1f5f9;--green:#34d399;--amber:#fbbf24}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--navy);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header.site{border-bottom:1px solid #1e293b;padding:18px 0}
+.masthead{font-weight:800;letter-spacing:.55em;color:var(--cyan);font-size:15px;text-decoration:none}
+nav.main{margin-top:10px;font-size:14px}
+nav.main a{color:var(--slate);text-decoration:none;margin-right:18px}
+nav.main a:hover{color:var(--cyan)}
+.crumb{font-size:13px;color:var(--slate);margin:26px 0 8px}
+.crumb a{color:var(--cyan);text-decoration:none}
+article h1{font-size:29px;line-height:1.3;margin-bottom:10px}
+.lede{color:var(--slate);font-size:17px;margin-bottom:8px}
+.meta{font-size:13px;color:var(--slate);margin-bottom:30px}
+.meta b{color:var(--cyan)}
+article h2{font-size:22px;margin:38px 0 12px;color:var(--cyan)}
+article h3{font-size:17px;margin:24px 0 8px}
+article p{margin:0 0 14px}
+article ul,article ol{margin:0 0 14px 22px}
+article li{margin-bottom:6px}
+.def{background:var(--navy2);border-left:3px solid var(--cyan);padding:12px 16px;border-radius:0 8px 8px 0;margin:16px 0;font-size:15px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #1e293b;vertical-align:top}
+th{color:var(--cyan);font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+tr:hover td{background:var(--navy2)}
+.q{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:16px 0}
+.q .stem{font-weight:600;margin-bottom:10px}
+.q ol{list-style:none;margin:0 0 4px}
+.q ol li{background:var(--navy3);border-radius:8px;padding:8px 12px;margin-bottom:6px;font-size:14px}
+.q details{margin-top:8px}
+.q summary{cursor:pointer;color:var(--green);font-weight:600;font-size:14px}
+.q .why{font-size:14px;color:var(--slate);margin-top:8px}
+.cta{background:linear-gradient(135deg,#0e2a4a,#0a3a3f);border:1px solid var(--cyan);border-radius:14px;padding:26px;margin:44px 0;text-align:center}
+.cta h2{color:var(--white);margin:0 0 10px;font-size:22px}
+.cta p{color:var(--slate);font-size:15px;max-width:520px;margin:0 auto 18px}
+.btn{display:inline-block;background:var(--cyan);color:#04202a;font-weight:700;text-decoration:none;padding:12px 26px;border-radius:10px;margin:6px;font-size:15px}
+.btn.ghost{background:transparent;color:var(--cyan);border:1px solid var(--cyan)}
+footer.site{border-top:1px solid #1e293b;padding:24px 0;color:var(--slate);font-size:13px;text-align:center;margin-top:20px}
+footer.site a{color:var(--cyan);text-decoration:none}
+.nextbox{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:30px 0;font-size:14px;color:var(--slate)}
+.nextbox a{color:var(--cyan);text-decoration:none;font-weight:600}
+@media(max-width:560px){article h1{font-size:24px}.btn{display:block;margin:8px 0}}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="masthead" href="https://bytebarhq.github.io/bytebar-study/">B Y T E B A R</a>
+<nav class="main">
+<a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a>
+<a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a>
+<a href="https://bytebarhq.com">Store</a>
+</nav>
+</div></header>
+<main class="wrap"><article>
+<p class="crumb"><a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a> / <a href="https://bytebarhq.github.io/bytebar-study/az-900/">Microsoft Azure Fundamentals (AZ-900)</a> / Domain 3.0</p>
+<h1>Microsoft Azure Fundamentals (AZ-900) Domain 3.0: Describe Management & Governance — Explained</h1>
+<p class="lede">Domain 3.0 is about <em>control at scale</em>: how organizations keep hundreds of Azure resources organized, compliant, and affordable. It is the most "real job" of the three AZ-900 domains — and entirely conceptual.</p>
+<p class="meta">Exam weight: <b>30–35%</b> · Free study preview from ByteBar</p>
+<h2>Organizing: groups, tags, and hierarchy</h2>
+<ul>
+<li><strong>Management groups → subscriptions → resource groups → resources</strong> — the hierarchy. Policies and RBAC assigned higher up <em>inherit downward</em>.</li>
+<li><strong>Resource groups</strong> — logical containers for resources that share a lifecycle (one app's VM + database + storage). Delete the group, delete everything in it. A resource lives in exactly one group.</li>
+<li><strong>Tags</strong> — name/value labels (Environment: Production, Owner: Finance) for organization and cost tracking. Tags answer "which resources belong to which cost center?"</li>
+<li><strong>Subscriptions</strong> — billing and access boundaries. Separate subscriptions for dev/test/prod is a standard pattern.</li>
+</ul>
+<h2>Enforcing: Policy, RBAC, and locks</h2>
+<ul>
+<li><strong>Azure Policy</strong> — rules that resources must follow, evaluated at creation <em>and</em> continuously. "Only allow VMs in East US" or "require a CostCenter tag" — non-compliant resources get flagged or denied.</li>
+<li><strong>RBAC (role-based access control)</strong> — who can do what, where. Built-in roles: Owner (everything incl. access management), Contributor (manage resources, not access), Reader (view only). Assign at the narrowest scope that works — least privilege.</li>
+<li><strong>Resource locks</strong> — <em>CanNotDelete</em> (prevent accidental deletion; you can still modify) and <em>ReadOnly</em> (no changes at all). Locks are the answer to "how do I stop someone deleting the production database?"</li>
+<li><strong>Policy vs. RBAC vs. locks</strong> — Policy governs <em>what resources may exist</em>; RBAC governs <em>who may act</em>; locks govern <em>what actions are blocked</em> regardless of who. Three different questions, three different answers.</li>
+</ul>
+<div class="def">Inheritance flows down: a policy on a management group applies to every subscription beneath it. Deny assignments and locks at a parent protect everything below.</div>
+<h2>Cost control: seeing and limiting spend</h2>
+<ul>
+<li><strong>Pricing Calculator</strong> — <em>estimate</em> costs before deploying. The "before" tool.</li>
+<li><strong>Cost Management + Billing</strong> — <em>analyze</em> actual spend: break down by resource group, tag, or service. The "after" tool.</li>
+<li><strong>Budgets and alerts</strong> — set spending thresholds; get notified (or trigger automation) when crossed. Alerts don't stop spending by themselves.</li>
+<li><strong>Azure Advisor</strong> — personalized recommendations across cost, security, reliability, and performance — including "this VM is oversized, right-size it."</li>
+<li><strong>Reservations and Hybrid Benefit</strong> — commit to 1–3 years for discounts; bring existing Windows/SQL licenses to Azure to avoid paying twice.</li>
+<li><strong>Service Level Agreements (SLAs)</strong> — the uptime <em>commitment</em> (e.g., 99.9%). More nines cost more; know that SLAs describe provider commitments, not guarantees of perfection.</li>
+</ul>
+<h2>The must-memorize table: Policy vs. RBAC vs. locks</h2>
+<p>Three controls, three different jobs.</p>
+<table>
+<thead><tr><th>Control</th><th>Answers</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>Azure Policy</td><td>"What resources are allowed to exist?"</td><td>Deny VM sizes over 4 vCPUs; require tags</td></tr>
+<tr><td>RBAC</td><td>"Who is allowed to act?"</td><td>Reader role for auditors on the subscription</td></tr>
+<tr><td>Resource lock</td><td>"What is blocked no matter who?"</td><td>CanNotDelete on the production database</td></tr>
+<tr><td>Management group</td><td>"Where do I apply this broadly?"</td><td>Policy at the group covers all subscriptions below</td></tr>
+</tbody>
+</table>
+<h2>Try it: 4 sample questions</h2>
+<p>Sample questions to check your understanding of this domain. Answers and full reasoning are tucked under each one.</p>
+<div class="q"><p><strong>1. An auditor needs read-only visibility into all Azure resources but must not change anything. What is the correct assignment?</strong></p>
+<ol type="A"><li>A. A. Owner role at the management group</li><li>B. B. Reader role at the subscription scope</li><li>C. C. Contributor role on each resource group</li><li>D. D. A CanNotDelete lock on the subscription</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> Reader = view everything, change nothing — exactly the requirement — and subscription scope covers all resource groups beneath it. Owner (A) is wildly excessive; Contributor (C) allows changes; a lock (D) blocks <em>deletion</em> but isn't an access grant at all.</p></details></div>
+<div class="q"><p><strong>2. The company requires every VM to carry an "Owner" tag and forbids VMs in regions outside the US. Which control enforces both?</strong></p>
+<ol type="A"><li>A. A. RBAC — assign the Tag Contributor role</li><li>B. B. Resource locks on each VM</li><li>C. C. Azure Policy — tag requirements and allowed-location rules</li><li>D. D. A separate subscription per region</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>C.</strong> Both requirements are about <em>what resources may exist</em> — Azure Policy's exact job, evaluated at deployment and continuously. RBAC (A) governs <em>who</em> acts; locks (B) block actions on specific resources; subscriptions (D) are billing boundaries, not rule engines.</p></details></div>
+<div class="q"><p><strong>3. A production database must be protected against accidental deletion, but administrators still need to modify its configuration. Which lock fits?</strong></p>
+<ol type="A"><li>A. A. ReadOnly — blocks all changes</li><li>B. B. CanNotDelete — blocks deletion, allows modification</li><li>C. C. An Azure Policy denying all writes</li><li>D. D. Removing all RBAC assignments</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> CanNotDelete is precisely "you may change it, you may not destroy it." ReadOnly (A) would block the needed config changes. A policy (C) is the wrong tool for per-resource protection; removing RBAC (D) just breaks legitimate administration.</p></details></div>
+<div class="q"><p><strong>4. Before requesting budget for a new Azure deployment, the team needs a monthly cost projection. Which tool?</strong></p>
+<ol type="A"><li>A. A. Cost Management — analyze current spend</li><li>B. B. The Pricing Calculator — estimate planned costs</li><li>C. C. Azure Advisor — right-size existing VMs</li><li>D. D. Budgets — alert on thresholds</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> The Pricing Calculator is the "before" tool: model the planned architecture, get a monthly estimate. Cost Management (A) and Advisor (C) analyze <em>existing</em> spend; Budgets (D) watch ongoing thresholds. Before → Calculator, every time.</p></details></div>
+<div class="cta">
+<h2>This was one domain. The guide covers all 3.</h2>
+<p>This free preview covered <strong>Describe Azure Management & Governance (Domain 3.0)</strong>. Not covered here: Describe Azure Architecture & Services (Domain 2.0). The largest domain — every Azure service, region, and architecture detail — stays in the paid guide and practice bank. The $5 AZ-900 Study Guide covers every domain in condensed review form; the $7 complete bundle adds the practice pack with full question explanations.</p>
+<a class="btn" href="https://bytebarhq.com">Get the Study Guide — $5</a>
+<a class="btn ghost" href="https://bytebarhq.com">Complete Bundle — $7</a>
+
+</div>
+<div class="nextbox"><strong>Keep learning:</strong> <a href="https://bytebarhq.com/b/UIXyA">AZ-900 Study Guide — $5</a> · <a href="https://bytebarhq.com/blog/news/">ByteBar blog</a></div>
+<div class="nextbox">
+<strong>Continue the series:</strong> <a href="https://bytebarhq.github.io/bytebar-study/az-900/">back to the Microsoft Azure Fundamentals index</a>
+</div>
+</article></main>
+<footer class="site"><div class="wrap">
+<p>© 2026 ByteBar · Free study resources. Not affiliated with Microsoft Corporation.<br>
+<a href="https://bytebarhq.com">bytebarhq.com</a> · <a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a></p>
+</div></footer>
+</body>
+</html>
