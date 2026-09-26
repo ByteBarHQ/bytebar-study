@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DCA Domain 6.0: Storage and Volumes — Explained | ByteBar Study Hub</title>
+<meta name="description" content="DCA Domain 6.0 explained in plain English: Docker volumes, bind mounts, tmpfs, and storage lifecycle concepts.">
+<link rel="canonical" href="https://bytebarhq.github.io/bytebar-study/dca/dca-domain-6-storage-volumes/">
+<meta property="og:title" content="DCA Domain 6.0: Storage and Volumes — Explained">
+<meta property="og:description" content="Volumes, bind mounts, and tmpfs concepts in plain English — with sample questions. Free preview from ByteBar.">
+<meta property="og:type" content="article">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article",
+"headline":"DCA Domain 6.0: Storage and Volumes — Explained",
+"description":"DCA Domain 6.0 explained in plain English: Docker volumes, bind mounts, tmpfs, and storage lifecycle concepts.",
+"author":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"},
+"publisher":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"},
+"datePublished":"2026-09-26"}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "A container writes processed files to its writable layer. The container is removed during an upgrade. What happens to the files?", "acceptedAnswer": {"@type": "Answer", "text": "B. The writable layer's lifetime is the container's. Nothing migrates it, nothing backs it up — it simply ceases to exist. Data that matters must be written to a volume (or bind mount) from the start. \"Written inside the container, container deleted\" → gone."}}, {"@type": "Question", "name": "Two containers need to share a set of TLS certificates, read-only, without baking them into images. What is the cleanest approach?", "acceptedAnswer": {"@type": "Answer", "text": "B. Shared read-only storage decouples the certs from the images: rotate the files once, both containers see the update, no rebuilds. Baking into images (A) means rebuilding to rotate; ENV (C) exposes secrets in inspectable config; tmpfs (D) evaporates on restart."}}, {"@type": "Question", "name": "An admin runs `docker volume prune` on a host with many stopped containers that used anonymous volumes. What happens?", "acceptedAnswer": {"@type": "Answer", "text": "B. Prune removes unused volumes — anonymous volumes from long-dead containers are the classic reclaim. Running containers' volumes are in use and untouched (C); named-but-unused volumes are also removed, which is why the command asks for confirmation. Anonymous volumes: name them or lose track of them."}}, {"@type": "Question", "name": "A container processes credit-card data in memory and must guarantee no trace touches the disk, even in swap or crash dumps. Which mount fits?", "acceptedAnswer": {"@type": "Answer", "text": "B. tmpfs lives purely in RAM: nothing is written to disk, so disk forensics finds nothing. (Disable swap or use encrypted swap for the full guarantee — tmpfs can be swapped.) Volumes (A) and bind mounts (C) are disk-backed by definition; the writable layer (D) is disk-backed too."}}]}
+</script>
+<style>
+:root{--navy:#0a1628;--navy2:#0e1e38;--navy3:#132a4d;--cyan:#22d3ee;--slate:#94a3b8;--white:#f1f5f9;--green:#34d399;--amber:#fbbf24}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--navy);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header.site{border-bottom:1px solid #1e293b;padding:18px 0}
+.masthead{font-weight:800;letter-spacing:.55em;color:var(--cyan);font-size:15px;text-decoration:none}
+nav.main{margin-top:10px;font-size:14px}
+nav.main a{color:var(--slate);text-decoration:none;margin-right:18px}
+nav.main a:hover{color:var(--cyan)}
+.crumb{font-size:13px;color:var(--slate);margin:26px 0 8px}
+.crumb a{color:var(--cyan);text-decoration:none}
+article h1{font-size:29px;line-height:1.3;margin-bottom:10px}
+.lede{color:var(--slate);font-size:17px;margin-bottom:8px}
+.meta{font-size:13px;color:var(--slate);margin-bottom:30px}
+.meta b{color:var(--cyan)}
+article h2{font-size:22px;margin:38px 0 12px;color:var(--cyan)}
+article h3{font-size:17px;margin:24px 0 8px}
+article p{margin:0 0 14px}
+article ul,article ol{margin:0 0 14px 22px}
+article li{margin-bottom:6px}
+.def{background:var(--navy2);border-left:3px solid var(--cyan);padding:12px 16px;border-radius:0 8px 8px 0;margin:16px 0;font-size:15px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #1e293b;vertical-align:top}
+th{color:var(--cyan);font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+tr:hover td{background:var(--navy2)}
+.q{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:16px 0}
+.q .stem{font-weight:600;margin-bottom:10px}
+.q ol{list-style:none;margin:0 0 4px}
+.q ol li{background:var(--navy3);border-radius:8px;padding:8px 12px;margin-bottom:6px;font-size:14px}
+.q details{margin-top:8px}
+.q summary{cursor:pointer;color:var(--green);font-weight:600;font-size:14px}
+.q .why{font-size:14px;color:var(--slate);margin-top:8px}
+.cta{background:linear-gradient(135deg,#0e2a4a,#0a3a3f);border:1px solid var(--cyan);border-radius:14px;padding:26px;margin:44px 0;text-align:center}
+.cta h2{color:var(--white);margin:0 0 10px;font-size:22px}
+.cta p{color:var(--slate);font-size:15px;max-width:520px;margin:0 auto 18px}
+.btn{display:inline-block;background:var(--cyan);color:#04202a;font-weight:700;text-decoration:none;padding:12px 26px;border-radius:10px;margin:6px;font-size:15px}
+.btn.ghost{background:transparent;color:var(--cyan);border:1px solid var(--cyan)}
+footer.site{border-top:1px solid #1e293b;padding:24px 0;color:var(--slate);font-size:13px;text-align:center;margin-top:20px}
+footer.site a{color:var(--cyan);text-decoration:none}
+.nextbox{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:30px 0;font-size:14px;color:var(--slate)}
+.nextbox a{color:var(--cyan);text-decoration:none;font-weight:600}
+@media(max-width:560px){article h1{font-size:24px}.btn{display:block;margin:8px 0}}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="masthead" href="https://bytebarhq.github.io/bytebar-study/">B Y T E B A R</a>
+<nav class="main">
+<a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a>
+<a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a>
+<a href="https://bytebarhq.com">Store</a>
+</nav>
+</div></header>
+<main class="wrap"><article>
+<p class="crumb"><a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a> / <a href="https://bytebarhq.github.io/bytebar-study/dca/">Docker Certified Associate (DCA)</a> / Domain 6.0</p>
+<h1>Docker Certified Associate (DCA) Domain 6.0: Storage and Volumes — Explained</h1>
+<p class="lede">Domain 6.0 is the smallest DCA domain and pure concept: where container data lives, what survives what, and which storage option fits which need. Short, sweet, and very testable.</p>
+<p class="meta">Exam weight: <b>10%</b> · Free study preview from ByteBar</p>
+<h2>The persistence problem</h2>
+<p>Containers are ephemeral by design: the writable layer exists only while the container does. Anything worth keeping must live <em>outside</em> the container's lifecycle:</p>
+<ul>
+<li><strong>Volumes</strong> — Docker-managed storage in /var/lib/docker/volumes. Created explicitly or anonymously, shared between containers, backed up and migrated by Docker tooling. The production answer.</li>
+<li><strong>Bind mounts</strong> — map any host path into the container. Maximum flexibility, zero portability: the container now depends on that host's filesystem layout.</li>
+<li><strong>tmpfs mounts</strong> — RAM-only storage, never touches disk. For sensitive temporary data (decrypted secrets in use) and high-speed scratch.</li>
+</ul>
+<div class="def">Ask "what happens when the container is deleted?" Volumes persist. Bind mounts persist (they're the host's files). tmpfs evaporates. The writable layer evaporates.</div>
+<h2>Volume lifecycle and sharing</h2>
+<ul>
+<li><strong>Named vs. anonymous volumes</strong> — named volumes (<code>db-data</code>) are deliberate and reusable; anonymous volumes (random hex names) are usually accidents of Dockerfiles — they accumulate and confuse. Name your volumes.</li>
+<li><strong>Sharing</strong> — multiple containers mount the same volume: the classic sidecar pattern (app writes logs, shipper reads them). Concurrent <em>writes</em> from multiple containers need application-level coordination — Docker won't serialize for you.</li>
+<li><strong>Drivers</strong> — volume drivers extend storage beyond local disk: NFS, cloud block storage, Ceph. <code>docker volume create --driver</code> — the data can live anywhere the driver reaches.</li>
+<li><strong>Backup and migration</strong> — back up volumes (not containers): run a throwaway container mounting the volume and archive it, or use driver-level snapshots. The volume <em>is</em> the data.</li>
+<li><strong>Pruning</strong> — <code>docker volume prune</code> removes unused volumes. Anonymous volumes from dead containers are the usual disk-eaters — another reason to name volumes.</li>
+</ul>
+<h2>The must-memorize table: storage options compared</h2>
+<p>One table for the whole domain.</p>
+<table>
+<thead><tr><th>Option</th><th>Lives</th><th>Survives container deletion?</th><th>Portable?</th></tr></thead>
+<tbody>
+<tr><td>Named volume</td><td>Docker-managed area</td><td>Yes</td><td>Yes — moves with Docker tooling/drivers</td></tr>
+<tr><td>Anonymous volume</td><td>Docker-managed area</td><td>Yes (until pruned)</td><td>Poorly — random names confuse</td></tr>
+<tr><td>Bind mount</td><td>Arbitrary host path</td><td>Yes (host file)</td><td>No — tied to host layout</td></tr>
+<tr><td>tmpfs</td><td>Host RAM</td><td>No</td><td>N/A — ephemeral by design</td></tr>
+<tr><td>Writable layer</td><td>Storage driver</td><td>No</td><td>No</td></tr>
+</tbody>
+</table>
+<h2>Try it: 4 sample questions</h2>
+<p>Sample questions to check your understanding of this domain. Answers and full reasoning are tucked under each one.</p>
+<div class="q"><p><strong>1. A container writes processed files to its writable layer. The container is removed during an upgrade. What happens to the files?</strong></p>
+<ol type="A"><li>A. A. They persist in the image</li><li>B. B. They are lost — the writable layer dies with the container</li><li>C. C. They move to a volume automatically</li><li>D. D. They are backed up by the daemon</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> The writable layer's lifetime <em>is</em> the container's. Nothing migrates it, nothing backs it up — it simply ceases to exist. Data that matters must be written to a volume (or bind mount) from the start. "Written inside the container, container deleted" → gone.</p></details></div>
+<div class="q"><p><strong>2. Two containers need to share a set of TLS certificates, read-only, without baking them into images. What is the cleanest approach?</strong></p>
+<ol type="A"><li>A. A. COPY the certs into each image</li><li>B. B. A named volume (or bind mount) with the certs, mounted read-only into both containers</li><li>C. C. Pass the certs as ENV variables</li><li>D. D. Use tmpfs so they never touch disk</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> Shared read-only storage decouples the certs from the images: rotate the files once, both containers see the update, no rebuilds. Baking into images (A) means rebuilding to rotate; ENV (C) exposes secrets in inspectable config; tmpfs (D) evaporates on restart.</p></details></div>
+<div class="q"><p><strong>3. An admin runs `docker volume prune` on a host with many stopped containers that used anonymous volumes. What happens?</strong></p>
+<ol type="A"><li>A. A. Nothing — prune only affects images</li><li>B. B. Unused anonymous volumes are deleted, reclaiming their disk space</li><li>C. C. Running containers lose their volumes</li><li>D. D. Named volumes are deleted too</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> Prune removes <em>unused</em> volumes — anonymous volumes from long-dead containers are the classic reclaim. Running containers' volumes are in use and untouched (C); named-but-unused volumes are also removed, which is why the command asks for confirmation. Anonymous volumes: name them or lose track of them.</p></details></div>
+<div class="q"><p><strong>4. A container processes credit-card data in memory and must guarantee no trace touches the disk, even in swap or crash dumps. Which mount fits?</strong></p>
+<ol type="A"><li>A. A. A named volume with encryption</li><li>B. B. tmpfs — RAM-only, never written to disk</li><li>C. C. A bind mount to /tmp</li><li>D. D. The writable layer</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> tmpfs lives purely in RAM: nothing is written to disk, so disk forensics finds nothing. (Disable swap or use encrypted swap for the full guarantee — tmpfs <em>can</em> be swapped.) Volumes (A) and bind mounts (C) are disk-backed by definition; the writable layer (D) is disk-backed too.</p></details></div>
+<div class="cta">
+<h2>This was one domain. The guide covers all 6.</h2>
+<p>This free preview covered <strong>Storage & Volumes (Domain 6.0, 10%)</strong>. Not covered here: Orchestration (Domain 1.0, 25%); Security (Domain 5.0, 15%). Swarm orchestration and Docker security — the most scenario-heavy DCA material — stay in the paid guide and practice bank. The $5 DCA Study Guide covers every domain in condensed review form; the $7 complete bundle adds the practice pack with full question explanations.</p>
+<a class="btn" href="https://bytebarhq.com">Get the Study Guide — $5</a>
+<a class="btn ghost" href="https://bytebarhq.com">Complete Bundle — $7</a>
+
+</div>
+<div class="nextbox"><strong>Keep learning:</strong> <a href="https://bytebarhq.com/blog/news/">ByteBar blog</a> · <a href="https://bytebarhq.com">ByteBar store</a></div>
+<div class="nextbox">
+<strong>Continue the series:</strong> <a href="https://bytebarhq.github.io/bytebar-study/dca/">back to the Docker Certified Associate index</a>
+</div>
+</article></main>
+<footer class="site"><div class="wrap">
+<p>© 2026 ByteBar · Free study resources. Not affiliated with Mirantis.<br>
+<a href="https://bytebarhq.com">bytebarhq.com</a> · <a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a></p>
+</div></footer>
+</body>
+</html>
