@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Network+ N10-009 Domain 1.0: Networking Concepts — Explained | ByteBar Study Hub</title>
+<meta name="description" content="CompTIA Network+ N10-009 Domain 1.0 explained in plain English: OSI and TCP/IP models, ports, protocols, addressing, and switching concepts.">
+<link rel="canonical" href="https://bytebarhq.github.io/bytebar-study/network-plus/n10-009-domain-1-networking-concepts/">
+<meta property="og:title" content="Network+ N10-009 Domain 1.0: Networking Concepts — Explained">
+<meta property="og:description" content="OSI model, ports and protocols, IP addressing, and switching concepts in plain English — with sample questions. Free preview from ByteBar.">
+<meta property="og:type" content="article">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article",
+"headline":"Network+ N10-009 Domain 1.0: Networking Concepts — Explained",
+"description":"CompTIA Network+ N10-009 Domain 1.0 explained in plain English: OSI and TCP/IP models, ports, protocols, addressing, and switching concepts.",
+"author":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"}}
+</script>
+<style>
+:root{--navy:#0a1628;--navy2:#0e1e38;--navy3:#132a4d;--cyan:#22d3ee;--slate:#94a3b8;--white:#f1f5f9;--green:#34d399;--amber:#fbbf24}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--navy);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header.site{border-bottom:1px solid #1e293b;padding:18px 0}
+.masthead{font-weight:800;letter-spacing:.55em;color:var(--cyan);font-size:15px;text-decoration:none}
+nav.main{margin-top:10px;font-size:14px}
+nav.main a{color:var(--slate);text-decoration:none;margin-right:18px}
+nav.main a:hover{color:var(--cyan)}
+.crumb{font-size:13px;color:var(--slate);margin:26px 0 8px}
+.crumb a{color:var(--cyan);text-decoration:none}
+article h1{font-size:29px;line-height:1.3;margin-bottom:10px}
+.lede{color:var(--slate);font-size:17px;margin-bottom:8px}
+.meta{font-size:13px;color:var(--slate);margin-bottom:30px}
+.meta b{color:var(--cyan)}
+article h2{font-size:22px;margin:38px 0 12px;color:var(--cyan)}
+article h3{font-size:17px;margin:24px 0 8px}
+article p{margin:0 0 14px}
+article ul,article ol{margin:0 0 14px 22px}
+article li{margin-bottom:6px}
+.def{background:var(--navy2);border-left:3px solid var(--cyan);padding:12px 16px;border-radius:0 8px 8px 0;margin:16px 0;font-size:15px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #1e293b;vertical-align:top}
+th{color:var(--cyan);font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+tr:hover td{background:var(--navy2)}
+.q{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:16px 0}
+.q .stem{font-weight:600;margin-bottom:10px}
+.q ol{list-style:none;margin:0 0 4px}
+.q ol li{background:var(--navy3);border-radius:8px;padding:8px 12px;margin-bottom:6px;font-size:14px}
+.q details{margin-top:8px}
+.q summary{cursor:pointer;color:var(--green);font-weight:600;font-size:14px}
+.q .why{font-size:14px;color:var(--slate);margin-top:8px}
+.cta{background:linear-gradient(135deg,#0e2a4a,#0a3a3f);border:1px solid var(--cyan);border-radius:14px;padding:26px;margin:44px 0;text-align:center}
+.cta h2{color:var(--white);margin:0 0 10px;font-size:22px}
+.cta p{color:var(--slate);font-size:15px;max-width:520px;margin:0 auto 18px}
+.btn{display:inline-block;background:var(--cyan);color:#04202a;font-weight:700;text-decoration:none;padding:12px 26px;border-radius:10px;margin:6px;font-size:15px}
+.btn.ghost{background:transparent;color:var(--cyan);border:1px solid var(--cyan)}
+footer.site{border-top:1px solid #1e293b;padding:24px 0;color:var(--slate);font-size:13px;text-align:center;margin-top:20px}
+footer.site a{color:var(--cyan);text-decoration:none}
+.nextbox{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:30px 0;font-size:14px;color:var(--slate)}
+.nextbox a{color:var(--cyan);text-decoration:none;font-weight:600}
+@media(max-width:560px){article h1{font-size:24px}.btn{display:block;margin:8px 0}}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="masthead" href="https://bytebarhq.github.io/bytebar-study/">B Y T E B A R</a>
+<nav class="main">
+<a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a>
+<a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a>
+<a href="https://bytebarhq.com">Store</a>
+</nav>
+</div></header>
+<main class="wrap"><article>
+<p class="crumb"><a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a> / <a href="https://bytebarhq.github.io/bytebar-study/network-plus/">CompTIA Network+ (N10-009)</a> / Domain 1.0</p>
+<h1>CompTIA Network+ (N10-009) Domain 1.0: Networking Concepts — Explained</h1>
+<p class="lede">Domain 1.0 is the <em>language</em> of networking: the models that describe how data moves, the ports and protocols that identify services, and the addressing that gets packets to the right place. Everything else in networking is built on this vocabulary.</p>
+<p class="meta">Exam weight: <b>23%</b> · objectives 1.1–1.8 · Free study preview from ByteBar</p>
+<h2>1.1 — The OSI model vs. the TCP/IP model</h2>
+<p>Two models describe the same journey of data from one machine to another. The OSI model has seven layers; the TCP/IP model compresses them into four. Think in OSI and translate to TCP/IP.</p>
+<ul>
+<li><strong>L7 Application</strong> — what the user touches: HTTP, DNS, SMTP. (TCP/IP: Application)</li>
+<li><strong>L6 Presentation</strong> — data formatting: encryption, compression, encoding. (TCP/IP: Application)</li>
+<li><strong>L5 Session</strong> — managing connections between apps. (TCP/IP: Application)</li>
+<li><strong>L4 Transport</strong> — end-to-end delivery: TCP vs. UDP, port numbers. (TCP/IP: Transport)</li>
+<li><strong>L3 Network</strong> — logical addressing and routing: IP, routers. (TCP/IP: Internet)</li>
+<li><strong>L2 Data Link</strong> — physical addressing on the local network: MAC addresses, switches, frames. (TCP/IP: Network Access)</li>
+<li><strong>L1 Physical</strong> — the actual bits on the wire: cables, hubs, signaling. (TCP/IP: Network Access)</li>
+</ul>
+<div class="def">Troubleshoot <em>down</em> the stack: is it plugged in (L1)? Does it have a link light and MAC (L2)? Does it have an IP and a route (L3)? Can the app connect to the port (L4/L7)? Most real problems live at L1–L3.</div>
+<h2>1.2 — Ports, protocols, and what they do</h2>
+<p>A port number identifies the <em>service</em> on a machine; the protocol defines the <em>language</em>. Together with an IP address, they form a socket — the full address of a conversation.</p>
+<ul>
+<li><strong>Well-known ports (0–1023)</strong> — assigned to standard services: 80 HTTP, 443 HTTPS, 22 SSH, 25 SMTP, 53 DNS, 67/68 DHCP, 389 LDAP, 3389 RDP.</li>
+<li><strong>Registered ports (1024–49151)</strong> — assigned to vendor applications on request.</li>
+<li><strong>Dynamic/private ports (49152–65535)</strong> — picked at random for the client side of a connection.</li>
+</ul>
+<p><strong>TCP vs. UDP</strong> is a fundamental transport question: TCP is connection-oriented — three-way handshake, sequencing, acknowledgments, retransmission. Reliable but slower. UDP is connectionless — fire and forget. Faster, no guarantees. Rule of thumb: if the application can't tolerate loss (web, email, file transfer), it's TCP; if it values speed over perfection (streaming, VoIP, DNS queries), it's UDP.</p>
+<h2>1.3 — IP addressing and subnetting concepts</h2>
+<p>Every device needs a logical address (IP) to be routable beyond its local network.</p>
+<ul>
+<li><strong>IPv4</strong> — 32-bit dotted decimal (192.168.1.10). About 4.3 billion addresses — exhausted long ago, which is why NAT exists.</li>
+<li><strong>IPv6</strong> — 128-bit hexadecimal (2001:db8::1). Effectively unlimited; no NAT needed, autoconfiguration built in.</li>
+<li><strong>Private ranges (RFC 1918)</strong> — 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16. Not routable on the internet; reused inside every organization.</li>
+<li><strong>APIPA (169.254.x.x)</strong> — the address a host gives itself when DHCP fails. Seeing one means "DHCP is broken," not "the network is fine."</li>
+<li><strong>Subnetting</strong> — borrowing host bits to carve one network into smaller ones. A /26 gives 4 subnets of 62 usable hosts each. The block-size method: block size = 256 − interesting octet of the mask.</li>
+</ul>
+<h2>1.4 — Switching and routing concepts</h2>
+<p>Switches and routers both move packets, at different layers and different scopes:</p>
+<ul>
+<li><strong>Hub (L1)</strong> — repeats everything out every port. One collision domain; obsolete.</li>
+<li><strong>Switch (L2)</strong> — learns MAC addresses per port and forwards frames only where they need to go. Each port is its own collision domain; all ports share a broadcast domain.</li>
+<li><strong>Router (L3)</strong> — forwards packets between <em>networks</em> using IP addresses and a routing table. Each router interface is its own broadcast domain.</li>
+<li><strong>VLAN</strong> — a virtual LAN: one physical switch carved into multiple logical broadcast domains. Devices on different VLANs can't talk without a router (or layer-3 switch).</li>
+<li><strong>Default gateway</strong> — the router interface a host sends traffic destined <em>off</em> its network to. No gateway, no internet.</li>
+</ul>
+<h2>The must-memorize table: essential ports and protocols</h2>
+<p>If a question names a service, you name the port. Start here.</p>
+<table>
+<thead><tr><th>Port</th><th>Protocol</th><th>Used for</th></tr></thead>
+<tbody>
+<tr><td>20/21</td><td>FTP</td><td>File transfer (plaintext)</td></tr>
+<tr><td>22</td><td>SSH / SFTP</td><td>Secure shell; secure file transfer</td></tr>
+<tr><td>23</td><td>Telnet</td><td>Remote shell (plaintext — legacy)</td></tr>
+<tr><td>25</td><td>SMTP</td><td>Sending email</td></tr>
+<tr><td>53</td><td>DNS</td><td>Name resolution</td></tr>
+<tr><td>67/68</td><td>DHCP</td><td>Automatic IP assignment</td></tr>
+<tr><td>80</td><td>HTTP</td><td>Web (plaintext)</td></tr>
+<tr><td>110</td><td>POP3</td><td>Receiving email (download)</td></tr>
+<tr><td>143</td><td>IMAP</td><td>Receiving email (server-synced)</td></tr>
+<tr><td>443</td><td>HTTPS</td><td>Secure web</td></tr>
+<tr><td>389</td><td>LDAP</td><td>Directory services</td></tr>
+<tr><td>3389</td><td>RDP</td><td>Windows remote desktop</td></tr>
+</tbody>
+</table>
+<h2>Try it: 4 sample questions</h2>
+<p>Sample questions to check your understanding of this domain. Answers and full reasoning are tucked under each one.</p>
+<div class="q"><p><strong>1. A workstation suddenly has the IP address 169.254.44.12. What does this tell the technician?</strong></p>
+<ol type="A"><li>A. A. The workstation is using a valid public IP address</li><li>B. B. DHCP failed, and the host assigned itself an APIPA address</li><li>C. C. The workstation has been assigned a reserved private address</li><li>D. D. IPv6 autoconfiguration has completed successfully</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> 169.254.0.0/16 is APIPA — the range Windows (and others) self-assign when no DHCP server answers. It means the host has <em>no</em> usable network configuration: no gateway, no DNS. The technician's next step is DHCP troubleshooting, not IP troubleshooting.</p></details></div>
+<div class="q"><p><strong>2. A video-conferencing application uses UDP instead of TCP for its media streams. Why is that the right choice?</strong></p>
+<ol type="A"><li>A. A. UDP encrypts the stream, which TCP cannot do</li><li>B. B. UDP guarantees delivery, which matters most for video</li><li>C. C. UDP's low overhead suits real-time traffic, where a late packet is worse than a lost one</li><li>D. D. TCP cannot carry video data at all</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>C.</strong> Real-time media would rather <em>drop</em> a late packet than <em>wait</em> for a retransmission — waiting causes stutter. UDP's fire-and-forget model fits perfectly. TCP's reliability mechanisms (A/B get the properties backwards) would add delay. TCP certainly <em>can</em> carry video (D) — it's just the wrong tradeoff for live streams.</p></details></div>
+<div class="q"><p><strong>3. Two departments share one physical switch but must not see each other's broadcast traffic. What is the simplest solution?</strong></p>
+<ol type="A"><li>A. A. Install a router between every workstation</li><li>B. B. Place each department in its own VLAN</li><li>C. C. Assign both departments APIPA addresses</li><li>D. D. Replace the switch with a hub</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> A VLAN splits one switch into separate logical broadcast domains — exactly the requirement, with no new hardware. A router (A) per workstation is absurd; APIPA (C) breaks connectivity; a hub (D) makes things <em>worse</em> by merging everything into one collision domain.</p></details></div>
+<div class="q"><p><strong>4. A user can ping the default gateway but cannot reach any website by name — though pinging 8.8.8.8 works. Which layer is the problem at?</strong></p>
+<ol type="A"><li>A. A. Layer 1 — the cable is likely damaged</li><li>B. B. Layer 2 — the switch MAC table is full</li><li>C. C. Layer 3 — the routing table is missing a route</li><li>D. D. Layer 7 — DNS resolution is failing</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>D.</strong> IP connectivity works (8.8.8.8 replies; the gateway replies), so L1–L3 are fine. Only <em>names</em> fail — that's DNS, an Application-layer (L7) service. The giveaway pattern: "IP works, names don't" always means DNS.</p></details></div>
+<div class="cta">
+<h2>This was one domain. The guide covers all 5.</h2>
+<p>This free preview covered <strong>Networking Concepts (Domain 1.0, 23%)</strong>. Not covered here: Network Implementation (Domain 2.0, 20%); Network Troubleshooting (Domain 5.0, 24%). The hands-on domains — device configuration and scenario troubleshooting — stay in the paid guide and practice bank. The $5 Network+ Study Guide covers every domain in condensed review form; the $7 complete bundle adds the practice pack with full question explanations.</p>
+<a class="btn" href="https://bytebarhq.com">Get the Study Guide — $5</a>
+<a class="btn ghost" href="https://bytebarhq.com">Complete Bundle — $7</a>
+
+</div>
+<div class="nextbox">
+<strong>Continue the series:</strong> <a href="https://bytebarhq.github.io/bytebar-study/network-plus/n10-009-domain-3-network-operations/">Network+ N10-009 Domain 3.0: Network Operations — Explained</a>
+</div>
+</article></main>
+<footer class="site"><div class="wrap">
+<p>© 2026 ByteBar · Free study resources. Not affiliated with CompTIA, Inc..<br>
+<a href="https://bytebarhq.com">bytebarhq.com</a> · <a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a></p>
+</div></footer>
+</body>
+</html>
