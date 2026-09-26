@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CISSP Domain 8.0: Software Development Security — Explained | ByteBar Study Hub</title>
+<meta name="description" content="CISSP Domain 8.0 explained in plain English: SDLC security, OWASP Top 10 concepts, testing methods, and DevSecOps basics.">
+<link rel="canonical" href="https://bytebarhq.github.io/bytebar-study/cissp/cissp-domain-8-software-development-security/">
+<meta property="og:title" content="CISSP Domain 8.0: Software Development Security — Explained">
+<meta property="og:description" content="SDLC security, OWASP concepts, and secure testing methods in plain English — with sample questions. Free preview from ByteBar.">
+<meta property="og:type" content="article">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article",
+"headline":"CISSP Domain 8.0: Software Development Security — Explained",
+"description":"CISSP Domain 8.0 explained in plain English: SDLC security, OWASP Top 10 concepts, testing methods, and DevSecOps basics.",
+"author":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"},
+"publisher":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"},
+"datePublished":"2026-09-26"}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "A developer builds database queries by concatenating user input directly into SQL strings. What vulnerability is this, and what is the fix?", "acceptedAnswer": {"@type": "Answer", "text": "B. Concatenated input executed as SQL is the textbook SQL injection pattern. The fix is structural: parameterized queries separate code from data so input can never become instructions. Output encoding (A) fixes XSS, a different bug in a different place."}}, {"@type": "Question", "name": "A security team wants to find vulnerabilities in a running staging application, testing it the way an attacker would. Which method fits?", "acceptedAnswer": {"@type": "Answer", "text": "B. Running app + external attacker perspective = DAST. SAST (A) needs source code and doesn't see runtime behavior; linters (C) check style, not security; unit tests (D) verify intended behavior, not resistance to malicious input."}}, {"@type": "Question", "name": "An audit finds the production web server still uses the vendor's default admin password. Which OWASP category is this?", "acceptedAnswer": {"@type": "Answer", "text": "C. Default credentials are the poster child of security misconfiguration: the software is fine, the deployment is negligent. It's not an injection flaw (A) or a crypto failure (B) — it's \"we never finished setting it up.\" Misconfiguration is consistently a top-10 finding because it's so common."}}, {"@type": "Question", "name": "Why does the CISSP emphasize finding vulnerabilities during design rather than after deployment?", "acceptedAnswer": {"@type": "Answer", "text": "B. The cost curve is brutal: a flaw caught in design costs a conversation; the same flaw in production costs emergency patches, downtime, and possibly breach notification. \"Shift left\" is the economic argument for threat modeling and secure design — spend a little early to avoid spending a fortune late."}}]}
+</script>
+<style>
+:root{--navy:#0a1628;--navy2:#0e1e38;--navy3:#132a4d;--cyan:#22d3ee;--slate:#94a3b8;--white:#f1f5f9;--green:#34d399;--amber:#fbbf24}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--navy);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header.site{border-bottom:1px solid #1e293b;padding:18px 0}
+.masthead{font-weight:800;letter-spacing:.55em;color:var(--cyan);font-size:15px;text-decoration:none}
+nav.main{margin-top:10px;font-size:14px}
+nav.main a{color:var(--slate);text-decoration:none;margin-right:18px}
+nav.main a:hover{color:var(--cyan)}
+.crumb{font-size:13px;color:var(--slate);margin:26px 0 8px}
+.crumb a{color:var(--cyan);text-decoration:none}
+article h1{font-size:29px;line-height:1.3;margin-bottom:10px}
+.lede{color:var(--slate);font-size:17px;margin-bottom:8px}
+.meta{font-size:13px;color:var(--slate);margin-bottom:30px}
+.meta b{color:var(--cyan)}
+article h2{font-size:22px;margin:38px 0 12px;color:var(--cyan)}
+article h3{font-size:17px;margin:24px 0 8px}
+article p{margin:0 0 14px}
+article ul,article ol{margin:0 0 14px 22px}
+article li{margin-bottom:6px}
+.def{background:var(--navy2);border-left:3px solid var(--cyan);padding:12px 16px;border-radius:0 8px 8px 0;margin:16px 0;font-size:15px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #1e293b;vertical-align:top}
+th{color:var(--cyan);font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+tr:hover td{background:var(--navy2)}
+.q{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:16px 0}
+.q .stem{font-weight:600;margin-bottom:10px}
+.q ol{list-style:none;margin:0 0 4px}
+.q ol li{background:var(--navy3);border-radius:8px;padding:8px 12px;margin-bottom:6px;font-size:14px}
+.q details{margin-top:8px}
+.q summary{cursor:pointer;color:var(--green);font-weight:600;font-size:14px}
+.q .why{font-size:14px;color:var(--slate);margin-top:8px}
+.cta{background:linear-gradient(135deg,#0e2a4a,#0a3a3f);border:1px solid var(--cyan);border-radius:14px;padding:26px;margin:44px 0;text-align:center}
+.cta h2{color:var(--white);margin:0 0 10px;font-size:22px}
+.cta p{color:var(--slate);font-size:15px;max-width:520px;margin:0 auto 18px}
+.btn{display:inline-block;background:var(--cyan);color:#04202a;font-weight:700;text-decoration:none;padding:12px 26px;border-radius:10px;margin:6px;font-size:15px}
+.btn.ghost{background:transparent;color:var(--cyan);border:1px solid var(--cyan)}
+footer.site{border-top:1px solid #1e293b;padding:24px 0;color:var(--slate);font-size:13px;text-align:center;margin-top:20px}
+footer.site a{color:var(--cyan);text-decoration:none}
+.nextbox{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:30px 0;font-size:14px;color:var(--slate)}
+.nextbox a{color:var(--cyan);text-decoration:none;font-weight:600}
+@media(max-width:560px){article h1{font-size:24px}.btn{display:block;margin:8px 0}}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="masthead" href="https://bytebarhq.github.io/bytebar-study/">B Y T E B A R</a>
+<nav class="main">
+<a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a>
+<a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a>
+<a href="https://bytebarhq.com">Store</a>
+</nav>
+</div></header>
+<main class="wrap"><article>
+<p class="crumb"><a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a> / <a href="https://bytebarhq.github.io/bytebar-study/cissp/">ISC2 CISSP (CISSP)</a> / Domain 8.0</p>
+<h1>CISSP Domain 8.0: Software Development Security — Explained</h1>
+<p class="lede">Domain 8.0 puts security <em>into</em> how software gets built: the development lifecycle, the vulnerability classes that haunt web apps, and the testing that catches them before attackers do. Concept-heavy and very approachable.</p>
+<p class="meta">Exam weight: <b>10%</b> · Free study preview from ByteBar</p>
+<h2>Secure SDLC: shifting left</h2>
+<ul>
+<li><strong>Waterfall vs. agile vs. DevOps</strong> — waterfall plans everything upfront (security reviews at gates); agile iterates in sprints (security must fit each sprint); DevOps automates the pipeline (security becomes automated gates in the pipeline — <em>DevSecOps</em>).</li>
+<li><strong>Shift left</strong> — moving security earlier in the lifecycle: threat modeling in design is 100x cheaper than patching in production. The exam's mantra: the earlier the finding, the cheaper the fix.</li>
+<li><strong>Threat modeling</strong> — design-phase analysis: what are we building, what can go wrong, what do we do about it? STRIDE (Spoofing, Tampering, Repudiation, Information disclosure, DoS, Elevation of privilege) is the classic framework.</li>
+<li><strong>Security requirements</strong> — functional requirements say what the software <em>does</em>; security requirements say what it must <em>never allow</em>. Both belong in the spec, not as afterthoughts.</li>
+</ul>
+<h2>The vulnerability hall of fame (OWASP concepts)</h2>
+<ul>
+<li><strong>Injection</strong> — untrusted input executed as code: SQL injection being the classic. The fix is <em>never</em> string concatenation — parameterized queries / prepared statements.</li>
+<li><strong>Broken access control</strong> — users reaching functions or data beyond their permissions: insecure direct object references, missing authorization checks. OWASP's #1 for years.</li>
+<li><strong>Cryptographic failures</strong> — weak algorithms, hardcoded keys, sensitive data in plaintext. Not "we forgot crypto" but "we did crypto wrong."</li>
+<li><strong>Cross-site scripting (XSS)</strong> — attacker script runs in victims' browsers: steal sessions, deface, phish. Stored (in the database, hits everyone), reflected (in a crafted link), DOM-based (in client-side code).</li>
+<li><strong>Security misconfiguration</strong> — default credentials, verbose errors, unnecessary services. The "we deployed the sample config" vulnerability.</li>
+<li><strong>Vulnerable components</strong> — the library you didn't write has the CVE you didn't check. Software bills of materials (SBOMs) track what you're actually running.</li>
+</ul>
+<h2>Testing: proving it before attackers do</h2>
+<ul>
+<li><strong>SAST (static)</strong> — analyzes source code <em>without running it</em>. Early, fast, finds coding flaws; can't see runtime behavior.</li>
+<li><strong>DAST (dynamic)</strong> — tests the <em>running</em> application from outside, like an attacker. Finds what SAST misses; later in the cycle.</li>
+<li><strong>IAST / SCA</strong> — interactive testing (instrumented runtime) and software composition analysis (scanning third-party libraries for known CVEs).</li>
+<li><strong>Code review</strong> — humans reading code for logic flaws automation can't see. Slow, expensive, irreplaceable for critical paths.</li>
+<li><strong>DevSecOps pipeline</strong> — SAST on commit, SCA on build, DAST on deploy, plus secrets scanning (no credentials in repos) and signed artifacts. Security as automation, not meetings.</li>
+</ul>
+<div class="def">SAST = white-box (sees the code, not the runtime). DAST = black-box (sees the runtime, not the code). Use both — they find different bugs.</div>
+<h2>The must-memorize table: testing methods</h2>
+<p>Which test finds what, when.</p>
+<table>
+<thead><tr><th>Method</th><th>Tests</th><th>When / notes</th></tr></thead>
+<tbody>
+<tr><td>SAST</td><td>Source code, not running</td><td>Early (on commit); finds coding flaws</td></tr>
+<tr><td>DAST</td><td>Running app, from outside</td><td>Later (staging); finds runtime issues</td></tr>
+<tr><td>SCA</td><td>Third-party libraries</td><td>On build; matches against CVE databases</td></tr>
+<tr><td>Manual code review</td><td>Logic, by humans</td><td>Critical code paths; finds what tools miss</td></tr>
+<tr><td>Penetration test</td><td>Whole system, adversarially</td><td>Pre-release; proves exploitability</td></tr>
+</tbody>
+</table>
+<h2>Try it: 4 sample questions</h2>
+<p>Sample questions to check your understanding of this domain. Answers and full reasoning are tucked under each one.</p>
+<div class="q"><p><strong>1. A developer builds database queries by concatenating user input directly into SQL strings. What vulnerability is this, and what is the fix?</strong></p>
+<ol type="A"><li>A. A. XSS — encode all output</li><li>B. B. SQL injection — use parameterized queries / prepared statements</li><li>C. C. CSRF — add anti-forgery tokens</li><li>D. D. Buffer overflow — check array bounds</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> Concatenated input executed as SQL is the textbook SQL injection pattern. The fix is structural: parameterized queries separate <em>code</em> from <em>data</em> so input can never become instructions. Output encoding (A) fixes XSS, a different bug in a different place.</p></details></div>
+<div class="q"><p><strong>2. A security team wants to find vulnerabilities in a running staging application, testing it the way an attacker would. Which method fits?</strong></p>
+<ol type="A"><li>A. A. SAST — analyze the source code</li><li>B. B. DAST — dynamic testing of the running app from outside</li><li>C. C. A code style linter</li><li>D. D. Unit tests written by developers</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> Running app + external attacker perspective = DAST. SAST (A) needs source code and doesn't see runtime behavior; linters (C) check style, not security; unit tests (D) verify <em>intended</em> behavior, not resistance to <em>malicious</em> input.</p></details></div>
+<div class="q"><p><strong>3. An audit finds the production web server still uses the vendor's default admin password. Which OWASP category is this?</strong></p>
+<ol type="A"><li>A. A. Injection</li><li>B. B. Cryptographic failures</li><li>C. C. Security misconfiguration</li><li>D. D. Broken access control</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>C.</strong> Default credentials are the poster child of <em>security misconfiguration</em>: the software is fine, the deployment is negligent. It's not an injection flaw (A) or a crypto failure (B) — it's "we never finished setting it up." Misconfiguration is consistently a top-10 finding because it's so common.</p></details></div>
+<div class="q"><p><strong>4. Why does the CISSP emphasize finding vulnerabilities during design rather than after deployment?</strong></p>
+<ol type="A"><li>A. A. Design-phase tools are more accurate</li><li>B. B. Fixing earlier is dramatically cheaper — "shift left"</li><li>C. C. Deployed systems can't be patched</li><li>D. D. Attackers only target design documents</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> The cost curve is brutal: a flaw caught in design costs a conversation; the same flaw in production costs emergency patches, downtime, and possibly breach notification. "Shift left" is the economic argument for threat modeling and secure design — spend a little early to avoid spending a fortune late.</p></details></div>
+<div class="cta">
+<h2>This was one domain. The guide covers all 8.</h2>
+<p>This free preview covered <strong>Software Development Security (Domain 8.0, 10%)</strong>. Not covered here: Communication & Network Security (Domain 4.0, 13%); Security Assessment & Testing (Domain 6.0, 12%); Security Operations (Domain 7.0, 13%). The three most operational domains — network security, assessment, and security operations — stay in the paid guide and practice bank. The $5 CISSP Study Guide covers every domain in condensed review form; the $7 complete bundle adds the practice pack with full question explanations.</p>
+<a class="btn" href="https://bytebarhq.com">Get the Study Guide — $5</a>
+<a class="btn ghost" href="https://bytebarhq.com">Complete Bundle — $7</a>
+
+</div>
+<div class="nextbox"><strong>Keep learning:</strong> <a href="https://bytebarhq.com/b/feYPM">CISSP Study Guide — $5</a> · <a href="https://bytebarhq.com/blog/news/">ByteBar blog</a></div>
+<div class="nextbox">
+<strong>Continue the series:</strong> <a href="https://bytebarhq.github.io/bytebar-study/cissp/">back to the ISC2 CISSP index</a>
+</div>
+</article></main>
+<footer class="site"><div class="wrap">
+<p>© 2026 ByteBar · Free study resources. Not affiliated with ISC2.<br>
+<a href="https://bytebarhq.com">bytebarhq.com</a> · <a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a></p>
+</div></footer>
+</body>
+</html>
