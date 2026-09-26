@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CCNA 200-301 Domain 2.0: Network Access — Explained | ByteBar Study Hub</title>
+<meta name="description" content="CCNA Domain 2.0 explained in plain English: VLANs, trunking, STP, EtherChannel, and wireless access concepts.">
+<link rel="canonical" href="https://bytebarhq.github.io/bytebar-study/ccna/200-301-domain-2-network-access/">
+<meta property="og:title" content="CCNA 200-301 Domain 2.0: Network Access — Explained">
+<meta property="og:description" content="VLANs, trunking, STP, and EtherChannel concepts in plain English — with sample questions. Free preview from ByteBar.">
+<meta property="og:type" content="article">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article",
+"headline":"CCNA 200-301 Domain 2.0: Network Access — Explained",
+"description":"CCNA Domain 2.0 explained in plain English: VLANs, trunking, STP, EtherChannel, and wireless access concepts.",
+"author":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"}}
+</script>
+<style>
+:root{--navy:#0a1628;--navy2:#0e1e38;--navy3:#132a4d;--cyan:#22d3ee;--slate:#94a3b8;--white:#f1f5f9;--green:#34d399;--amber:#fbbf24}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--navy);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header.site{border-bottom:1px solid #1e293b;padding:18px 0}
+.masthead{font-weight:800;letter-spacing:.55em;color:var(--cyan);font-size:15px;text-decoration:none}
+nav.main{margin-top:10px;font-size:14px}
+nav.main a{color:var(--slate);text-decoration:none;margin-right:18px}
+nav.main a:hover{color:var(--cyan)}
+.crumb{font-size:13px;color:var(--slate);margin:26px 0 8px}
+.crumb a{color:var(--cyan);text-decoration:none}
+article h1{font-size:29px;line-height:1.3;margin-bottom:10px}
+.lede{color:var(--slate);font-size:17px;margin-bottom:8px}
+.meta{font-size:13px;color:var(--slate);margin-bottom:30px}
+.meta b{color:var(--cyan)}
+article h2{font-size:22px;margin:38px 0 12px;color:var(--cyan)}
+article h3{font-size:17px;margin:24px 0 8px}
+article p{margin:0 0 14px}
+article ul,article ol{margin:0 0 14px 22px}
+article li{margin-bottom:6px}
+.def{background:var(--navy2);border-left:3px solid var(--cyan);padding:12px 16px;border-radius:0 8px 8px 0;margin:16px 0;font-size:15px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #1e293b;vertical-align:top}
+th{color:var(--cyan);font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+tr:hover td{background:var(--navy2)}
+.q{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:16px 0}
+.q .stem{font-weight:600;margin-bottom:10px}
+.q ol{list-style:none;margin:0 0 4px}
+.q ol li{background:var(--navy3);border-radius:8px;padding:8px 12px;margin-bottom:6px;font-size:14px}
+.q details{margin-top:8px}
+.q summary{cursor:pointer;color:var(--green);font-weight:600;font-size:14px}
+.q .why{font-size:14px;color:var(--slate);margin-top:8px}
+.cta{background:linear-gradient(135deg,#0e2a4a,#0a3a3f);border:1px solid var(--cyan);border-radius:14px;padding:26px;margin:44px 0;text-align:center}
+.cta h2{color:var(--white);margin:0 0 10px;font-size:22px}
+.cta p{color:var(--slate);font-size:15px;max-width:520px;margin:0 auto 18px}
+.btn{display:inline-block;background:var(--cyan);color:#04202a;font-weight:700;text-decoration:none;padding:12px 26px;border-radius:10px;margin:6px;font-size:15px}
+.btn.ghost{background:transparent;color:var(--cyan);border:1px solid var(--cyan)}
+footer.site{border-top:1px solid #1e293b;padding:24px 0;color:var(--slate);font-size:13px;text-align:center;margin-top:20px}
+footer.site a{color:var(--cyan);text-decoration:none}
+.nextbox{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:30px 0;font-size:14px;color:var(--slate)}
+.nextbox a{color:var(--cyan);text-decoration:none;font-weight:600}
+@media(max-width:560px){article h1{font-size:24px}.btn{display:block;margin:8px 0}}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="masthead" href="https://bytebarhq.github.io/bytebar-study/">B Y T E B A R</a>
+<nav class="main">
+<a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a>
+<a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a>
+<a href="https://bytebarhq.com">Store</a>
+</nav>
+</div></header>
+<main class="wrap"><article>
+<p class="crumb"><a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a> / <a href="https://bytebarhq.github.io/bytebar-study/ccna/">Cisco CCNA (200-301)</a> / Domain 2.0</p>
+<h1>Cisco CCNA (200-301) Domain 2.0: Network Access — Explained</h1>
+<p class="lede">Domain 2.0 is how devices <em>get onto</em> the network: carving switches into virtual LANs, connecting switches with trunks, keeping loops from melting the network, and bonding links for speed. Switching concepts, explained without the jargon fog.</p>
+<p class="meta">Exam: <b>200-301</b> · weight <b>~20%</b> · Free study preview from ByteBar</p>
+<h2>VLANs: one switch, many networks</h2>
+<ul>
+<li><strong>What a VLAN is</strong> — a virtual LAN: ports on the same switch grouped into separate broadcast domains. VLAN 10 (sales) can't see VLAN 20 (engineering) without a router — segmentation without buying more switches.</li>
+<li><strong>Access vs. trunk ports</strong> — <em>access</em> ports belong to exactly one VLAN (end devices: PCs, printers); <em>trunk</em> ports carry <em>multiple</em> VLANs between switches (or to a router). Servers and uplinks live on trunks.</li>
+<li><strong>802.1Q tagging</strong> — trunks tag each frame with its VLAN ID so the far switch knows which VLAN it belongs to. The <em>native VLAN</em> is the one exception: its frames cross untagged — and a native-VLAN mismatch between trunk ends is a classic misconfiguration.</li>
+<li><strong>Inter-VLAN routing</strong> — VLANs don't route to each other by themselves: a router (or Layer 3 switch) with an interface per VLAN — or one trunked subinterface per VLAN ("router on a stick") — does the routing.</li>
+</ul>
+<div class="def">Access = one VLAN, end devices. Trunk = many VLANs, switch-to-switch. 802.1Q tags keep them straight. Routing between VLANs needs a Layer 3 device.</div>
+<h2>STP and EtherChannel: loops and bonds</h2>
+<ul>
+<li><strong>Why loops are lethal</strong> — redundant switch links create loops; broadcast frames circle forever, multiplying until the network collapses (a broadcast storm). Redundancy without loop prevention is self-destruction.</li>
+<li><strong>Spanning Tree (STP / RSTP)</strong> — elects a <em>root bridge</em>, then blocks redundant ports to leave exactly one loop-free path — unblocking them if the active path fails. RSTP (rapid) converges in seconds; classic STP takes ~50.</li>
+<li><strong>Port states that matter</strong> — a port becoming <em>forwarding</em> vs. <em>blocking</em> tells you whether STP considers it part of the active topology. "Port is up but not forwarding" → check STP.</li>
+<li><strong>EtherChannel</strong> — bond 2–8 physical links into one logical link: more bandwidth <em>and</em> redundancy (one member fails, traffic uses the rest). LACP is the standards-based negotiation protocol — both ends must agree, or you get a misconfigured bundle.</li>
+</ul>
+<h2>Wireless access essentials</h2>
+<ul>
+<li><strong>WLC architecture</strong> — enterprise wireless uses a <em>wireless LAN controller</em>: lightweight access points tunnel client traffic to the controller, which applies policy centrally. One config point for hundreds of APs.</li>
+<li><strong>Security: WPA2 vs. WPA3</strong> — WPA2-Personal (pre-shared key, everyone shares one password) vs. WPA2/WPA3-Enterprise (802.1X + RADIUS: unique per-user credentials). Enterprise = individual accountability; Personal = shared secret.</li>
+<li><strong>Channels and interference</strong> — 2.4 GHz has three non-overlapping channels (1, 6, 11); 5 GHz has many more. Neighboring APs on overlapping channels interfere — channel planning is real engineering, not vibes.</li>
+<li><strong>AP modes</strong> — APs join the controller, get their config, and serve clients; a site survey (or controller RF management) sets power and channels. "The Wi-Fi is slow in the corner office" is usually coverage, not bandwidth.</li>
+</ul>
+<h2>The must-memorize table: access-port vs. trunk-port</h2>
+<p>The single most-tested switching distinction.</p>
+<table>
+<thead><tr><th>Trait</th><th>Access port</th><th>Trunk port</th></tr></thead>
+<tbody>
+<tr><td>VLANs carried</td><td>Exactly one</td><td>Multiple (tagged with 802.1Q)</td></tr>
+<tr><td>Connects to</td><td>End devices (PCs, printers)</td><td>Switches, routers, servers</td></tr>
+<tr><td>Tagging</td><td>Untagged</td><td>Tagged — except the native VLAN</td></tr>
+<tr><td>Classic mistake</td><td>Device in the wrong VLAN</td><td>Native-VLAN mismatch between ends</td></tr>
+</tbody>
+</table>
+<h2>Try it: 4 sample questions</h2>
+<p>Sample questions to check your understanding of this domain. Answers and full reasoning are tucked under each one.</p>
+<div class="q"><p><strong>1. Two switches are connected, and hosts on VLAN 10 on switch A can't reach hosts on VLAN 10 on switch B. The link between switches is configured as access. What's wrong?</strong></p>
+<ol type="A"><li>A. A. Nothing — access links carry all VLANs</li><li>B. B. Access ports carry only one VLAN untagged; the inter-switch link must be a trunk carrying VLAN 10 (tagged)</li><li>C. C. VLAN 10 needs a different number on each switch</li><li>D. D. Switches can't connect to each other</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> Switch-to-switch links carrying multiple VLANs must be <em>trunks</em> (802.1Q tagged). An access port drops anything not in its single VLAN — so VLAN 10 frames die at the link. "VLAN works locally, fails across switches" → check the trunk.</p></details></div>
+<div class="q"><p><strong>2. A network has redundant links between switches for resilience. What prevents the resulting loops from causing a broadcast storm?</strong></p>
+<ol type="A"><li>A. A. EtherChannel</li><li>B. B. VLANs</li><li>C. C. Spanning Tree Protocol — blocks redundant ports to leave one loop-free path, unblocking on failure</li><li>D. D. Static routes</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>C.</strong> STP's entire job is loop prevention: elect a root bridge, compute the loop-free topology, <em>block</em> the redundant ports — and unblock them if the active path dies. EtherChannel (A) bonds links but doesn't prevent loops across different paths; VLANs (B) segment, they don't de-loop.</p></details></div>
+<div class="q"><p><strong>3. Four 1Gbps links are bonded between two switches for 4Gbps total with failover if one link dies. What is this, and which protocol negotiates it?</strong></p>
+<ol type="A"><li>A. A. STP with RSTP</li><li>B. B. EtherChannel, negotiated with LACP</li><li>C. C. A trunk with 802.1Q</li><li>D. D. Static routing with four default routes</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> EtherChannel bundles physical links into one logical link — aggregated bandwidth plus member-level redundancy. LACP is the standards-based protocol where both ends negotiate the bundle; misconfigured LACP (one side passive-passive, mismatched params) is the classic "bundle won't form" fault.</p></details></div>
+<div class="q"><p><strong>4. A company wants Wi-Fi where each employee has unique credentials and deprovisioning is instant when someone leaves. Which design?</strong></p>
+<ol type="A"><li>A. A. WPA2-Personal with a strong shared password</li><li>B. B. WPA2/WPA3-Enterprise with 802.1X + RADIUS — per-user authentication</li><li>C. C. Open network with MAC filtering</li><li>D. D. One AP per employee</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> Enterprise wireless (802.1X + RADIUS) authenticates <em>individuals</em>: unique credentials, per-user policies, instant revocation. Personal (A) shares one password — a departure means rotating it everywhere. MAC filtering (C) is spoofable theater, not authentication.</p></details></div>
+<div class="cta">
+<h2>This was one domain. The guide covers all 6.</h2>
+<p>This free preview covered <strong>Network Access (Domain 2.0, 20%)</strong>. Not covered here: IP Connectivity (Domain 3.0, 25%); Automation & Programmability (Domain 6.0, 10%). Routing configuration and automation — the heaviest hands-on CCNA material — stay in the paid guide and practice bank. The $5 CCNA Study Guide covers every domain in condensed review form; the $7 complete bundle adds the practice pack with full question explanations.</p>
+<a class="btn" href="https://bytebarhq.com">Get the Study Guide — $5</a>
+<a class="btn ghost" href="https://bytebarhq.com">Complete Bundle — $7</a>
+
+</div>
+<div class="nextbox">
+<strong>Continue the series:</strong> <a href="https://bytebarhq.github.io/bytebar-study/ccna/200-301-domain-4-ip-services/">CCNA 200-301 Domain 4.0: IP Services — Explained</a>
+</div>
+</article></main>
+<footer class="site"><div class="wrap">
+<p>© 2026 ByteBar · Free study resources. Not affiliated with Cisco Systems, Inc..<br>
+<a href="https://bytebarhq.com">bytebarhq.com</a> · <a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a></p>
+</div></footer>
+</body>
+</html>
