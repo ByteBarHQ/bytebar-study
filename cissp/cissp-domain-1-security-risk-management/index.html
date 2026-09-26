@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CISSP Domain 1.0: Security and Risk Management — Explained | ByteBar Study Hub</title>
+<meta name="description" content="CISSP Domain 1.0 explained in plain English: CIA triad, security models, risk management, BCP/DRP, and governance concepts.">
+<link rel="canonical" href="https://bytebarhq.github.io/bytebar-study/cissp/cissp-domain-1-security-risk-management/">
+<meta property="og:title" content="CISSP Domain 1.0: Security and Risk Management — Explained">
+<meta property="og:description" content="Risk management, security models, BCP/DRP, and governance concepts in plain English — with sample questions. Free preview from ByteBar.">
+<meta property="og:type" content="article">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article",
+"headline":"CISSP Domain 1.0: Security and Risk Management — Explained",
+"description":"CISSP Domain 1.0 explained in plain English: CIA triad, security models, risk management, BCP/DRP, and governance concepts.",
+"author":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"}}
+</script>
+<style>
+:root{--navy:#0a1628;--navy2:#0e1e38;--navy3:#132a4d;--cyan:#22d3ee;--slate:#94a3b8;--white:#f1f5f9;--green:#34d399;--amber:#fbbf24}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--navy);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header.site{border-bottom:1px solid #1e293b;padding:18px 0}
+.masthead{font-weight:800;letter-spacing:.55em;color:var(--cyan);font-size:15px;text-decoration:none}
+nav.main{margin-top:10px;font-size:14px}
+nav.main a{color:var(--slate);text-decoration:none;margin-right:18px}
+nav.main a:hover{color:var(--cyan)}
+.crumb{font-size:13px;color:var(--slate);margin:26px 0 8px}
+.crumb a{color:var(--cyan);text-decoration:none}
+article h1{font-size:29px;line-height:1.3;margin-bottom:10px}
+.lede{color:var(--slate);font-size:17px;margin-bottom:8px}
+.meta{font-size:13px;color:var(--slate);margin-bottom:30px}
+.meta b{color:var(--cyan)}
+article h2{font-size:22px;margin:38px 0 12px;color:var(--cyan)}
+article h3{font-size:17px;margin:24px 0 8px}
+article p{margin:0 0 14px}
+article ul,article ol{margin:0 0 14px 22px}
+article li{margin-bottom:6px}
+.def{background:var(--navy2);border-left:3px solid var(--cyan);padding:12px 16px;border-radius:0 8px 8px 0;margin:16px 0;font-size:15px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #1e293b;vertical-align:top}
+th{color:var(--cyan);font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+tr:hover td{background:var(--navy2)}
+.q{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:16px 0}
+.q .stem{font-weight:600;margin-bottom:10px}
+.q ol{list-style:none;margin:0 0 4px}
+.q ol li{background:var(--navy3);border-radius:8px;padding:8px 12px;margin-bottom:6px;font-size:14px}
+.q details{margin-top:8px}
+.q summary{cursor:pointer;color:var(--green);font-weight:600;font-size:14px}
+.q .why{font-size:14px;color:var(--slate);margin-top:8px}
+.cta{background:linear-gradient(135deg,#0e2a4a,#0a3a3f);border:1px solid var(--cyan);border-radius:14px;padding:26px;margin:44px 0;text-align:center}
+.cta h2{color:var(--white);margin:0 0 10px;font-size:22px}
+.cta p{color:var(--slate);font-size:15px;max-width:520px;margin:0 auto 18px}
+.btn{display:inline-block;background:var(--cyan);color:#04202a;font-weight:700;text-decoration:none;padding:12px 26px;border-radius:10px;margin:6px;font-size:15px}
+.btn.ghost{background:transparent;color:var(--cyan);border:1px solid var(--cyan)}
+footer.site{border-top:1px solid #1e293b;padding:24px 0;color:var(--slate);font-size:13px;text-align:center;margin-top:20px}
+footer.site a{color:var(--cyan);text-decoration:none}
+.nextbox{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:30px 0;font-size:14px;color:var(--slate)}
+.nextbox a{color:var(--cyan);text-decoration:none;font-weight:600}
+@media(max-width:560px){article h1{font-size:24px}.btn{display:block;margin:8px 0}}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="masthead" href="https://bytebarhq.github.io/bytebar-study/">B Y T E B A R</a>
+<nav class="main">
+<a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a>
+<a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a>
+<a href="https://bytebarhq.com">Store</a>
+</nav>
+</div></header>
+<main class="wrap"><article>
+<p class="crumb"><a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a> / <a href="https://bytebarhq.github.io/bytebar-study/cissp/">ISC2 CISSP (CISSP)</a> / Domain 1.0</p>
+<h1>CISSP Domain 1.0: Security and Risk Management — Explained</h1>
+<p class="lede">Domain 1.0 is the CISSP's worldview: security as a <em>business</em> function. The CIA triad, how risk is measured and treated, the models that formalize trust, and the continuity plans that keep the business alive. Think like a manager, not a technician.</p>
+<p class="meta">Exam weight: <b>16%</b> · Free study preview from ByteBar</p>
+<h2>Foundations: CIA and beyond</h2>
+<ul>
+<li><strong>Confidentiality, integrity, availability</strong> — the triad everything serves. The CISSP adds: <em>authenticity</em> (it really came from who it claims), <em>non-repudiation</em> (they can't deny it later), and <em>privacy</em> (individual control over personal data).</li>
+<li><strong>Parkerian hexad</strong> — the triad's extension: adds <em>possession/control</em>, <em>authenticity</em>, and <em>utility</em> (encrypted data you can't decrypt has lost utility even though it's "confidential"). The exam mentions it; know the three additions.</li>
+<li><strong>DAD triad</strong> — the anti-CIA: Disclosure, Alteration, Destruction. Threats map to triad legs: disclosure hits confidentiality, alteration hits integrity, destruction hits availability.</li>
+</ul>
+<h2>Security models: formalizing trust</h2>
+<ul>
+<li><strong>Bell-LaPadula</strong> — confidentiality model: "no read up, no write down." A Secret-cleared subject can't read Top Secret (no read up) and can't write to Unclassified (no write down, which would leak). Government classification systems live here.</li>
+<li><strong>Biba</strong> — integrity model: the mirror image — "no read down, no write up." Prevents low-integrity data from contaminating high-integrity processes.</li>
+<li><strong>Clark-Wilson</strong> — integrity for business: well-formed transactions, separation of duties, audit trails. The model behind "the accounting system won't let one person both create and approve a payment."</li>
+<li><strong>Least privilege, need-to-know, separation of duties</strong> — the principles the models implement. The CISSP frames every access question through these.</li>
+</ul>
+<div class="def">Bell-LaPadula = <em>confidentiality</em> (keep secrets from leaking down). Biba = <em>integrity</em> (keep garbage from flowing up). If the question mentions classified data, think Bell-LaPadula.</div>
+<h2>Risk, governance, and continuity</h2>
+<ul>
+<li><strong>Risk management</strong> — identify, assess (likelihood × impact), treat (mitigate/transfer/accept/avoid), monitor continuously. Quantitative analysis uses SLE × ARO = ALE (single loss expectancy × annualized rate of occurrence = annualized loss expectancy).</li>
+<li><strong>Governance</strong> — policies flow from the top; the board owns security direction and accepts residual risk. Frameworks (NIST CSF, ISO 27001) give the structure; the organization supplies the decisions.</li>
+<li><strong>BCP vs. DRP</strong> — business continuity keeps the <em>business</em> operating (alternate sites, manual procedures); disaster recovery restores the <em>IT</em>. The BIA (business impact analysis) precedes both and sets RTO/RPO.</li>
+<li><strong>Personnel security</strong> — background checks, NDAs, onboarding/offboarding, mandatory vacations and job rotation (fraud needs continuous presence; forced absence exposes it).</li>
+<li><strong>Ethics and law</strong> — the CISSP code of ethics prioritizes public safety first, then clients, then the profession. Know the major regulations exist (GDPR, HIPAA, SOX) and what each protects — focus on scope, not statutes.</li>
+</ul>
+<h2>The must-memorize table: security models</h2>
+<p>Which model answers which question.</p>
+<table>
+<thead><tr><th>Model</th><th>Protects</th><th>Rule</th></tr></thead>
+<tbody>
+<tr><td>Bell-LaPadula</td><td>Confidentiality</td><td>No read up, no write down</td></tr>
+<tr><td>Biba</td><td>Integrity</td><td>No read down, no write up</td></tr>
+<tr><td>Clark-Wilson</td><td>Integrity (commercial)</td><td>Well-formed transactions + separation of duties</td></tr>
+<tr><td>Take-Grant</td><td>Access rights transfer</td><td>Rules for passing rights between subjects</td></tr>
+<tr><td>Brewer-Nash (Chinese Wall)</td><td>Conflicts of interest</td><td>No access to competing datasets</td></tr>
+</tbody>
+</table>
+<h2>Try it: 4 sample questions</h2>
+<p>Sample questions to check your understanding of this domain. Answers and full reasoning are tucked under each one.</p>
+<div class="q"><p><strong>1. A defense contractor's system enforces that analysts cleared to Secret cannot read Top Secret documents. Which model is this?</strong></p>
+<ol type="A"><li>A. A. Biba</li><li>B. B. Bell-LaPadula</li><li>C. C. Clark-Wilson</li><li>D. D. Brewer-Nash</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> Government classification + confidentiality + "no read up" = Bell-LaPadula, the confidentiality model built for exactly this. Biba (A) is the integrity mirror; Clark-Wilson (C) is commercial-transaction integrity; Brewer-Nash (D) handles conflicts of interest (consultants vs. competing clients).</p></details></div>
+<div class="q"><p><strong>2. A single loss expectancy of $100,000 with an annualized rate of occurrence of 0.5 gives what ALE, and what does it mean?</strong></p>
+<ol type="A"><li>A. A. $200,000 — the cost of eliminating the risk</li><li>B. B. $50,000 — the expected yearly loss, used to justify control spending</li><li>C. C. $100,000 — the maximum acceptable loss</li><li>D. D. $50,000 — the insurance premium to buy</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> ALE = SLE × ARO = $100,000 × 0.5 = $50,000/year. It's the <em>expected</em> annual loss — the number that justifies control budgets: don't spend $200K/year to mitigate a $50K/year risk. It's a decision tool, not a premium quote (D).</p></details></div>
+<div class="q"><p><strong>3. An accounting system requires one employee to enter a payment and a different employee to approve it. Which concept is this, and which model formalizes it?</strong></p>
+<ol type="A"><li>A. A. Least privilege — Bell-LaPadula</li><li>B. B. Separation of duties — Clark-Wilson</li><li>C. C. Need to know — Biba</li><li>D. D. Defense in depth — Take-Grant</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> Splitting a transaction across two people so neither can complete fraud alone is <em>separation of duties</em>, and Clark-Wilson is the integrity model that formalizes it (well-formed transactions + SoD + auditing). Least privilege (A) limits <em>how much</em> access one person has — related but different.</p></details></div>
+<div class="q"><p><strong>4. After a flood destroys the primary data center, the company activates its alternate site and continues serving customers while IT rebuilds systems. Which plan governed the customer-facing continuation?</strong></p>
+<ol type="A"><li>A. A. The disaster recovery plan (DRP)</li><li>B. B. The business continuity plan (BCP)</li><li>C. C. The incident response plan</li><li>D. D. The risk register</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> Keeping the <em>business</em> serving customers from the alternate site is business continuity; the DRP covers restoring the <em>technology</em> (rebuilding systems). BCP = business keeps running; DRP = IT gets rebuilt. The scenario describes the former.</p></details></div>
+<div class="cta">
+<h2>This was one domain. The guide covers all 8.</h2>
+<p>This free preview covered <strong>Security & Risk Management (Domain 1.0, 16%)</strong>. Not covered here: Communication & Network Security (Domain 4.0, 13%); Security Assessment & Testing (Domain 6.0, 12%); Security Operations (Domain 7.0, 13%). The three most operational domains — network security, assessment, and security operations — stay in the paid guide and practice bank. The $5 CISSP Study Guide covers every domain in condensed review form; the $7 complete bundle adds the practice pack with full question explanations.</p>
+<a class="btn" href="https://bytebarhq.com">Get the Study Guide — $5</a>
+<a class="btn ghost" href="https://bytebarhq.com">Complete Bundle — $7</a>
+
+</div>
+<div class="nextbox">
+<strong>Continue the series:</strong> <a href="https://bytebarhq.github.io/bytebar-study/cissp/cissp-domain-2-asset-security/">CISSP Domain 2.0: Asset Security — Explained</a>
+</div>
+</article></main>
+<footer class="site"><div class="wrap">
+<p>© 2026 ByteBar · Free study resources. Not affiliated with ISC2.<br>
+<a href="https://bytebarhq.com">bytebarhq.com</a> · <a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a></p>
+</div></footer>
+</body>
+</html>
