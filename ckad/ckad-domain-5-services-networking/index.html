@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CKAD Domain 5.0: Services and Networking — Explained | ByteBar Study Hub</title>
+<meta name="description" content="CKAD Domain 3.0 explained in plain English: Kubernetes services, DNS, ingress, and network policies concepts.">
+<link rel="canonical" href="https://bytebarhq.github.io/bytebar-study/ckad/ckad-domain-5-services-networking/">
+<meta property="og:title" content="CKAD Domain 5.0: Services and Networking — Explained">
+<meta property="og:description" content="Services, DNS, ingress, and network policies in plain English — with sample questions. Free preview from ByteBar.">
+<meta property="og:type" content="article">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article",
+"headline":"CKAD Domain 5.0: Services and Networking — Explained",
+"description":"CKAD Domain 3.0 explained in plain English: Kubernetes services, DNS, ingress, and network policies concepts.",
+"author":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"}}
+</script>
+<style>
+:root{--navy:#0a1628;--navy2:#0e1e38;--navy3:#132a4d;--cyan:#22d3ee;--slate:#94a3b8;--white:#f1f5f9;--green:#34d399;--amber:#fbbf24}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--navy);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header.site{border-bottom:1px solid #1e293b;padding:18px 0}
+.masthead{font-weight:800;letter-spacing:.55em;color:var(--cyan);font-size:15px;text-decoration:none}
+nav.main{margin-top:10px;font-size:14px}
+nav.main a{color:var(--slate);text-decoration:none;margin-right:18px}
+nav.main a:hover{color:var(--cyan)}
+.crumb{font-size:13px;color:var(--slate);margin:26px 0 8px}
+.crumb a{color:var(--cyan);text-decoration:none}
+article h1{font-size:29px;line-height:1.3;margin-bottom:10px}
+.lede{color:var(--slate);font-size:17px;margin-bottom:8px}
+.meta{font-size:13px;color:var(--slate);margin-bottom:30px}
+.meta b{color:var(--cyan)}
+article h2{font-size:22px;margin:38px 0 12px;color:var(--cyan)}
+article h3{font-size:17px;margin:24px 0 8px}
+article p{margin:0 0 14px}
+article ul,article ol{margin:0 0 14px 22px}
+article li{margin-bottom:6px}
+.def{background:var(--navy2);border-left:3px solid var(--cyan);padding:12px 16px;border-radius:0 8px 8px 0;margin:16px 0;font-size:15px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #1e293b;vertical-align:top}
+th{color:var(--cyan);font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+tr:hover td{background:var(--navy2)}
+.q{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:16px 0}
+.q .stem{font-weight:600;margin-bottom:10px}
+.q ol{list-style:none;margin:0 0 4px}
+.q ol li{background:var(--navy3);border-radius:8px;padding:8px 12px;margin-bottom:6px;font-size:14px}
+.q details{margin-top:8px}
+.q summary{cursor:pointer;color:var(--green);font-weight:600;font-size:14px}
+.q .why{font-size:14px;color:var(--slate);margin-top:8px}
+.cta{background:linear-gradient(135deg,#0e2a4a,#0a3a3f);border:1px solid var(--cyan);border-radius:14px;padding:26px;margin:44px 0;text-align:center}
+.cta h2{color:var(--white);margin:0 0 10px;font-size:22px}
+.cta p{color:var(--slate);font-size:15px;max-width:520px;margin:0 auto 18px}
+.btn{display:inline-block;background:var(--cyan);color:#04202a;font-weight:700;text-decoration:none;padding:12px 26px;border-radius:10px;margin:6px;font-size:15px}
+.btn.ghost{background:transparent;color:var(--cyan);border:1px solid var(--cyan)}
+footer.site{border-top:1px solid #1e293b;padding:24px 0;color:var(--slate);font-size:13px;text-align:center;margin-top:20px}
+footer.site a{color:var(--cyan);text-decoration:none}
+.nextbox{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:30px 0;font-size:14px;color:var(--slate)}
+.nextbox a{color:var(--cyan);text-decoration:none;font-weight:600}
+@media(max-width:560px){article h1{font-size:24px}.btn{display:block;margin:8px 0}}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="masthead" href="https://bytebarhq.github.io/bytebar-study/">B Y T E B A R</a>
+<nav class="main">
+<a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a>
+<a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a>
+<a href="https://bytebarhq.com">Store</a>
+</nav>
+</div></header>
+<main class="wrap"><article>
+<p class="crumb"><a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a> / <a href="https://bytebarhq.github.io/bytebar-study/ckad/">Certified Kubernetes Application Developer (CKAD)</a> / Domain 5.0</p>
+<h1>Certified Kubernetes Application Developer (CKAD) Domain 5.0: Services and Networking — Explained</h1>
+<p class="lede">Domain 5.0 is how things <em>find and reach</em> each other in Kubernetes: services giving stable addresses to mortal pods, DNS making them memorable, ingress opening the front door, and network policies deciding who may talk to whom.</p>
+<p class="meta">Exam weight: <b>20%</b> · Free study preview from ByteBar</p>
+<h2>Services: stable front doors for mortal pods</h2>
+<ul>
+<li><strong>The problem</strong> — pods die and get replaced with new IPs. Nothing can hardcode a pod IP. Services fix this: a stable virtual IP (ClusterIP) + DNS name that <em>selects</em> pods by label and load-balances to the healthy ones.</li>
+<li><strong>ClusterIP (default)</strong> — internal only. The standard "my backend talks to my database" service.</li>
+<li><strong>NodePort</strong> — exposes the service on a static port of <em>every node</em>. Simple external access; awkward ports (30000–32767), no load-balancer integration.</li>
+<li><strong>LoadBalancer</strong> — asks the cloud provider for a real load balancer pointing at the service. The production "put it on the internet" answer on cloud Kubernetes.</li>
+<li><strong>Headless (ClusterIP: None)</strong> — no virtual IP; DNS returns the <em>pod IPs directly</em>. For StatefulSets where clients need each pod individually (databases, clustering).</li>
+<li><strong>Endpoints</strong> — the actual pod IPs behind a service, updated automatically as pods come and go. If the endpoints list is empty, the selector matches nothing — the classic "service exists but nothing answers" bug.</li>
+</ul>
+<h2>DNS and Ingress: names and front doors</h2>
+<ul>
+<li><strong>Cluster DNS</strong> — every service gets a DNS name: <code>my-svc.my-namespace.svc.cluster.local</code>. Pods resolve service names automatically — no IPs in application config.</li>
+<li><strong>Ingress</strong> — the HTTP front door: one entry point routing by <em>host and path</em> (<code>app.example.com/api</code> → api-service, <code>/web</code> → web-service). Needs an <em>ingress controller</em> actually running to do anything — the Ingress resource alone is just config.</li>
+<li><strong>Ingress vs. LoadBalancer</strong> — a LoadBalancer service gives each service its own cloud LB (and its own bill); Ingress puts <em>one</em> LB in front and routes L7 internally. Many services → Ingress is cheaper and cleaner.</li>
+<li><strong>TLS termination</strong> — Ingress commonly terminates HTTPS (certificate in a Secret), forwarding plain HTTP to backend pods.</li>
+</ul>
+<div class="def">Service = stable address for pods (L4). Ingress = smart HTTP routing in front of services (L7). DNS = the names everyone actually uses.</div>
+<h2>NetworkPolicies: the firewall between pods</h2>
+<ul>
+<li><strong>Default: open</strong> — pods accept traffic from anywhere unless a NetworkPolicy selects them. (Many newcomers assume isolation that isn't there.)</li>
+<li><strong>How they work</strong> — a policy selects pods by label and declares allowed <em>ingress</em> (who may reach them) and <em>egress</em> (who they may reach), by pod selector, namespace selector, or IP block, optionally with port restrictions.</li>
+<li><strong>Default-deny pattern</strong> — the standard hardening: a policy selecting all pods in a namespace with no ingress rules (deny all), then specific allow-policies per workload. Deny by default, allow by exception.</li>
+<li><strong>Requires a supporting CNI</strong> — the network plugin must <em>enforce</em> policies (Calico, Cilium do; the default kubenet doesn't). A policy no CNI enforces is documentation.</li>
+</ul>
+<h2>The must-memorize table: service types</h2>
+<p>Which service for which exposure.</p>
+<table>
+<thead><tr><th>Type</th><th>Exposes</th><th>Use it when</th></tr></thead>
+<tbody>
+<tr><td>ClusterIP</td><td>Internal virtual IP</td><td>Backend-to-backend communication</td></tr>
+<tr><td>NodePort</td><td>A port on every node</td><td>Quick external access, demos, bare metal</td></tr>
+<tr><td>LoadBalancer</td><td>Cloud load balancer</td><td>Production internet exposure on cloud</td></tr>
+<tr><td>Headless (None)</td><td>Pod IPs directly via DNS</td><td>StatefulSets needing per-pod addresses</td></tr>
+<tr><td>(Ingress)</td><td>HTTP routing by host/path</td><td>Many HTTP services behind one entry point</td></tr>
+</tbody>
+</table>
+<h2>Try it: 4 sample questions</h2>
+<p>Sample questions to check your understanding of this domain. Answers and full reasoning are tucked under each one.</p>
+<div class="q"><p><strong>1. Pods behind a service keep getting replaced, but clients never change their configuration. What makes this possible?</strong></p>
+<ol type="A"><li>A. A. Pods keep their IPs forever</li><li>B. B. The service provides a stable virtual IP + DNS name selecting pods by label</li><li>C. C. Clients cache pod IPs indefinitely</li><li>D. D. The scheduler never kills pods</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> That's the service's entire job: a stable front (ClusterIP + DNS name) over a changing set of backends, tracked via label selectors and endpoints. Clients point at the service; Kubernetes handles the churn behind it. Pod IPs (A) are explicitly ephemeral.</p></details></div>
+<div class="q"><p><strong>2. A team runs 12 HTTP microservices and wants one public entry point routing by URL path, with TLS termination. Which construct?</strong></p>
+<ol type="A"><li>A. A. 12 LoadBalancer services</li><li>B. B. Ingress — one entry point, L7 host/path routing, TLS termination</li><li>C. C. 12 NodePort services</li><li>D. D. Headless services for each</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> Ingress is the L7 front door: one load balancer, routing by host/path to backend services, commonly terminating TLS. Twelve LoadBalancers (A) means twelve cloud bills; NodePorts (C) expose awkward high ports with no path routing; headless (D) is for direct pod access, the opposite need.</p></details></div>
+<div class="q"><p><strong>3. After applying a NetworkPolicy that selects all pods in a namespace but defines no ingress rules, what happens to pod-to-pod traffic?</strong></p>
+<ol type="A"><li>A. A. Nothing — empty policies are ignored</li><li>B. B. All ingress to selected pods is denied (default-deny)</li><li>C. C. All traffic is allowed as before</li><li>D. D. Only DNS stops working</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> Selecting pods with a policy makes them <em>isolated</em> for the specified direction; with no ingress rules, nothing is allowed in — default deny. That's the intended hardening pattern: deny all, then add explicit allow-policies. (DNS commonly needs an explicit egress exception — a classic follow-up bug.)</p></details></div>
+<div class="q"><p><strong>4. A service exists but curl to its ClusterIP times out. The fastest diagnostic check is:</strong></p>
+<ol type="A"><li>A. A. Recreate the cluster</li><li>B. B. Check the service's endpoints — empty means the selector matches no pods</li><li>C. C. Increase the pod memory limits</li><li>D. D. Change the service to NodePort</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> "Service exists, nothing answers" is almost always a selector mismatch: the service selects by labels, and if no pods carry those labels, the endpoints list is empty. Checking endpoints takes seconds and confirms it. The other options treat symptoms blindly.</p></details></div>
+<div class="cta">
+<h2>This was one domain. The guide covers all 5.</h2>
+<p>This free preview covered <strong>Services & Networking (Domain 5.0, 20%)</strong>. Not covered here: Application Deployment (Domain 2.0, 20%); Application Environment, Configuration & Security (Domain 4.0, 25%). Deployment patterns and the highest-weight environment/security domain stay in the paid guide and practice bank. The $5 CKAD Study Guide covers every domain in condensed review form; the $7 complete bundle adds the practice pack with full question explanations.</p>
+<a class="btn" href="https://bytebarhq.com">Get the Study Guide — $5</a>
+<a class="btn ghost" href="https://bytebarhq.com">Complete Bundle — $7</a>
+
+</div>
+<div class="nextbox">
+<strong>Continue the series:</strong> <a href="https://bytebarhq.github.io/bytebar-study/ckad/">back to the Certified Kubernetes Application Developer index</a>
+</div>
+</article></main>
+<footer class="site"><div class="wrap">
+<p>© 2026 ByteBar · Free study resources. Not affiliated with Cloud Native Computing Foundation.<br>
+<a href="https://bytebarhq.com">bytebarhq.com</a> · <a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a></p>
+</div></footer>
+</body>
+</html>
