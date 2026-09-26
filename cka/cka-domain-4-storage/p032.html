@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CKA Domain 4.0: Storage — Explained | ByteBar Study Hub</title>
+<meta name="description" content="CKA Domain 4.0 explained in plain English: volumes, persistent volumes, claims, storage classes, and access modes.">
+<link rel="canonical" href="https://bytebarhq.github.io/bytebar-study/cka/cka-domain-4-storage/">
+<meta property="og:title" content="CKA Domain 4.0: Storage — Explained">
+<meta property="og:description" content="Volumes, persistent volumes, claims, and storage classes in plain English — with sample questions. Free preview from ByteBar.">
+<meta property="og:type" content="article">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article",
+"headline":"CKA Domain 4.0: Storage — Explained",
+"description":"CKA Domain 4.0 explained in plain English: volumes, persistent volumes, claims, storage classes, and access modes.",
+"author":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"},
+"publisher":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"},
+"datePublished":"2026-09-26"}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "A developer's pod needs 10Gi of storage that survives pod restarts and is created automatically when requested. Which objects are involved?", "acceptedAnswer": {"@type": "Answer", "text": "B. The developer writes a PVC (the request); a StorageClass dynamically provisions the PV — no admin pre-creation, survives pod death. hostPath (A) ties the pod to one node; emptyDir (C) dies with the pod; ConfigMaps (D) hold config, not 10Gi of data."}}, {"@type": "Question", "name": "A database pod was deleted and recreated, but its data is gone. The pod used an emptyDir volume. What went wrong?", "acceptedAnswer": {"@type": "Answer", "text": "B. emptyDir's lifetime is the pod, not the container: it survives container crashes (useful scratch space) but dies with the pod. Durable data needs a PersistentVolumeClaim. This is the #1 storage misconception — always verify the volume type."}}, {"@type": "Question", "name": "A shared media library must be mounted read-write by pods on many nodes simultaneously. Which access mode is required?", "acceptedAnswer": {"@type": "Answer", "text": "C. Many nodes × read-write = ReadWriteMany. RWO (A) allows one node; ROX (B) is read-only. And the backend must actually support RWX (NFS/CephFS do; plain block storage doesn't) — a PVC asking for RWX on an RWO-only provisioner pends forever."}}, {"@type": "Question", "name": "A PVC is deleted and the admin wants the underlying data preserved for manual review. Which reclaim policy should the PV use?", "acceptedAnswer": {"@type": "Answer", "text": "B. Retain keeps the PV and its data after the claim is gone — the admin then inspects, backs up, or manually cleans up. Delete (A) would destroy the very data to be reviewed. Retain is the safe default when data matters more than automation."}}]}
+</script>
+<style>
+:root{--navy:#0a1628;--navy2:#0e1e38;--navy3:#132a4d;--cyan:#22d3ee;--slate:#94a3b8;--white:#f1f5f9;--green:#34d399;--amber:#fbbf24}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--navy);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header.site{border-bottom:1px solid #1e293b;padding:18px 0}
+.masthead{font-weight:800;letter-spacing:.55em;color:var(--cyan);font-size:15px;text-decoration:none}
+nav.main{margin-top:10px;font-size:14px}
+nav.main a{color:var(--slate);text-decoration:none;margin-right:18px}
+nav.main a:hover{color:var(--cyan)}
+.crumb{font-size:13px;color:var(--slate);margin:26px 0 8px}
+.crumb a{color:var(--cyan);text-decoration:none}
+article h1{font-size:29px;line-height:1.3;margin-bottom:10px}
+.lede{color:var(--slate);font-size:17px;margin-bottom:8px}
+.meta{font-size:13px;color:var(--slate);margin-bottom:30px}
+.meta b{color:var(--cyan)}
+article h2{font-size:22px;margin:38px 0 12px;color:var(--cyan)}
+article h3{font-size:17px;margin:24px 0 8px}
+article p{margin:0 0 14px}
+article ul,article ol{margin:0 0 14px 22px}
+article li{margin-bottom:6px}
+.def{background:var(--navy2);border-left:3px solid var(--cyan);padding:12px 16px;border-radius:0 8px 8px 0;margin:16px 0;font-size:15px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #1e293b;vertical-align:top}
+th{color:var(--cyan);font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+tr:hover td{background:var(--navy2)}
+.q{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:16px 0}
+.q .stem{font-weight:600;margin-bottom:10px}
+.q ol{list-style:none;margin:0 0 4px}
+.q ol li{background:var(--navy3);border-radius:8px;padding:8px 12px;margin-bottom:6px;font-size:14px}
+.q details{margin-top:8px}
+.q summary{cursor:pointer;color:var(--green);font-weight:600;font-size:14px}
+.q .why{font-size:14px;color:var(--slate);margin-top:8px}
+.cta{background:linear-gradient(135deg,#0e2a4a,#0a3a3f);border:1px solid var(--cyan);border-radius:14px;padding:26px;margin:44px 0;text-align:center}
+.cta h2{color:var(--white);margin:0 0 10px;font-size:22px}
+.cta p{color:var(--slate);font-size:15px;max-width:520px;margin:0 auto 18px}
+.btn{display:inline-block;background:var(--cyan);color:#04202a;font-weight:700;text-decoration:none;padding:12px 26px;border-radius:10px;margin:6px;font-size:15px}
+.btn.ghost{background:transparent;color:var(--cyan);border:1px solid var(--cyan)}
+footer.site{border-top:1px solid #1e293b;padding:24px 0;color:var(--slate);font-size:13px;text-align:center;margin-top:20px}
+footer.site a{color:var(--cyan);text-decoration:none}
+.nextbox{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:30px 0;font-size:14px;color:var(--slate)}
+.nextbox a{color:var(--cyan);text-decoration:none;font-weight:600}
+@media(max-width:560px){article h1{font-size:24px}.btn{display:block;margin:8px 0}}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="masthead" href="https://bytebarhq.github.io/bytebar-study/">B Y T E B A R</a>
+<nav class="main">
+<a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a>
+<a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a>
+<a href="https://bytebarhq.com">Store</a>
+</nav>
+</div></header>
+<main class="wrap"><article>
+<p class="crumb"><a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a> / <a href="https://bytebarhq.github.io/bytebar-study/cka/">Certified Kubernetes Administrator (CKA)</a> / Domain 4.0</p>
+<h1>Certified Kubernetes Administrator (CKA) Domain 4.0: Storage — Explained</h1>
+<p class="lede">Domain 4.0 is the smallest CKA domain and the most conceptual: how Kubernetes gives mortal pods immortal storage. Learn the PV → PVC → StorageClass chain once and every storage question answers itself.</p>
+<p class="meta">Exam weight: <b>10%</b> · Free study preview from ByteBar</p>
+<h2>Why pods need help with storage</h2>
+<ul>
+<li><strong>Containers are ephemeral</strong> — when a container dies, its writable layer dies with it. Restart the pod and your data is gone. Any data that must survive needs a <em>volume</em>.</li>
+<li><strong>Volume types</strong> — <em>emptyDir</em> (survives container restarts, dies with the pod — scratch space), <em>hostPath</em> (a node directory — ties the pod to that node, avoid in production), <em>configMap/secret</em> (inject configuration as files), and <em>persistent volumes</em> (real storage, outlives pods).</li>
+<li><strong>The pod spec references volumes</strong> — the pod declares "I need this volume mounted at this path." Storage details stay out of the pod where possible.</li>
+</ul>
+<h2>PVs, PVCs, and StorageClasses: the chain</h2>
+<ul>
+<li><strong>PersistentVolume (PV)</strong> — a chunk of real storage provisioned by an admin (or dynamically), with capacity and access modes. Cluster-scoped: it exists independently of any pod.</li>
+<li><strong>PersistentVolumeClaim (PVC)</strong> — a pod's <em>request</em> for storage: "I need 10Gi, ReadWriteOnce." Namespace-scoped. Kubernetes <em>binds</em> a matching PV to the claim.</li>
+<li><strong>StorageClass</strong> — the template for <em>dynamic provisioning</em>: instead of pre-creating PVs, the StorageClass tells Kubernetes how to create one on demand when a PVC appears (which provisioner, which disk type).</li>
+<li><strong>The flow</strong> — pod needs storage → PVC requests it → StorageClass provisions (or an existing PV binds) → pod mounts the claim. Developers write PVCs; the platform handles PVs.</li>
+<li><strong>Reclaim policies</strong> — what happens to the PV when the PVC is deleted: <em>Retain</em> (keep the data, manual cleanup), <em>Delete</em> (destroy the volume), <em>Recycle</em> (legacy scrub-and-reuse).</li>
+</ul>
+<div class="def">PV = the actual storage (admin/platform). PVC = the request (developer). StorageClass = the recipe for making PVs on demand. Claim → bind → mount.</div>
+<h2>Access modes: who can mount how</h2>
+<ul>
+<li><strong>ReadWriteOnce (RWO)</strong> — mounted read-write by <em>one</em> node. The common case for databases.</li>
+<li><strong>ReadOnlyMany (ROX)</strong> — mounted read-only by <em>many</em> nodes. Shared config, static assets.</li>
+<li><strong>ReadWriteMany (RWX)</strong> — mounted read-write by <em>many</em> nodes. Needs a filesystem that supports it (NFS, CephFS) — not every storage backend can.</li>
+<li><strong>Matching matters</strong> — a PVC requesting RWX only binds to a PV offering RWX. Mode mismatch = claim sits Pending forever.</li>
+</ul>
+<h2>The must-memorize table: the storage chain</h2>
+<p>Who creates what, and who uses it.</p>
+<table>
+<thead><tr><th>Object</th><th>Created by</th><th>Role</th></tr></thead>
+<tbody>
+<tr><td>PersistentVolume (PV)</td><td>Admin or dynamic provisioner</td><td>The actual storage, cluster-scoped</td></tr>
+<tr><td>PersistentVolumeClaim (PVC)</td><td>Developer (in pod spec)</td><td>The request: size + access mode</td></tr>
+<tr><td>StorageClass</td><td>Admin</td><td>Template for dynamic PV provisioning</td></tr>
+<tr><td>Volume mount</td><td>Pod spec</td><td>Where the claimed storage appears in the container</td></tr>
+</tbody>
+</table>
+<h2>Try it: 4 sample questions</h2>
+<p>Sample questions to check your understanding of this domain. Answers and full reasoning are tucked under each one.</p>
+<div class="q"><p><strong>1. A developer's pod needs 10Gi of storage that survives pod restarts and is created automatically when requested. Which objects are involved?</strong></p>
+<ol type="A"><li>A. A. A hostPath volume — simplest</li><li>B. B. A PVC requesting 10Gi, fulfilled by dynamic provisioning via a StorageClass</li><li>C. C. An emptyDir volume</li><li>D. D. A ConfigMap</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> The developer writes a <em>PVC</em> (the request); a StorageClass <em>dynamically provisions</em> the PV — no admin pre-creation, survives pod death. hostPath (A) ties the pod to one node; emptyDir (C) dies with the pod; ConfigMaps (D) hold config, not 10Gi of data.</p></details></div>
+<div class="q"><p><strong>2. A database pod was deleted and recreated, but its data is gone. The pod used an emptyDir volume. What went wrong?</strong></p>
+<ol type="A"><li>A. A. emptyDir survives pod deletion — this is a scheduler bug</li><li>B. B. emptyDir only survives <em>container</em> restarts; pod deletion wipes it — persistent data needs a PV/PVC</li><li>C. C. The database should have used a ConfigMap</li><li>D. D. Nothing — databases shouldn't store data</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> emptyDir's lifetime is the <em>pod</em>, not the container: it survives container crashes (useful scratch space) but dies with the pod. Durable data needs a PersistentVolumeClaim. This is the #1 storage misconception — always verify the volume type.</p></details></div>
+<div class="q"><p><strong>3. A shared media library must be mounted read-write by pods on many nodes simultaneously. Which access mode is required?</strong></p>
+<ol type="A"><li>A. A. ReadWriteOnce (RWO)</li><li>B. B. ReadOnlyMany (ROX)</li><li>C. C. ReadWriteMany (RWX)</li><li>D. D. Access modes don't matter for shared data</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>C.</strong> Many nodes × read-write = ReadWriteMany. RWO (A) allows one node; ROX (B) is read-only. And the backend must actually <em>support</em> RWX (NFS/CephFS do; plain block storage doesn't) — a PVC asking for RWX on an RWO-only provisioner pends forever.</p></details></div>
+<div class="q"><p><strong>4. A PVC is deleted and the admin wants the underlying data preserved for manual review. Which reclaim policy should the PV use?</strong></p>
+<ol type="A"><li>A. A. Delete — removes the volume immediately</li><li>B. B. Retain — keeps the PV and its data for manual handling</li><li>C. C. Recycle — scrubs and reuses automatically</li><li>D. D. Reclaim policies only apply to ConfigMaps</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> <em>Retain</em> keeps the PV and its data after the claim is gone — the admin then inspects, backs up, or manually cleans up. Delete (A) would destroy the very data to be reviewed. Retain is the safe default when data matters more than automation.</p></details></div>
+<div class="cta">
+<h2>This was one domain. The guide covers all 5.</h2>
+<p>This free preview covered <strong>Storage (Domain 4.0, 10%)</strong>. Not covered here: Cluster Architecture, Installation & Configuration (Domain 1.0, 25%); Troubleshooting (Domain 5.0, 30%). The two highest-weight domains — cluster builds and live troubleshooting, the most hands-on CKA material — stay in the paid guide and practice bank. The $5 CKA Study Guide covers every domain in condensed review form; the $7 complete bundle adds the practice pack with full question explanations.</p>
+<a class="btn" href="https://bytebarhq.com">Get the Study Guide — $5</a>
+<a class="btn ghost" href="https://bytebarhq.com">Complete Bundle — $7</a>
+
+</div>
+<div class="nextbox"><strong>Keep learning:</strong> <a href="https://bytebarhq.com/b/by80m">CKA Study Guide — $5</a> · <a href="https://bytebarhq.com/blog/news/">ByteBar blog</a></div>
+<div class="nextbox">
+<strong>Continue the series:</strong> <a href="https://bytebarhq.github.io/bytebar-study/cka/">back to the Certified Kubernetes Administrator index</a>
+</div>
+</article></main>
+<footer class="site"><div class="wrap">
+<p>© 2026 ByteBar · Free study resources. Not affiliated with Cloud Native Computing Foundation.<br>
+<a href="https://bytebarhq.com">bytebarhq.com</a> · <a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a></p>
+</div></footer>
+</body>
+</html>
