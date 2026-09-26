@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A+ 220-1202 Domain 2.0: Security — Explained | ByteBar Study Hub</title>
+<meta name="description" content="A+ 220-1202 Domain 2.0 explained in plain English: threats, malware removal, Windows security settings, and SOHO security.">
+<link rel="canonical" href="https://bytebarhq.github.io/bytebar-study/a-plus/220-1202-domain-2-security/">
+<meta property="og:title" content="A+ 220-1202 Domain 2.0: Security — Explained">
+<meta property="og:description" content="Threats, malware removal, and Windows security in plain English — with sample questions. Free preview from ByteBar.">
+<meta property="og:type" content="article">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article",
+"headline":"A+ 220-1202 Domain 2.0: Security — Explained",
+"description":"A+ 220-1202 Domain 2.0 explained in plain English: threats, malware removal, Windows security settings, and SOHO security.",
+"author":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"},
+"publisher":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"},
+"datePublished":"2026-09-26"}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "A PC shows ransomware warnings demanding payment. What are the correct first two steps?", "acceptedAnswer": {"@type": "Answer", "text": "B. Disconnect first (stop spread + cut command-and-control), then work the procedure. Paying funds crime and rarely restores data; System Restore (D) is disabled during remediation (malware hides in restore points) and re-enabled after. Contain, then clean."}}, {"@type": "Question", "name": "Why must System Restore be disabled during malware remediation?", "acceptedAnswer": {"@type": "Answer", "text": "B. Restore points snapshot system state including the infection. Clean the system, then a user (or an automated restore) rolls back to a snapshot containing the malware — instant reinfection. Disable during cleanup, re-enable after, create a fresh clean restore point."}}, {"@type": "Question", "name": "A technician finds a SOHO router still using the factory admin password and WPS enabled. What are the two fixes and why?", "acceptedAnswer": {"@type": "Answer", "text": "B. Default credentials are published in manuals attackers already have — changing them is step zero. WPS's PIN mechanism is cryptographically weak and brute-forceable regardless of your WPA2 passphrase. Hidden SSIDs (C) are trivially discoverable — obscurity, not security."}}, {"@type": "Question", "name": "An employee receives an email that looks like it's from the CEO asking for gift cards urgently. What is this attack, and what's the defense?", "acceptedAnswer": {"@type": "Answer", "text": "B. Targeted fraudulent email impersonating an authority figure = spear phishing (whaling when it's executives). The defense is process: verify via a known-good channel (call the CEO's known number), never the reply button. Urgency is the weapon — slowing down is the shield."}}]}
+</script>
+<style>
+:root{--navy:#0a1628;--navy2:#0e1e38;--navy3:#132a4d;--cyan:#22d3ee;--slate:#94a3b8;--white:#f1f5f9;--green:#34d399;--amber:#fbbf24}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--navy);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header.site{border-bottom:1px solid #1e293b;padding:18px 0}
+.masthead{font-weight:800;letter-spacing:.55em;color:var(--cyan);font-size:15px;text-decoration:none}
+nav.main{margin-top:10px;font-size:14px}
+nav.main a{color:var(--slate);text-decoration:none;margin-right:18px}
+nav.main a:hover{color:var(--cyan)}
+.crumb{font-size:13px;color:var(--slate);margin:26px 0 8px}
+.crumb a{color:var(--cyan);text-decoration:none}
+article h1{font-size:29px;line-height:1.3;margin-bottom:10px}
+.lede{color:var(--slate);font-size:17px;margin-bottom:8px}
+.meta{font-size:13px;color:var(--slate);margin-bottom:30px}
+.meta b{color:var(--cyan)}
+article h2{font-size:22px;margin:38px 0 12px;color:var(--cyan)}
+article h3{font-size:17px;margin:24px 0 8px}
+article p{margin:0 0 14px}
+article ul,article ol{margin:0 0 14px 22px}
+article li{margin-bottom:6px}
+.def{background:var(--navy2);border-left:3px solid var(--cyan);padding:12px 16px;border-radius:0 8px 8px 0;margin:16px 0;font-size:15px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #1e293b;vertical-align:top}
+th{color:var(--cyan);font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+tr:hover td{background:var(--navy2)}
+.q{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:16px 0}
+.q .stem{font-weight:600;margin-bottom:10px}
+.q ol{list-style:none;margin:0 0 4px}
+.q ol li{background:var(--navy3);border-radius:8px;padding:8px 12px;margin-bottom:6px;font-size:14px}
+.q details{margin-top:8px}
+.q summary{cursor:pointer;color:var(--green);font-weight:600;font-size:14px}
+.q .why{font-size:14px;color:var(--slate);margin-top:8px}
+.cta{background:linear-gradient(135deg,#0e2a4a,#0a3a3f);border:1px solid var(--cyan);border-radius:14px;padding:26px;margin:44px 0;text-align:center}
+.cta h2{color:var(--white);margin:0 0 10px;font-size:22px}
+.cta p{color:var(--slate);font-size:15px;max-width:520px;margin:0 auto 18px}
+.btn{display:inline-block;background:var(--cyan);color:#04202a;font-weight:700;text-decoration:none;padding:12px 26px;border-radius:10px;margin:6px;font-size:15px}
+.btn.ghost{background:transparent;color:var(--cyan);border:1px solid var(--cyan)}
+footer.site{border-top:1px solid #1e293b;padding:24px 0;color:var(--slate);font-size:13px;text-align:center;margin-top:20px}
+footer.site a{color:var(--cyan);text-decoration:none}
+.nextbox{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:30px 0;font-size:14px;color:var(--slate)}
+.nextbox a{color:var(--cyan);text-decoration:none;font-weight:600}
+@media(max-width:560px){article h1{font-size:24px}.btn{display:block;margin:8px 0}}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="masthead" href="https://bytebarhq.github.io/bytebar-study/">B Y T E B A R</a>
+<nav class="main">
+<a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a>
+<a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a>
+<a href="https://bytebarhq.com">Store</a>
+</nav>
+</div></header>
+<main class="wrap"><article>
+<p class="crumb"><a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a> / <a href="https://bytebarhq.github.io/bytebar-study/a-plus/">CompTIA A+ (220-1201 & 220-1202)</a> / 1102 · Domain 2.0</p>
+<h1>CompTIA A+ (220-1202) Domain 2.0: Security — Explained</h1>
+<p class="lede">Domain 2.0 is security from the technician's chair: recognizing threats, removing malware properly, configuring Windows security features, and locking down small networks. Practical defense, not theory.</p>
+<p class="meta">Exam: <b>220-1202</b> · weight <b>~26%</b> · Free study preview from ByteBar</p>
+<h2>Threats: know the enemy</h2>
+<ul>
+<li><strong>Malware types</strong> — <em>virus</em> (needs a host file + human action), <em>worm</em> (self-propagating), <em>trojan</em> (disguised as legitimate), <em>ransomware</em> (encrypts for payment), <em>spyware/keylogger</em> (steals silently), <em>rootkit</em> (hides at system level).</li>
+<li><strong>Social engineering</strong> — <em>phishing</em> (fraudulent messages), <em>spear phishing</em> (targeted), <em>whaling</em> (executives), <em>vishing</em> (voice), <em>smishing</em> (SMS), <em>pretexting</em> (invented scenario), <em>tailgating</em> (following through doors). The human is the attack surface.</li>
+<li><strong>Password attacks</strong> — brute force (try everything), dictionary (try likely words), credential stuffing (reused passwords from other breaches). The defense: long unique passwords + MFA.</li>
+<li><strong>Wireless and physical</strong> — evil twin (fake AP), shoulder surfing, dumpster diving. Security is also looking over your shoulder — literally.</li>
+</ul>
+<h2>Malware removal: the procedure</h2>
+<p>There's a right order — skipping steps is how "cleaned" systems get reinfected:</p>
+<ol>
+<li><strong>Investigate and verify</strong> — confirm symptoms, identify the malware. Don't nuke from orbit on a hunch.</li>
+<li><strong>Quarantine</strong> — disconnect from the network (contain the spread, cut C2).</li>
+<li><strong>Disable System Restore</strong> — malware hides in restore points; a restore would resurrect it.</li>
+<li><strong>Remediate</strong> — Safe Mode scan with updated anti-malware, remove/quarantine findings; manual removal if needed.</li>
+<li><strong>Schedule scans and updates</strong> — ensure protection is current and automatic.</li>
+<li><strong>Re-enable System Restore and create a restore point</strong> — clean baseline going forward.</li>
+<li><strong>Educate the user</strong> — the infection vector (phishing link? bad download?) must close, or it recurs.</li>
+</ol>
+<div class="def">Investigate → quarantine → disable restore → remediate → update protection → fresh restore point → educate. The last step prevents the encore.</div>
+<h2>Windows security and SOHO hardening</h2>
+<ul>
+<li><strong>Built-in defenses</strong> — Windows Defender (antivirus/antimalware, on by default), Windows Firewall (per-network profiles: domain/private/public), SmartScreen (reputation checks on downloads), BitLocker (full-disk encryption), EFS (per-file encryption).</li>
+<li><strong>UAC</strong> — User Account Control: privilege separation prompts. Don't disable it to stop the popups — the popups <em>are</em> the protection.</li>
+<li><strong>Authentication</strong> — strong passwords, MFA wherever offered, screen locks with short timeouts, disable the Guest account, rename/disable default admin where policy says so.</li>
+<li><strong>SOHO router hardening</strong> — change default admin credentials, WPA2/WPA3 with a strong passphrase, disable WPS, update firmware, disable remote management, guest network for visitors and IoT.</li>
+<li><strong>Data destruction</strong> — <em>wipe</em> (overwrite, software), <em>degauss</em> (magnetic destruction — kills the drive too), <em>physical destruction</em> (shred/crush). Delete ≠ gone; format ≠ gone. Match the method to the data's sensitivity.</li>
+</ul>
+<h2>The must-memorize table: malware types</h2>
+<p>How each spreads and what it does.</p>
+<table>
+<thead><tr><th>Malware</th><th>Spreads by</th><th>Does</th></tr></thead>
+<tbody>
+<tr><td>Virus</td><td>Host file + human action</td><td>Infects files, needs execution</td></tr>
+<tr><td>Worm</td><td>Self-propagating (network)</td><td>Spreads alone, fast</td></tr>
+<tr><td>Trojan</td><td>Disguised as legitimate software</td><td>Opens backdoors, steals</td></tr>
+<tr><td>Ransomware</td><td>Phishing, exploits, RDP</td><td>Encrypts data, demands payment</td></tr>
+<tr><td>Spyware / keylogger</td><td>Bundled software, trojans</td><td>Steals silently</td></tr>
+<tr><td>Rootkit</td><td>Deep system compromise</td><td>Hides at OS level</td></tr>
+</tbody>
+</table>
+<h2>Try it: 4 sample questions</h2>
+<p>Sample questions to check your understanding of this domain. Answers and full reasoning are tucked under each one.</p>
+<div class="q"><p><strong>1. A PC shows ransomware warnings demanding payment. What are the correct first two steps?</strong></p>
+<ol type="A"><li>A. A. Pay immediately, then scan</li><li>B. B. Quarantine (disconnect from network) and investigate — never pay; contain first, then follow the removal procedure</li><li>C. C. Delete the warning popups</li><li>D. D. Run System Restore immediately</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> Disconnect first (stop spread + cut command-and-control), then work the procedure. Paying funds crime and rarely restores data; System Restore (D) is <em>disabled</em> during remediation (malware hides in restore points) and re-enabled after. Contain, then clean.</p></details></div>
+<div class="q"><p><strong>2. Why must System Restore be disabled during malware remediation?</strong></p>
+<ol type="A"><li>A. A. It slows down the scan</li><li>B. B. Malware can hide in restore points — restoring would reinfect the "cleaned" system</li><li>C. C. It deletes user files</li><li>D. D. It conflicts with Safe Mode</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> Restore points snapshot system state <em>including the infection</em>. Clean the system, then a user (or an automated restore) rolls back to a snapshot containing the malware — instant reinfection. Disable during cleanup, re-enable after, create a fresh clean restore point.</p></details></div>
+<div class="q"><p><strong>3. A technician finds a SOHO router still using the factory admin password and WPS enabled. What are the two fixes and why?</strong></p>
+<ol type="A"><li>A. A. None needed — factory settings are secure</li><li>B. B. Change the admin credentials (factory passwords are public knowledge) and disable WPS (its PIN is brute-forceable)</li><li>C. C. Hide the SSID — that's sufficient</li><li>D. D. Buy a new router</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> Default credentials are published in manuals attackers already have — changing them is step zero. WPS's PIN mechanism is cryptographically weak and brute-forceable regardless of your WPA2 passphrase. Hidden SSIDs (C) are trivially discoverable — obscurity, not security.</p></details></div>
+<div class="q"><p><strong>4. An employee receives an email that looks like it's from the CEO asking for gift cards urgently. What is this attack, and what's the defense?</strong></p>
+<ol type="A"><li>A. A. A worm — run antivirus</li><li>B. B. Spear phishing / CEO fraud (a pretexting variant) — verify through a separate channel; train users to distrust urgency + unusual requests</li><li>C. C. Ransomware — disconnect the PC</li><li>D. D. A brute-force attack — change passwords</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> Targeted fraudulent email impersonating an authority figure = spear phishing (whaling when it's executives). The defense is <em>process</em>: verify via a known-good channel (call the CEO's known number), never the reply button. Urgency is the weapon — slowing down is the shield.</p></details></div>
+<div class="cta">
+<h2>This was one domain. The guide covers all 9.</h2>
+<p>This free preview covered <strong>1102: Security (2.0, 26%)</strong>. Not covered here: 1101: Hardware (3.0, 25%); 1101: Hardware & Network Troubleshooting (5.0, 28%); 1102: Software Troubleshooting (3.0, 21%). The three troubleshooting and hardware domains — the most scenario-heavy A+ material — stay in the paid guide and practice bank. The $5 A+ Study Guide covers every domain in condensed review form; the $7 complete bundle adds the practice pack with full question explanations.</p>
+<a class="btn" href="https://bytebarhq.com">Get the Study Guide — $5</a>
+<a class="btn ghost" href="https://bytebarhq.com">Complete Bundle — $7</a>
+
+</div>
+<div class="nextbox"><strong>Keep learning:</strong> <a href="https://bytebarhq.com/b/fi1ds">A+ Study Guide — $5</a> · <a href="https://bytebarhq.com/blog/news/comptia-a-vs-network-which-should-you-get-first">A+ vs Network+: which should you get first?</a></div>
+<div class="nextbox">
+<strong>Continue the series:</strong> <a href="https://bytebarhq.github.io/bytebar-study/a-plus/220-1202-domain-4-operational-procedures/">A+ 220-1202 Domain 4.0: Operational Procedures — Explained</a>
+</div>
+</article></main>
+<footer class="site"><div class="wrap">
+<p>© 2026 ByteBar · Free study resources. Not affiliated with CompTIA, Inc..<br>
+<a href="https://bytebarhq.com">bytebarhq.com</a> · <a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a></p>
+</div></footer>
+</body>
+</html>
