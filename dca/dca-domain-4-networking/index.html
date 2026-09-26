@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DCA Domain 4.0: Networking — Explained | ByteBar Study Hub</title>
+<meta name="description" content="DCA Domain 4.0 explained in plain English: Docker network drivers, bridge networks, overlay networks, and port publishing concepts.">
+<link rel="canonical" href="https://bytebarhq.github.io/bytebar-study/dca/dca-domain-4-networking/">
+<meta property="og:title" content="DCA Domain 4.0: Networking — Explained">
+<meta property="og:description" content="Bridge, host, overlay, and macvlan networks in plain English — with sample questions. Free preview from ByteBar.">
+<meta property="og:type" content="article">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article",
+"headline":"DCA Domain 4.0: Networking — Explained",
+"description":"DCA Domain 4.0 explained in plain English: Docker network drivers, bridge networks, overlay networks, and port publishing concepts.",
+"author":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"}}
+</script>
+<style>
+:root{--navy:#0a1628;--navy2:#0e1e38;--navy3:#132a4d;--cyan:#22d3ee;--slate:#94a3b8;--white:#f1f5f9;--green:#34d399;--amber:#fbbf24}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--navy);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header.site{border-bottom:1px solid #1e293b;padding:18px 0}
+.masthead{font-weight:800;letter-spacing:.55em;color:var(--cyan);font-size:15px;text-decoration:none}
+nav.main{margin-top:10px;font-size:14px}
+nav.main a{color:var(--slate);text-decoration:none;margin-right:18px}
+nav.main a:hover{color:var(--cyan)}
+.crumb{font-size:13px;color:var(--slate);margin:26px 0 8px}
+.crumb a{color:var(--cyan);text-decoration:none}
+article h1{font-size:29px;line-height:1.3;margin-bottom:10px}
+.lede{color:var(--slate);font-size:17px;margin-bottom:8px}
+.meta{font-size:13px;color:var(--slate);margin-bottom:30px}
+.meta b{color:var(--cyan)}
+article h2{font-size:22px;margin:38px 0 12px;color:var(--cyan)}
+article h3{font-size:17px;margin:24px 0 8px}
+article p{margin:0 0 14px}
+article ul,article ol{margin:0 0 14px 22px}
+article li{margin-bottom:6px}
+.def{background:var(--navy2);border-left:3px solid var(--cyan);padding:12px 16px;border-radius:0 8px 8px 0;margin:16px 0;font-size:15px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #1e293b;vertical-align:top}
+th{color:var(--cyan);font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+tr:hover td{background:var(--navy2)}
+.q{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:16px 0}
+.q .stem{font-weight:600;margin-bottom:10px}
+.q ol{list-style:none;margin:0 0 4px}
+.q ol li{background:var(--navy3);border-radius:8px;padding:8px 12px;margin-bottom:6px;font-size:14px}
+.q details{margin-top:8px}
+.q summary{cursor:pointer;color:var(--green);font-weight:600;font-size:14px}
+.q .why{font-size:14px;color:var(--slate);margin-top:8px}
+.cta{background:linear-gradient(135deg,#0e2a4a,#0a3a3f);border:1px solid var(--cyan);border-radius:14px;padding:26px;margin:44px 0;text-align:center}
+.cta h2{color:var(--white);margin:0 0 10px;font-size:22px}
+.cta p{color:var(--slate);font-size:15px;max-width:520px;margin:0 auto 18px}
+.btn{display:inline-block;background:var(--cyan);color:#04202a;font-weight:700;text-decoration:none;padding:12px 26px;border-radius:10px;margin:6px;font-size:15px}
+.btn.ghost{background:transparent;color:var(--cyan);border:1px solid var(--cyan)}
+footer.site{border-top:1px solid #1e293b;padding:24px 0;color:var(--slate);font-size:13px;text-align:center;margin-top:20px}
+footer.site a{color:var(--cyan);text-decoration:none}
+.nextbox{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:30px 0;font-size:14px;color:var(--slate)}
+.nextbox a{color:var(--cyan);text-decoration:none;font-weight:600}
+@media(max-width:560px){article h1{font-size:24px}.btn{display:block;margin:8px 0}}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="masthead" href="https://bytebarhq.github.io/bytebar-study/">B Y T E B A R</a>
+<nav class="main">
+<a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a>
+<a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a>
+<a href="https://bytebarhq.com">Store</a>
+</nav>
+</div></header>
+<main class="wrap"><article>
+<p class="crumb"><a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a> / <a href="https://bytebarhq.github.io/bytebar-study/dca/">Docker Certified Associate (DCA)</a> / Domain 4.0</p>
+<h1>Docker Certified Associate (DCA) Domain 4.0: Networking — Explained</h1>
+<p class="lede">Domain 4.0 is how containers <em>talk</em>: the network drivers Docker provides, when each fits, and how traffic gets from the outside world to a container — and between containers across hosts.</p>
+<p class="meta">Exam weight: <b>15%</b> · Free study preview from ByteBar</p>
+<h2>Network drivers: the menu</h2>
+<ul>
+<li><strong>bridge (default)</strong> — containers on one host get private IPs on a virtual bridge; they reach each other by name (on user-defined bridges) and the outside via NAT. The single-host default.</li>
+<li><strong>host</strong> — the container shares the <em>host's</em> network stack directly: no isolation, no port mapping needed, maximum performance. Also maximum exposure — use sparingly.</li>
+<li><strong>none</strong> — no networking at all. For containers that truly need none (compute-only batch jobs) or get networking some custom way.</li>
+<li><strong>overlay</strong> — multi-host networking for Swarm: containers on <em>different hosts</em> join one virtual network with built-in encryption options. The "containers across machines act like one LAN" driver.</li>
+<li><strong>macvlan</strong> — gives containers real MAC addresses on the physical network, as if they were physical devices. For apps that need to look like hardware (legacy monitoring, DHCP-dependent apps).</li>
+</ul>
+<div class="def">Single host → bridge. Multi-host Swarm → overlay. Need max speed, accept exposure → host. Need to look like physical hardware → macvlan. Need nothing → none.</div>
+<h2>Publishing ports and DNS</h2>
+<ul>
+<li><strong>EXPOSE vs. -p</strong> — EXPOSE <em>documents</em> ports in the image; <code>-p host:container</code> actually <em>publishes</em> them to the host. Documentation doesn't open ports.</li>
+<li><strong>Port conflicts</strong> — two containers can't publish the same host port. User-defined bridge networks avoid most of this: containers talk to each other by <em>name</em> on internal ports, and only the front door needs a published port.</li>
+<li><strong>Embedded DNS</strong> — user-defined bridge networks get a built-in DNS server: containers resolve each other by name automatically. (The default bridge lacks this — another reason to create your own networks.)</li>
+<li><strong>Ingress in Swarm</strong> — the routing mesh publishes a service port on <em>every</em> swarm node; internal load balancing spreads it to the actual containers wherever they run.</li>
+</ul>
+<h2>Designing container networks</h2>
+<ul>
+<li><strong>One network per concern</strong> — frontend network (web ↔ app), backend network (app ↔ database). The database container simply isn't on the frontend network — segmentation by topology.</li>
+<li><strong>Don't expose the database</strong> — app containers reach the DB by name on the internal network; only the web tier publishes ports to the host. Every published port is attack surface.</li>
+<li><strong>Overlay encryption</strong> — control-plane traffic is encrypted by default in Swarm; data-plane encryption is opt-in per network. Know it exists and that it costs some performance.</li>
+<li><strong>Troubleshooting order</strong> — can the containers resolve each other (DNS)? Are they on the same network? Is the port published (and not conflicting)? Is a firewall eating it? Name → network → publish → firewall.</li>
+</ul>
+<h2>The must-memorize table: Docker network drivers</h2>
+<p>Which driver for which topology.</p>
+<table>
+<thead><tr><th>Driver</th><th>Scope</th><th>Use it when</th></tr></thead>
+<tbody>
+<tr><td>bridge</td><td>Single host</td><td>Default; containers on one machine</td></tr>
+<tr><td>host</td><td>Single host (no isolation)</td><td>Max performance; no network isolation needed</td></tr>
+<tr><td>none</td><td>No network</td><td>Isolated compute; custom networking</td></tr>
+<tr><td>overlay</td><td>Multi-host (Swarm)</td><td>Containers across hosts, one virtual network</td></tr>
+<tr><td>macvlan</td><td>Physical network</td><td>Containers need real MACs / look like hardware</td></tr>
+</tbody>
+</table>
+<h2>Try it: 4 sample questions</h2>
+<p>Sample questions to check your understanding of this domain. Answers and full reasoning are tucked under each one.</p>
+<div class="q"><p><strong>1. Two containers on the same host need to communicate by name, isolated from other projects' containers. What should the admin create?</strong></p>
+<ol type="A"><li>A. A. Nothing — the default bridge provides DNS by name</li><li>B. B. A user-defined bridge network for the project</li><li>C. C. A host network for maximum speed</li><li>D. D. An overlay network</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> User-defined bridges provide automatic DNS resolution by container name <em>and</em> isolation from other networks — the default bridge has neither (no embedded DNS, all containers lumped together). Host (C) destroys isolation; overlay (D) is for multi-host.</p></details></div>
+<div class="q"><p><strong>2. A web container must be reachable from outside the host on port 8080, mapping to its internal port 80. Which flag does this?</strong></p>
+<ol type="A"><li>A. A. --expose 8080</li><li>B. B. -p 8080:80 — publish host port 8080 to container port 80</li><li>C. C. --network host</li><li>D. D. -e PORT=8080</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> <code>-p host:container</code> publishes: traffic to the host's 8080 reaches the container's 80. EXPOSE (A) only documents; host networking (C) shares the whole stack (overkill and exposed); -e (D) sets an env var the app may ignore. Format is always host:container, left to right.</p></details></div>
+<div class="q"><p><strong>3. A Swarm service must be reachable on port 80 from any swarm node, with traffic load-balanced to its containers wherever they run. What provides this?</strong></p>
+<ol type="A"><li>A. A. A bridge network on each node</li><li>B. B. The Swarm routing mesh (ingress) — publishes the port on every node with internal load balancing</li><li>C. C. host networking on every container</li><li>D. D. macvlan on each node</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> The routing mesh is Swarm's ingress: every node listens on the published port and the mesh routes to healthy task containers cluster-wide. Per-node bridges (A) don't span hosts; host networking (C) can't load-balance across nodes. "Any node, balanced to containers" → routing mesh.</p></details></div>
+<div class="q"><p><strong>4. A legacy monitoring tool requires each monitored container to have its own MAC address visible on the physical LAN. Which driver fits?</strong></p>
+<ol type="A"><li>A. A. bridge</li><li>B. B. overlay</li><li>C. C. macvlan — containers appear as physical devices with real MACs</li><li>D. D. none</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>C.</strong> macvlan assigns containers MAC addresses on the physical network — they look like real hardware to switches, DHCP, and monitoring tools. Bridge (A) and overlay (B) hide containers behind NAT/virtual networks; none (D) gives no network at all. "Look like hardware" → macvlan.</p></details></div>
+<div class="cta">
+<h2>This was one domain. The guide covers all 6.</h2>
+<p>This free preview covered <strong>Networking (Domain 4.0, 15%)</strong>. Not covered here: Orchestration (Domain 1.0, 25%); Security (Domain 5.0, 15%). Swarm orchestration and Docker security — the most scenario-heavy DCA material — stay in the paid guide and practice bank. The $5 DCA Study Guide covers every domain in condensed review form; the $7 complete bundle adds the practice pack with full question explanations.</p>
+<a class="btn" href="https://bytebarhq.com">Get the Study Guide — $5</a>
+<a class="btn ghost" href="https://bytebarhq.com">Complete Bundle — $7</a>
+
+</div>
+<div class="nextbox">
+<strong>Continue the series:</strong> <a href="https://bytebarhq.github.io/bytebar-study/dca/dca-domain-6-storage-volumes/">DCA Domain 6.0: Storage and Volumes — Explained</a>
+</div>
+</article></main>
+<footer class="site"><div class="wrap">
+<p>© 2026 ByteBar · Free study resources. Not affiliated with Mirantis.<br>
+<a href="https://bytebarhq.com">bytebarhq.com</a> · <a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a></p>
+</div></footer>
+</body>
+</html>
