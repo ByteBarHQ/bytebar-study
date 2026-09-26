@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CCNA 200-301 Domain 4.0: IP Services — Explained | ByteBar Study Hub</title>
+<meta name="description" content="Cisco CCNA 200-301 Domain 4.0 explained in plain English: DHCP, DNS, NAT, NTP, SNMP, syslog, and SSH concepts.">
+<link rel="canonical" href="https://bytebarhq.github.io/bytebar-study/ccna/200-301-domain-4-ip-services/">
+<meta property="og:title" content="CCNA 200-301 Domain 4.0: IP Services — Explained">
+<meta property="og:description" content="DHCP, DNS, NAT, NTP, SNMP, syslog, and SSH concepts in plain English — with sample questions. Free preview from ByteBar.">
+<meta property="og:type" content="article">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article",
+"headline":"CCNA 200-301 Domain 4.0: IP Services — Explained",
+"description":"Cisco CCNA 200-301 Domain 4.0 explained in plain English: DHCP, DNS, NAT, NTP, SNMP, syslog, and SSH concepts.",
+"author":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"},
+"publisher":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"},
+"datePublished":"2026-09-26"}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "An engineer configures a router, tests it, and reboots. The changes are gone. What happened?", "acceptedAnswer": {"@type": "Answer", "text": "B. The classic CCNA rite of passage: running-config lives in RAM and evaporates on reboot; only startup-config (NVRAM) survives. The fix is one command — copy running-config startup-config — before the reload. Nothing was corrupted; the config was simply never saved."}}, {"@type": "Question", "name": "A monitoring system needs encrypted, authenticated polling of switch health data. Which SNMP version and why?", "acceptedAnswer": {"@type": "Answer", "text": "C. Only SNMPv3 provides real security: authentication (prove who you are) plus privacy/encryption (authPriv mode). v1 and v2c send community strings in plaintext — \"security\" by obscurity. (There is no SNMPv4 — D is a distractor.)"}}, {"@type": "Question", "name": "A REST API call uses the HTTP GET method against a switch's interface inventory endpoint. What does it do?", "acceptedAnswer": {"@type": "Answer", "text": "B. CRUD maps to HTTP verbs: GET = read, POST = create, PUT/PATCH = update, DELETE = delete. A GET never changes anything — it retrieves. At CCNA level, reading the verb tells you the intent of the call."}}, {"@type": "Question", "name": "A company wants identical NTP and DNS settings pushed to 300 switches without logging into each one. Which approach fits?", "acceptedAnswer": {"@type": "Answer", "text": "B. This is the declarative automation use case: describe the desired state once, let the tool enforce it everywhere identically — no typos, no drift, no 300 console sessions. SNMP (C) and syslog (D) are monitoring, not configuration. Manual logins (A) are exactly what automation replaces."}}]}
+</script>
+<style>
+:root{--navy:#0a1628;--navy2:#0e1e38;--navy3:#132a4d;--cyan:#22d3ee;--slate:#94a3b8;--white:#f1f5f9;--green:#34d399;--amber:#fbbf24}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--navy);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header.site{border-bottom:1px solid #1e293b;padding:18px 0}
+.masthead{font-weight:800;letter-spacing:.55em;color:var(--cyan);font-size:15px;text-decoration:none}
+nav.main{margin-top:10px;font-size:14px}
+nav.main a{color:var(--slate);text-decoration:none;margin-right:18px}
+nav.main a:hover{color:var(--cyan)}
+.crumb{font-size:13px;color:var(--slate);margin:26px 0 8px}
+.crumb a{color:var(--cyan);text-decoration:none}
+article h1{font-size:29px;line-height:1.3;margin-bottom:10px}
+.lede{color:var(--slate);font-size:17px;margin-bottom:8px}
+.meta{font-size:13px;color:var(--slate);margin-bottom:30px}
+.meta b{color:var(--cyan)}
+article h2{font-size:22px;margin:38px 0 12px;color:var(--cyan)}
+article h3{font-size:17px;margin:24px 0 8px}
+article p{margin:0 0 14px}
+article ul,article ol{margin:0 0 14px 22px}
+article li{margin-bottom:6px}
+.def{background:var(--navy2);border-left:3px solid var(--cyan);padding:12px 16px;border-radius:0 8px 8px 0;margin:16px 0;font-size:15px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #1e293b;vertical-align:top}
+th{color:var(--cyan);font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+tr:hover td{background:var(--navy2)}
+.q{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:16px 0}
+.q .stem{font-weight:600;margin-bottom:10px}
+.q ol{list-style:none;margin:0 0 4px}
+.q ol li{background:var(--navy3);border-radius:8px;padding:8px 12px;margin-bottom:6px;font-size:14px}
+.q details{margin-top:8px}
+.q summary{cursor:pointer;color:var(--green);font-weight:600;font-size:14px}
+.q .why{font-size:14px;color:var(--slate);margin-top:8px}
+.cta{background:linear-gradient(135deg,#0e2a4a,#0a3a3f);border:1px solid var(--cyan);border-radius:14px;padding:26px;margin:44px 0;text-align:center}
+.cta h2{color:var(--white);margin:0 0 10px;font-size:22px}
+.cta p{color:var(--slate);font-size:15px;max-width:520px;margin:0 auto 18px}
+.btn{display:inline-block;background:var(--cyan);color:#04202a;font-weight:700;text-decoration:none;padding:12px 26px;border-radius:10px;margin:6px;font-size:15px}
+.btn.ghost{background:transparent;color:var(--cyan);border:1px solid var(--cyan)}
+footer.site{border-top:1px solid #1e293b;padding:24px 0;color:var(--slate);font-size:13px;text-align:center;margin-top:20px}
+footer.site a{color:var(--cyan);text-decoration:none}
+.nextbox{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:30px 0;font-size:14px;color:var(--slate)}
+.nextbox a{color:var(--cyan);text-decoration:none;font-weight:600}
+@media(max-width:560px){article h1{font-size:24px}.btn{display:block;margin:8px 0}}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="masthead" href="https://bytebarhq.github.io/bytebar-study/">B Y T E B A R</a>
+<nav class="main">
+<a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a>
+<a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a>
+<a href="https://bytebarhq.com">Store</a>
+</nav>
+</div></header>
+<main class="wrap"><article>
+<p class="crumb"><a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a> / <a href="https://bytebarhq.github.io/bytebar-study/ccna/">Cisco CCNA (200-301)</a> / Domain 4.0</p>
+<h1>Cisco CCNA (200-301) Domain 4.0: IP Services — Explained</h1>
+<p class="lede">Domain 4.0 is the "services on the network" domain: the infrastructure services every network depends on — addressing (DHCP), naming (DNS), translation (NAT), time (NTP) — plus how devices are managed (SSH) and monitored (SNMP, syslog).</p>
+<p class="meta">Exam: <b>200-301</b> · weight <b>~10%</b> · Free study preview from ByteBar</p>
+<h2>Managing devices: access and files</h2>
+<ul>
+<li><strong>Console, Telnet, SSH</strong> — console is physical direct access (the "I'm standing in front of it" method); Telnet is remote but plaintext; SSH is remote and encrypted. Production = SSH only.</li>
+<li><strong>Configuration files</strong> — running-config (active, in RAM, lost on reboot) vs. startup-config (saved, in NVRAM, loaded at boot). "Copy run start" is the most consequential command habit in networking.</li>
+<li><strong>IOS images and licensing</strong> — devices boot an IOS image from flash; upgrades mean copying a new image and verifying it before reloading. Licensing determines which features are legally enabled.</li>
+<li><strong>Password recovery vs. password reset</strong> — recovery (via ROMmon/confreg) regains access <em>without</em> wiping config on most platforms; the exam distinguishes it from a factory reset.</li>
+</ul>
+<h2>Monitoring: SNMP, syslog, and NetFlow</h2>
+<ul>
+<li><strong>SNMP</strong> — the manager <em>polls</em> agents for data (GET) and agents send <em>traps/informs</em> when events happen. v2c uses community strings (plaintext); v3 adds authentication and encryption. MIBs define <em>what</em> can be asked; OIDs address each data point.</li>
+<li><strong>Syslog</strong> — devices forward log messages to a central server, severity 0 (Emergency) through 7 (Debug). Centralized logs are the difference between "the network broke" and "here's the minute it broke."</li>
+<li><strong>NetFlow</strong> — exports <em>flow records</em>: who talked to whom, on which ports, how many bytes. The tool for capacity planning and "what's eating the bandwidth" questions.</li>
+<li><strong>Mirroring/SPAN</strong> — copies traffic from ports to an analyzer port for packet capture without interrupting the original flow.</li>
+</ul>
+<h2>Core IP services: DHCP, DNS, NAT, NTP</h2>
+<ul>
+<li><strong>DHCP</strong> — hands out IP addresses automatically: <em>DORA</em> (Discover, Offer, Request, Acknowledge). A DHCP <em>relay</em> forwards client requests to a server on another subnet — without it, broadcasts never leave the LAN.</li>
+<li><strong>DNS</strong> — resolves names to IPs. Clients query; servers recurse or forward. If DNS fails, "the internet is down" (it isn't — names just don't resolve). Always check name resolution before declaring a routing problem.</li>
+<li><strong>NAT</strong> — translates addresses at the boundary: <em>static NAT</em> (one-to-one, fixed mapping), <em>dynamic NAT</em> (pool of public addresses), <em>PAT/overload</em> (many private to one public, distinguished by port — the home/SOHO default). NAT hides internal addressing but breaks end-to-end connectivity.</li>
+<li><strong>NTP</strong> — synchronizes clocks across devices. Logs, certificates, and authentication all assume sane time — a device with a 2019 clock breaks TLS and makes log correlation fiction. One stratum hierarchy, everything synced.</li>
+<li><strong>QoS concepts</strong> — when links congest, <em>some</em> traffic matters more: voice gets priority queuing, bulk transfers wait. Marking (DSCP), queuing, and policing — the vocabulary of "the network is slow for everyone except the phones."</li>
+</ul>
+<div class="def">DORA for DHCP. PAT = many-to-one via ports. NTP = time is a security control. DNS failure looks exactly like an outage — verify resolution first.</div>
+<h2>The must-memorize table: monitoring tools and what each answers</h2>
+<p>Match the question to the tool.</p>
+<table>
+<thead><tr><th>Tool</th><th>Answers</th><th>Key detail</th></tr></thead>
+<tbody>
+<tr><td>SNMP</td><td>"Is the device healthy?" — CPU, memory, interface stats</td><td>Manager polls; agent sends traps; v3 is secure</td></tr>
+<tr><td>Syslog</td><td>"What happened and when?" — event timeline</td><td>Severity 0 (Emergency) → 7 (Debug)</td></tr>
+<tr><td>NetFlow</td><td>"Who used the bandwidth?" — traffic patterns</td><td>Flow records: src/dst, ports, bytes</td></tr>
+<tr><td>SPAN / port mirroring</td><td>"What exactly crossed the wire?" — full packets</td><td>Copy to analyzer without disrupting traffic</td></tr>
+<tr><td>REST API</td><td>"How do I automate this device?" — programmatic control</td><td>JSON over HTTPS; CRUD verbs</td></tr>
+</tbody>
+</table>
+<h2>Try it: 4 sample questions</h2>
+<p>Sample questions to check your understanding of this domain. Answers and full reasoning are tucked under each one.</p>
+<div class="q"><p><strong>1. An engineer configures a router, tests it, and reboots. The changes are gone. What happened?</strong></p>
+<ol type="A"><li>A. A. The IOS image was corrupted during reload</li><li>B. B. Changes were in running-config (RAM) but never saved to startup-config</li><li>C. C. The router loaded a different VLAN database</li><li>D. D. SNMP overwrote the configuration</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> The classic CCNA rite of passage: running-config lives in RAM and evaporates on reboot; only startup-config (NVRAM) survives. The fix is one command — copy running-config startup-config — <em>before</em> the reload. Nothing was corrupted; the config was simply never saved.</p></details></div>
+<div class="q"><p><strong>2. A monitoring system needs encrypted, authenticated polling of switch health data. Which SNMP version and why?</strong></p>
+<ol type="A"><li>A. A. SNMPv1 — simplest and fastest</li><li>B. B. SNMPv2c — community strings are encrypted by default</li><li>C. C. SNMPv3 — adds authentication and encryption (authPriv)</li><li>D. D. SNMPv4 — the current secure standard</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>C.</strong> Only SNMPv3 provides real security: authentication (prove who you are) plus privacy/encryption (authPriv mode). v1 and v2c send community strings in plaintext — "security" by obscurity. (There is no SNMPv4 — D is a distractor.)</p></details></div>
+<div class="q"><p><strong>3. A REST API call uses the HTTP GET method against a switch's interface inventory endpoint. What does it do?</strong></p>
+<ol type="A"><li>A. A. Creates a new interface</li><li>B. B. Reads/retrieves the interface data</li><li>C. C. Deletes an interface</li><li>D. D. Reboots the switch</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> CRUD maps to HTTP verbs: GET = read, POST = create, PUT/PATCH = update, DELETE = delete. A GET never changes anything — it retrieves. At CCNA level, reading the verb tells you the intent of the call.</p></details></div>
+<div class="q"><p><strong>4. A company wants identical NTP and DNS settings pushed to 300 switches without logging into each one. Which approach fits?</strong></p>
+<ol type="A"><li>A. A. Console into each switch during a maintenance window</li><li>B. B. A configuration management tool (e.g., Ansible) applying a declared desired state</li><li>C. C. SNMP traps from each switch</li><li>D. D. A longer syslog retention policy</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> This is the declarative automation use case: describe the desired state once, let the tool enforce it everywhere identically — no typos, no drift, no 300 console sessions. SNMP (C) and syslog (D) are <em>monitoring</em>, not configuration. Manual logins (A) are exactly what automation replaces.</p></details></div>
+<div class="cta">
+<h2>This was one domain. The guide covers all 6.</h2>
+<p>This free preview covered <strong>IP Services (Domain 4.0, 10%)</strong>. Not covered here: IP Connectivity (Domain 3.0, 25%); Automation & Programmability (Domain 6.0, 10%). Routing configuration and automation — the heaviest hands-on CCNA material — stay in the paid guide and practice bank. The $5 CCNA Study Guide covers every domain in condensed review form; the $7 complete bundle adds the practice pack with full question explanations.</p>
+<a class="btn" href="https://bytebarhq.com">Get the Study Guide — $5</a>
+<a class="btn ghost" href="https://bytebarhq.com">Complete Bundle — $7</a>
+
+</div>
+<div class="nextbox"><strong>Keep learning:</strong> <a href="https://bytebarhq.com/b/Ah9lQ">CCNA Study Guide — $5</a> · <a href="https://bytebarhq.com/blog/news/is-the-ccna-still-worth-it-in-2026">Is the CCNA still worth it in 2026?</a> · <a href="https://bytebarhq.com/blog/news/how-much-does-the-ccna-200-301-exam-cost-in-india-in-2026">How much does the CCNA exam cost in India?</a></div>
+<div class="nextbox">
+<strong>Continue the series:</strong> <a href="https://bytebarhq.github.io/bytebar-study/ccna/200-301-domain-5-security-fundamentals/">CCNA 200-301 Domain 5.0: Security Fundamentals — Explained</a>
+</div>
+</article></main>
+<footer class="site"><div class="wrap">
+<p>© 2026 ByteBar · Free study resources. Not affiliated with Cisco Systems, Inc..<br>
+<a href="https://bytebarhq.com">bytebarhq.com</a> · <a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a></p>
+</div></footer>
+</body>
+</html>
