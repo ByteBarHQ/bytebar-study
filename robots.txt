@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bytebarhq.github.io/bytebar-study/sitemap.xml
