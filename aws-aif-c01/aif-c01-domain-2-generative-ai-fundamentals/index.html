@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIF-C01 Domain 2.0: Fundamentals of Generative AI — Explained | ByteBar Study Hub</title>
+<meta name="description" content="AIF-C01 Domain 2.0 explained in plain English: tokens, transformers, foundation models, fine-tuning, RAG, and prompt engineering.">
+<link rel="canonical" href="https://bytebarhq.github.io/bytebar-study/aws-aif-c01/aif-c01-domain-2-generative-ai-fundamentals/">
+<meta property="og:title" content="AIF-C01 Domain 2.0: Fundamentals of Generative AI — Explained">
+<meta property="og:description" content="Tokens, foundation models, RAG, and prompt engineering in plain English — with sample questions. Free preview from ByteBar.">
+<meta property="og:type" content="article">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article",
+"headline":"AIF-C01 Domain 2.0: Fundamentals of Generative AI — Explained",
+"description":"AIF-C01 Domain 2.0 explained in plain English: tokens, transformers, foundation models, fine-tuning, RAG, and prompt engineering.",
+"author":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"}}
+</script>
+<style>
+:root{--navy:#0a1628;--navy2:#0e1e38;--navy3:#132a4d;--cyan:#22d3ee;--slate:#94a3b8;--white:#f1f5f9;--green:#34d399;--amber:#fbbf24}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--navy);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header.site{border-bottom:1px solid #1e293b;padding:18px 0}
+.masthead{font-weight:800;letter-spacing:.55em;color:var(--cyan);font-size:15px;text-decoration:none}
+nav.main{margin-top:10px;font-size:14px}
+nav.main a{color:var(--slate);text-decoration:none;margin-right:18px}
+nav.main a:hover{color:var(--cyan)}
+.crumb{font-size:13px;color:var(--slate);margin:26px 0 8px}
+.crumb a{color:var(--cyan);text-decoration:none}
+article h1{font-size:29px;line-height:1.3;margin-bottom:10px}
+.lede{color:var(--slate);font-size:17px;margin-bottom:8px}
+.meta{font-size:13px;color:var(--slate);margin-bottom:30px}
+.meta b{color:var(--cyan)}
+article h2{font-size:22px;margin:38px 0 12px;color:var(--cyan)}
+article h3{font-size:17px;margin:24px 0 8px}
+article p{margin:0 0 14px}
+article ul,article ol{margin:0 0 14px 22px}
+article li{margin-bottom:6px}
+.def{background:var(--navy2);border-left:3px solid var(--cyan);padding:12px 16px;border-radius:0 8px 8px 0;margin:16px 0;font-size:15px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #1e293b;vertical-align:top}
+th{color:var(--cyan);font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+tr:hover td{background:var(--navy2)}
+.q{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:16px 0}
+.q .stem{font-weight:600;margin-bottom:10px}
+.q ol{list-style:none;margin:0 0 4px}
+.q ol li{background:var(--navy3);border-radius:8px;padding:8px 12px;margin-bottom:6px;font-size:14px}
+.q details{margin-top:8px}
+.q summary{cursor:pointer;color:var(--green);font-weight:600;font-size:14px}
+.q .why{font-size:14px;color:var(--slate);margin-top:8px}
+.cta{background:linear-gradient(135deg,#0e2a4a,#0a3a3f);border:1px solid var(--cyan);border-radius:14px;padding:26px;margin:44px 0;text-align:center}
+.cta h2{color:var(--white);margin:0 0 10px;font-size:22px}
+.cta p{color:var(--slate);font-size:15px;max-width:520px;margin:0 auto 18px}
+.btn{display:inline-block;background:var(--cyan);color:#04202a;font-weight:700;text-decoration:none;padding:12px 26px;border-radius:10px;margin:6px;font-size:15px}
+.btn.ghost{background:transparent;color:var(--cyan);border:1px solid var(--cyan)}
+footer.site{border-top:1px solid #1e293b;padding:24px 0;color:var(--slate);font-size:13px;text-align:center;margin-top:20px}
+footer.site a{color:var(--cyan);text-decoration:none}
+.nextbox{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:30px 0;font-size:14px;color:var(--slate)}
+.nextbox a{color:var(--cyan);text-decoration:none;font-weight:600}
+@media(max-width:560px){article h1{font-size:24px}.btn{display:block;margin:8px 0}}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="masthead" href="https://bytebarhq.github.io/bytebar-study/">B Y T E B A R</a>
+<nav class="main">
+<a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a>
+<a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a>
+<a href="https://bytebarhq.com">Store</a>
+</nav>
+</div></header>
+<main class="wrap"><article>
+<p class="crumb"><a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a> / <a href="https://bytebarhq.github.io/bytebar-study/aws-aif-c01/">AWS Certified AI Practitioner (AIF-C01)</a> / Domain 2.0</p>
+<h1>AWS AI Practitioner (AIF-C01) Domain 2.0: Fundamentals of Generative AI — Explained</h1>
+<p class="lede">Domain 2.0 is the vocabulary of the AI boom: how large language models actually work (tokens, transformers, training), how you adapt them (fine-tuning, RAG, prompt engineering), and what they're good and bad at. Conceptual, not mathematical.</p>
+<p class="meta">Exam weight: <b>24%</b> · Free study preview from ByteBar</p>
+<h2>How LLMs work: tokens to transformers</h2>
+<ul>
+<li><strong>Tokens</strong> — models don't read words; they read <em>tokens</em> (word pieces: "unbelievable" might be 2–3 tokens). Context windows and pricing are measured in tokens — everything about LLM scale is token math.</li>
+<li><strong>Transformers</strong> — the architecture behind modern LLMs: <em>attention mechanisms</em> let the model weigh which earlier tokens matter for predicting the next one. "Attention is all you need" wasn't modesty — it was the blueprint.</li>
+<li><strong>Training in two phases</strong> — <em>pre-training</em> (learn language from massive text: next-token prediction at internet scale) then <em>fine-tuning/alignment</em> (instruction tuning, RLHF — teach it to be helpful, honest, and safe).</li>
+<li><strong>Foundation models</strong> — large pre-trained models adapted to many tasks (as opposed to training from scratch per task). The economic breakthrough: train once, adapt everywhere.</li>
+<li><strong>Parameters</strong> — the model's learned weights (billions/trillions). More parameters ≈ more capability, more cost — but architecture and data quality matter as much as raw size.</li>
+</ul>
+<h2>Adapting models: fine-tuning, RAG, and agents</h2>
+<ul>
+<li><strong>Prompt engineering</strong> — shaping behavior through instructions: clear task framing, examples (few-shot), step-by-step reasoning ("chain of thought"), output format specs. The cheapest adaptation — no training required.</li>
+<li><strong>RAG (Retrieval-Augmented Generation)</strong> — the model retrieves relevant documents <em>at query time</em> and grounds its answer in them. Fixes staleness (knowledge cutoff) and hallucinations about <em>your</em> data — without retraining.</li>
+<li><strong>Fine-tuning</strong> — additional training on your examples to specialize behavior/style. More effort than prompting, deeper adaptation; doesn't efficiently inject <em>facts</em> (that's RAG's job).</li>
+<li><strong>When to use which</strong> — need current/proprietary facts? RAG. Need consistent style/format/behavior? Fine-tuning (or good prompting). Both? Common in production.</li>
+<li><strong>Agents</strong> — models that <em>act</em>: plan multi-step tasks, call tools/APIs, observe results, iterate. The step from "answer questions" to "do the workflow."</li>
+</ul>
+<div class="def">Prompting shapes behavior. RAG supplies knowledge. Fine-tuning specializes the model. Agents act. Pick the tool by the problem: facts → RAG, style → fine-tune, actions → agents.</div>
+<h2>Capabilities, limits, and model types</h2>
+<ul>
+<li><strong>What LLMs do well</strong> — summarization, drafting, translation, code assistance, classification, conversational interfaces. Pattern completion at scale.</li>
+<li><strong>Hallucinations</strong> — fluent, confident, <em>wrong</em> output. Models predict plausible text, not truth — verification matters wherever accuracy does. RAG and human review are the mitigations.</li>
+<li><strong>Diffusion models</strong> — the image-generation family (Stable Diffusion, DALL-E): learn to reverse noise into images from text prompts. Different architecture, same "foundation model" idea.</li>
+<li><strong>Embeddings</strong> — text as vectors (number lists) where similar meanings sit near each other. The machinery behind semantic search and RAG retrieval.</li>
+<li><strong>Multimodal models</strong> — handling text + images + audio together. The direction everything is moving: one model, many senses.</li>
+</ul>
+<h2>The must-memorize table: adaptation techniques</h2>
+<p>How to make a foundation model yours.</p>
+<table>
+<thead><tr><th>Technique</th><th>What it does</th><th>Use when</th></tr></thead>
+<tbody>
+<tr><td>Prompt engineering</td><td>Shapes behavior via instructions/examples</td><td>Quick adaptation, no training</td></tr>
+<tr><td>RAG</td><td>Retrieves your documents at query time</td><td>Current/proprietary facts needed</td></tr>
+<tr><td>Fine-tuning</td><td>Additional training on your examples</td><td>Consistent style/behavior/domain</td></tr>
+<tr><td>Agents</td><td>Model plans and calls tools iteratively</td><td>Multi-step workflows</td></tr>
+</tbody>
+</table>
+<h2>Try it: 4 sample questions</h2>
+<p>Sample questions to check your understanding of this domain. Answers and full reasoning are tucked under each one.</p>
+<div class="q"><p><strong>1. A company's chatbot gives outdated answers about products launched after the model's training cutoff. Retraining is too expensive. What's the standard fix?</strong></p>
+<ol type="A"><li>A. A. Prompt engineering alone</li><li>B. B. RAG — retrieve current product docs at query time and ground answers in them</li><li>C. C. Buy a bigger model</li><li>D. D. Fine-tune on the old catalog</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> RAG solves <em>staleness</em> without retraining: the model pulls fresh documents per query and answers from them. Prompting (A) can't supply facts the model never learned; fine-tuning (D) on old data doesn't add new facts efficiently. Cutoff problems → retrieval.</p></details></div>
+<div class="q"><p><strong>2. What is a token, and why does it matter for cost and context?</strong></p>
+<ol type="A"><li>A. A. A user login credential</li><li>B. B. The unit models read — word pieces; context windows and API pricing are both measured in tokens</li><li>C. C. A type of neural network</li><li>D. D. An encryption key</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> Tokenization splits text into model-digestible pieces ("unbelievable" → 2–3 tokens). Two consequences: the <em>context window</em> (how much the model can consider) is a token budget, and providers <em>bill</em> per token. Token math is LLM economics.</p></details></div>
+<div class="q"><p><strong>3. A team needs their support bot to always answer in the company's exact tone and format, across thousands of queries. Which adaptation fits best?</strong></p>
+<ol type="A"><li>A. A. RAG</li><li>B. B. Fine-tuning — train on examples of the desired style so the behavior is consistent and baked in</li><li>C. C. A bigger context window</li><li>D. D. Embeddings</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> Consistent <em>style/behavior</em> across many queries is fine-tuning's job: the pattern becomes the model's default rather than a prompt it might drift from. RAG (A) supplies <em>facts</em>, not style. "Always sound like us" → fine-tune (after trying good prompting first — cheapest wins when it works).</p></details></div>
+<div class="q"><p><strong>4. A model confidently states a completely fabricated legal citation. What is this phenomenon, and what are the two standard mitigations?</strong></p>
+<ol type="A"><li>A. A. Overfitting — use more data</li><li>B. B. Hallucination — fluent plausible-but-false output; mitigate with RAG grounding and human verification</li><li>C. C. Tokenization error — use fewer tokens</li><li>D. D. Mode collapse — retrain from scratch</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> Hallucinations are the core LLM failure mode: the model predicts <em>plausible</em> text, not <em>true</em> text. Mitigations: ground answers in retrieved sources (RAG) and keep humans verifying where accuracy matters. It's not a bug to patch out — it's the architecture's nature to design around.</p></details></div>
+<div class="cta">
+<h2>This was one domain. The guide covers all 5.</h2>
+<p>This free preview covered <strong>Fundamentals of Generative AI (Domain 2.0, 24%)</strong>. Not covered here: Applications of Foundation Models (Domain 3.0, 28%); Security, Compliance & Governance for AI Solutions (Domain 5.0, 14%). The applied domains — foundation-model use cases and AI security/governance — stay in the paid guide and practice bank. The $5 AWS AI Practitioner Study Guide covers every domain in condensed review form; the $7 complete bundle adds the practice pack with full question explanations.</p>
+<a class="btn" href="https://bytebarhq.com">Get the Study Guide — $5</a>
+<a class="btn ghost" href="https://bytebarhq.com">Complete Bundle — $7</a>
+
+</div>
+<div class="nextbox">
+<strong>Continue the series:</strong> <a href="https://bytebarhq.github.io/bytebar-study/aws-aif-c01/aif-c01-domain-4-responsible-ai/">AWS AI Practitioner AIF-C01 Domain 4.0: Responsible AI — Explained</a>
+</div>
+</article></main>
+<footer class="site"><div class="wrap">
+<p>© 2026 ByteBar · Free study resources. Not affiliated with Amazon Web Services, Inc..<br>
+<a href="https://bytebarhq.com">bytebarhq.com</a> · <a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a></p>
+</div></footer>
+</body>
+</html>
