@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cloud+ Domain 4.0: Security — Explained | ByteBar Study Hub</title>
+<meta name="description" content="Cloud+ Domain 4.0 explained in plain English: IAM, encryption, network security, and compliance concepts for cloud.">
+<link rel="canonical" href="https://bytebarhq.github.io/bytebar-study/cloudplus/cloud-plus-domain-4-security/">
+<meta property="og:title" content="Cloud+ Domain 4.0: Security — Explained">
+<meta property="og:description" content="IAM, encryption, and cloud compliance in plain English — with sample questions. Free preview from ByteBar.">
+<meta property="og:type" content="article">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article",
+"headline":"Cloud+ Domain 4.0: Security — Explained",
+"description":"Cloud+ Domain 4.0 explained in plain English: IAM, encryption, network security, and compliance concepts for cloud.",
+"author":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"},
+"publisher":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"},
+"datePublished":"2026-09-26"}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "A company's developers share one IAM user with admin rights \"for simplicity.\" What are the two core violations?", "acceptedAnswer": {"@type": "Answer", "text": "B. Shared credentials destroy accountability (whose key did the damage?) and admin-for-everyone destroys least privilege (every compromised dev laptop = full environment). Individual identities + roles + MFA is the baseline to aim for. \"Simplicity\" here is shared liability."}}, {"@type": "Question", "name": "Regulated health data must be encrypted with keys the company fully controls and can revoke, not provider-managed keys. What is required?", "acceptedAnswer": {"@type": "Answer", "text": "B. BYOK moves key control to the customer: the company generates, rotates, and can revoke keys independently of the provider — the compliance requirement behind \"we control our encryption.\" TLS (A) protects transit, not storage; network controls (C) are a different layer entirely."}}, {"@type": "Question", "name": "A database in a private subnet must be reachable by app servers but never directly from the internet. Which design enforces this?", "acceptedAnswer": {"@type": "Answer", "text": "B. Layered: the subnet has no internet path (architectural impossibility of direct access) and security groups permit only the app tier (least privilege at the instance level). Encryption (C) protects data, not access; a public subnet with a password (A) is one guess away from exposure."}}, {"@type": "Question", "name": "After a suspected compromise of an admin account, which detective control shows exactly what the account did?", "acceptedAnswer": {"@type": "Answer", "text": "B. CloudTrail-style audit logs record every API action with identity and timestamp — the authoritative timeline for \"what did this account touch?\" Billing (A) shows cost, not actions; DNS (D) shows lookups, not control-plane changes. First move in a cloud IR: pull the audit trail."}}]}
+</script>
+<style>
+:root{--navy:#0a1628;--navy2:#0e1e38;--navy3:#132a4d;--cyan:#22d3ee;--slate:#94a3b8;--white:#f1f5f9;--green:#34d399;--amber:#fbbf24}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--navy);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header.site{border-bottom:1px solid #1e293b;padding:18px 0}
+.masthead{font-weight:800;letter-spacing:.55em;color:var(--cyan);font-size:15px;text-decoration:none}
+nav.main{margin-top:10px;font-size:14px}
+nav.main a{color:var(--slate);text-decoration:none;margin-right:18px}
+nav.main a:hover{color:var(--cyan)}
+.crumb{font-size:13px;color:var(--slate);margin:26px 0 8px}
+.crumb a{color:var(--cyan);text-decoration:none}
+article h1{font-size:29px;line-height:1.3;margin-bottom:10px}
+.lede{color:var(--slate);font-size:17px;margin-bottom:8px}
+.meta{font-size:13px;color:var(--slate);margin-bottom:30px}
+.meta b{color:var(--cyan)}
+article h2{font-size:22px;margin:38px 0 12px;color:var(--cyan)}
+article h3{font-size:17px;margin:24px 0 8px}
+article p{margin:0 0 14px}
+article ul,article ol{margin:0 0 14px 22px}
+article li{margin-bottom:6px}
+.def{background:var(--navy2);border-left:3px solid var(--cyan);padding:12px 16px;border-radius:0 8px 8px 0;margin:16px 0;font-size:15px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #1e293b;vertical-align:top}
+th{color:var(--cyan);font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+tr:hover td{background:var(--navy2)}
+.q{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:16px 0}
+.q .stem{font-weight:600;margin-bottom:10px}
+.q ol{list-style:none;margin:0 0 4px}
+.q ol li{background:var(--navy3);border-radius:8px;padding:8px 12px;margin-bottom:6px;font-size:14px}
+.q details{margin-top:8px}
+.q summary{cursor:pointer;color:var(--green);font-weight:600;font-size:14px}
+.q .why{font-size:14px;color:var(--slate);margin-top:8px}
+.cta{background:linear-gradient(135deg,#0e2a4a,#0a3a3f);border:1px solid var(--cyan);border-radius:14px;padding:26px;margin:44px 0;text-align:center}
+.cta h2{color:var(--white);margin:0 0 10px;font-size:22px}
+.cta p{color:var(--slate);font-size:15px;max-width:520px;margin:0 auto 18px}
+.btn{display:inline-block;background:var(--cyan);color:#04202a;font-weight:700;text-decoration:none;padding:12px 26px;border-radius:10px;margin:6px;font-size:15px}
+.btn.ghost{background:transparent;color:var(--cyan);border:1px solid var(--cyan)}
+footer.site{border-top:1px solid #1e293b;padding:24px 0;color:var(--slate);font-size:13px;text-align:center;margin-top:20px}
+footer.site a{color:var(--cyan);text-decoration:none}
+.nextbox{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:30px 0;font-size:14px;color:var(--slate)}
+.nextbox a{color:var(--cyan);text-decoration:none;font-weight:600}
+@media(max-width:560px){article h1{font-size:24px}.btn{display:block;margin:8px 0}}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="masthead" href="https://bytebarhq.github.io/bytebar-study/">B Y T E B A R</a>
+<nav class="main">
+<a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a>
+<a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a>
+<a href="https://bytebarhq.com">Store</a>
+</nav>
+</div></header>
+<main class="wrap"><article>
+<p class="crumb"><a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a> / <a href="https://bytebarhq.github.io/bytebar-study/cloudplus/">CompTIA Cloud+ (CV0-004)</a> / Domain 4.0</p>
+<h1>CompTIA Cloud+ (CV0-004) Domain 4.0: Security — Explained</h1>
+<p class="lede">Domain 4.0 is security <em>in</em> the cloud: identity as the perimeter, encryption everywhere it matters, network controls, and the compliance frameworks that decide what "secure enough" means. The shared-responsibility model underpins all of it.</p>
+<p class="meta">Exam weight: <b>19%</b> · Free study preview from ByteBar</p>
+<h2>Identity: the new perimeter</h2>
+<ul>
+<li><strong>IAM</strong> — users, groups, roles, and policies: who can do what to which resource. <em>Roles</em> (assumed temporarily) beat long-lived user credentials for services and cross-account access.</li>
+<li><strong>Least privilege</strong> — grant only the permissions the task needs, nothing more. Every excessive permission is breach blast radius waiting to happen.</li>
+<li><strong>MFA everywhere that matters</strong> — especially root/admin accounts and console access. A stolen password without the second factor is just a password.</li>
+<li><strong>Federation and SSO</strong> — one corporate identity (SAML/OIDC) logging into cloud consoles — no separate cloud passwords to phish, centralized deprovisioning when people leave.</li>
+<li><strong>Key management</strong> — KMS/HSM-backed keys, rotation policies, and envelope encryption. Know <em>where</em> keys live and <em>who</em> can use them — key sprawl is a breach vector.</li>
+</ul>
+<h2>Encryption and data protection</h2>
+<ul>
+<li><strong>At rest vs. in transit</strong> — encrypt stored data (EBS volumes, S3 objects, databases) <em>and</em> moving data (TLS everywhere). One without the other is half a control.</li>
+<li><strong>Customer-managed keys</strong> — provider-managed encryption is the baseline; bringing your own keys (BYOK/HYOK) adds control for regulated data — and the responsibility of not losing them.</li>
+<li><strong>Data classification</strong> — public, internal, confidential, restricted: classification drives which controls apply. You can't protect what you haven't classified.</li>
+<li><strong>DLP and discovery</strong> — find sensitive data (it's always somewhere unexpected), then prevent its exfiltration. Classification without discovery is a label on a fraction of the data.</li>
+</ul>
+<div class="def">Identity decides WHO. Encryption protects WHAT. Network controls limit WHERE traffic flows. Classification decides HOW MUCH protection each dataset gets.</div>
+<h2>Network security and compliance</h2>
+<ul>
+<li><strong>Segmentation</strong> — public/private subnets, security groups (stateful, instance-level), NACLs (stateless, subnet-level). The database subnet has no route to the internet — by design, not accident.</li>
+<li><strong>WAF and DDoS protection</strong> — WAF filters application attacks (SQLi, XSS) at the edge; provider DDoS shields absorb volumetric floods. Different layers, both needed for public apps.</li>
+<li><strong>Compliance frameworks</strong> — SOC 2 (service trust), PCI DSS (card data), HIPAA (health data), GDPR (EU personal data), ISO 27001 (security management). Know which regulates <em>what data</em>.</li>
+<li><strong>Shared responsibility, precisely</strong> — the provider secures <em>the cloud</em> (facilities, hypervisor); you secure <em>what's in it</em> (your data, identities, configs). Most cloud breaches are customer-side misconfigurations — the model working as documented.</li>
+<li><strong>Auditing</strong> — cloud trail/audit logs recording every API call: who did what, when. Immutable, centralized, and reviewed — the detective control everything else leans on.</li>
+</ul>
+<h2>The must-memorize table: cloud security controls</h2>
+<p>Which control for which threat.</p>
+<table>
+<thead><tr><th>Control</th><th>Protects against</th><th>Layer</th></tr></thead>
+<tbody>
+<tr><td>MFA</td><td>Stolen/phished credentials</td><td>Identity</td></tr>
+<tr><td>Encryption at rest</td><td>Stolen disks, breached storage</td><td>Data</td></tr>
+<tr><td>TLS</td><td>Eavesdropping, MITM</td><td>Data in transit</td></tr>
+<tr><td>Security groups</td><td>Unwanted instance traffic</td><td>Network (stateful)</td></tr>
+<tr><td>WAF</td><td>App-layer attacks (SQLi, XSS)</td><td>Edge/application</td></tr>
+<tr><td>Cloud audit logs</td><td>Undetected malicious admin actions</td><td>Detective</td></tr>
+</tbody>
+</table>
+<h2>Try it: 4 sample questions</h2>
+<p>Sample questions to check your understanding of this domain. Answers and full reasoning are tucked under each one.</p>
+<div class="q"><p><strong>1. A company's developers share one IAM user with admin rights "for simplicity." What are the two core violations?</strong></p>
+<ol type="A"><li>A. A. None — sharing reduces license costs</li><li>B. B. No individual accountability and massive violation of least privilege — use individual identities with scoped roles</li><li>C. C. IAM users can't have admin rights</li><li>D. D. Developers shouldn't use the cloud</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> Shared credentials destroy <em>accountability</em> (whose key did the damage?) and admin-for-everyone destroys <em>least privilege</em> (every compromised dev laptop = full environment). Individual identities + roles + MFA is the baseline to aim for. "Simplicity" here is shared liability.</p></details></div>
+<div class="q"><p><strong>2. Regulated health data must be encrypted with keys the company fully controls and can revoke, not provider-managed keys. What is required?</strong></p>
+<ol type="A"><li>A. A. TLS — that's sufficient</li><li>B. B. Customer-managed keys (BYOK) via KMS/HSM, with rotation and revocation under company control</li><li>C. C. Security groups</li><li>D. D. A longer password policy</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> BYOK moves key <em>control</em> to the customer: the company generates, rotates, and can revoke keys independently of the provider — the compliance requirement behind "we control our encryption." TLS (A) protects transit, not storage; network controls (C) are a different layer entirely.</p></details></div>
+<div class="q"><p><strong>3. A database in a private subnet must be reachable by app servers but never directly from the internet. Which design enforces this?</strong></p>
+<ol type="A"><li>A. A. Put the database in a public subnet with a strong password</li><li>B. B. Private subnet with no internet route + security groups allowing only app-tier traffic</li><li>C. C. Encrypt the database and put it anywhere</li><li>D. D. Use a public IP but block ping</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> Layered: the <em>subnet</em> has no internet path (architectural impossibility of direct access) and <em>security groups</em> permit only the app tier (least privilege at the instance level). Encryption (C) protects data, not access; a public subnet with a password (A) is one guess away from exposure.</p></details></div>
+<div class="q"><p><strong>4. After a suspected compromise of an admin account, which detective control shows exactly what the account did?</strong></p>
+<ol type="A"><li>A. A. The billing dashboard</li><li>B. B. Cloud audit logs — the immutable record of every API call (who, what, when)</li><li>C. C. The load balancer metrics</li><li>D. D. DNS query logs only</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> CloudTrail-style audit logs record every API action with identity and timestamp — the authoritative timeline for "what did this account touch?" Billing (A) shows cost, not actions; DNS (D) shows lookups, not control-plane changes. First move in a cloud IR: pull the audit trail.</p></details></div>
+<div class="cta">
+<h2>This was one domain. The guide covers all 6.</h2>
+<p>This free preview covered <strong>Security (Domain 4.0, 19%)</strong>. Not covered here: Operations (Domain 3.0, 17%); Troubleshooting (Domain 6.0, 12%). Cloud operations and scenario troubleshooting stay in the paid guide and practice bank. The $5 Cloud+ Study Guide covers every domain in condensed review form; the $7 complete bundle adds the practice pack with full question explanations.</p>
+<a class="btn" href="https://bytebarhq.com">Get the Study Guide — $5</a>
+<a class="btn ghost" href="https://bytebarhq.com">Complete Bundle — $7</a>
+
+</div>
+<div class="nextbox"><strong>Keep learning:</strong> <a href="https://bytebarhq.com/b/XpM39">Cloud+ Study Guide — $5</a> · <a href="https://bytebarhq.com/blog/news/">ByteBar blog</a></div>
+<div class="nextbox">
+<strong>Continue the series:</strong> <a href="https://bytebarhq.github.io/bytebar-study/cloudplus/cloud-plus-domain-5-devops-fundamentals/">Cloud+ Domain 5.0: DevOps Fundamentals — Explained</a>
+</div>
+</article></main>
+<footer class="site"><div class="wrap">
+<p>© 2026 ByteBar · Free study resources. Not affiliated with CompTIA, Inc..<br>
+<a href="https://bytebarhq.com">bytebarhq.com</a> · <a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a></p>
+</div></footer>
+</body>
+</html>
