@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AWS Cloud Practitioner CLF-C02 Domain 2.0: Security and Compliance — Explained | ByteBar Study Hub</title>
+<meta name="description" content="AWS CLF-C02 Domain 2.0 explained in plain English: the shared responsibility model, IAM concepts, compliance programs, and AWS security services at a high level.">
+<link rel="canonical" href="https://bytebarhq.github.io/bytebar-study/aws-clf-c02/clf-c02-domain-2-security-compliance/">
+<meta property="og:title" content="AWS Cloud Practitioner CLF-C02 Domain 2.0: Security and Compliance — Explained">
+<meta property="og:description" content="Shared responsibility, IAM concepts, and compliance in plain English — with sample questions. Free preview from ByteBar.">
+<meta property="og:type" content="article">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article",
+"headline":"AWS Cloud Practitioner CLF-C02 Domain 2.0: Security and Compliance — Explained",
+"description":"AWS CLF-C02 Domain 2.0 explained in plain English: the shared responsibility model, IAM concepts, compliance programs, and AWS security services at a high level.",
+"author":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"},
+"publisher":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"},
+"datePublished":"2026-09-26"}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "An application running on EC2 needs to read from an S3 bucket. What is the best-practice way to grant access?", "acceptedAnswer": {"@type": "Answer", "text": "B. Roles provide temporary credentials automatically — no long-term keys to leak, rotate, or embed. Embedded keys (A) are the classic breach pattern; public buckets (C) expose data to the internet; root credentials (D) should never leave the safe. \"Application needs AWS access\" → role, every time."}}, {"@type": "Question", "name": "A new AWS account is created. What is the first security action to take?", "acceptedAnswer": {"@type": "Answer", "text": "B. The root user can do anything, including deleting the account — so it gets MFA immediately and is then set aside in favor of IAM users/roles. Everything else (C, D) is important but secondary to locking the front door. The exam asks this constantly because real breaches start here."}}, {"@type": "Question", "name": "An auditor asks for evidence of AWS's PCI DSS compliance. Where does the customer get it?", "acceptedAnswer": {"@type": "Answer", "text": "B. AWS Artifact is the self-service portal for compliance reports and certifications — SOC, PCI, ISO, and more. Customers inherit AWS's audited controls and prove it with Artifact documents. You cannot pentest AWS facilities yourself (A); CloudTrail (C) logs your API activity, not AWS's compliance."}}, {"@type": "Question", "name": "A company uses RDS for its database. Who patches the database engine, and who is responsible for the data in it?", "acceptedAnswer": {"@type": "Answer", "text": "A. RDS is a managed service: AWS takes the OS and engine patching (\"of the cloud\" grows), but the customer's data — its classification, access, backups, encryption — stays firmly \"in the cloud,\" i.e., yours. The line moved, but data ownership never crosses it."}}]}
+</script>
+<style>
+:root{--navy:#0a1628;--navy2:#0e1e38;--navy3:#132a4d;--cyan:#22d3ee;--slate:#94a3b8;--white:#f1f5f9;--green:#34d399;--amber:#fbbf24}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--navy);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header.site{border-bottom:1px solid #1e293b;padding:18px 0}
+.masthead{font-weight:800;letter-spacing:.55em;color:var(--cyan);font-size:15px;text-decoration:none}
+nav.main{margin-top:10px;font-size:14px}
+nav.main a{color:var(--slate);text-decoration:none;margin-right:18px}
+nav.main a:hover{color:var(--cyan)}
+.crumb{font-size:13px;color:var(--slate);margin:26px 0 8px}
+.crumb a{color:var(--cyan);text-decoration:none}
+article h1{font-size:29px;line-height:1.3;margin-bottom:10px}
+.lede{color:var(--slate);font-size:17px;margin-bottom:8px}
+.meta{font-size:13px;color:var(--slate);margin-bottom:30px}
+.meta b{color:var(--cyan)}
+article h2{font-size:22px;margin:38px 0 12px;color:var(--cyan)}
+article h3{font-size:17px;margin:24px 0 8px}
+article p{margin:0 0 14px}
+article ul,article ol{margin:0 0 14px 22px}
+article li{margin-bottom:6px}
+.def{background:var(--navy2);border-left:3px solid var(--cyan);padding:12px 16px;border-radius:0 8px 8px 0;margin:16px 0;font-size:15px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #1e293b;vertical-align:top}
+th{color:var(--cyan);font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+tr:hover td{background:var(--navy2)}
+.q{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:16px 0}
+.q .stem{font-weight:600;margin-bottom:10px}
+.q ol{list-style:none;margin:0 0 4px}
+.q ol li{background:var(--navy3);border-radius:8px;padding:8px 12px;margin-bottom:6px;font-size:14px}
+.q details{margin-top:8px}
+.q summary{cursor:pointer;color:var(--green);font-weight:600;font-size:14px}
+.q .why{font-size:14px;color:var(--slate);margin-top:8px}
+.cta{background:linear-gradient(135deg,#0e2a4a,#0a3a3f);border:1px solid var(--cyan);border-radius:14px;padding:26px;margin:44px 0;text-align:center}
+.cta h2{color:var(--white);margin:0 0 10px;font-size:22px}
+.cta p{color:var(--slate);font-size:15px;max-width:520px;margin:0 auto 18px}
+.btn{display:inline-block;background:var(--cyan);color:#04202a;font-weight:700;text-decoration:none;padding:12px 26px;border-radius:10px;margin:6px;font-size:15px}
+.btn.ghost{background:transparent;color:var(--cyan);border:1px solid var(--cyan)}
+footer.site{border-top:1px solid #1e293b;padding:24px 0;color:var(--slate);font-size:13px;text-align:center;margin-top:20px}
+footer.site a{color:var(--cyan);text-decoration:none}
+.nextbox{background:var(--navy2);border:1px solid #1e293b;border-radius:12px;padding:18px;margin:30px 0;font-size:14px;color:var(--slate)}
+.nextbox a{color:var(--cyan);text-decoration:none;font-weight:600}
+@media(max-width:560px){article h1{font-size:24px}.btn{display:block;margin:8px 0}}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="masthead" href="https://bytebarhq.github.io/bytebar-study/">B Y T E B A R</a>
+<nav class="main">
+<a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a>
+<a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a>
+<a href="https://bytebarhq.com">Store</a>
+</nav>
+</div></header>
+<main class="wrap"><article>
+<p class="crumb"><a href="https://bytebarhq.github.io/bytebar-study/">Study Hub</a> / <a href="https://bytebarhq.github.io/bytebar-study/aws-clf-c02/">AWS Certified Cloud Practitioner (CLF-C02)</a> / Domain 2.0</p>
+<h1>AWS Certified Cloud Practitioner (CLF-C02) Domain 2.0: Security and Compliance — Explained</h1>
+<p class="lede">Domain 2.0 is the biggest conceptual domain on the CLF-C02: who secures what, how identity works on AWS, and how AWS proves its own compliance so customers can inherit it. Get the responsibility line right and half this domain answers itself.</p>
+<p class="meta">Exam weight: <b>30%</b> · Free study preview from ByteBar</p>
+<h2>Shared responsibility, applied</h2>
+<p>Domain 1 introduced the line; Domain 2 makes you walk it:</p>
+<ul>
+<li><strong>AWS ("of" the cloud)</strong> — physical facilities, hardware, network infrastructure, virtualization software. Plus, for managed services, the OS and platform patching.</li>
+<li><strong>Customer ("in" the cloud)</strong> — your data (classification, encryption, lifecycle), your IAM users/roles/policies, your network controls (security groups, NACLs), your application security.</li>
+<li><strong>The line moves by service</strong> — EC2: you patch the guest OS. RDS: AWS patches the database engine; you still own the data and access. The more managed the service, the more AWS owns.</li>
+<li><strong>What never moves</strong> — data classification, IAM configuration, and client-side encryption choices are <em>always</em> yours.</li>
+</ul>
+<h2>IAM concepts: identity on AWS</h2>
+<ul>
+<li><strong>Users, groups, roles</strong> — users are people (or apps) with long-term credentials; groups collect users for easier policy assignment; roles grant <em>temporary</em> credentials meant to be assumed (EC2 instances, cross-account access, federation).</li>
+<li><strong>Policies</strong> — JSON documents stating what an identity may do. <em>Identity-based</em> policies attach to users/groups/roles; <em>resource-based</em> policies attach to resources (like S3 bucket policies).</li>
+<li><strong>Least privilege</strong> — grant only the permissions needed, nothing more. The exam treats it as a principle, not a feature.</li>
+<li><strong>MFA</strong> — multi-factor authentication for the root user and privileged IAM users. The root user gets MFA <em>first</em>, before anything else is configured.</li>
+<li><strong>Root user</strong> — the account's all-powerful identity. Use it once to set up, lock it down with MFA, then never touch it for daily work.</li>
+</ul>
+<div class="def">Roles vs. users: if the exam mentions <em>temporary</em> credentials, cross-account access, or an application needing AWS access — it wants a <em>role</em>, not a user with embedded keys.</div>
+<h2>Compliance on AWS: inherit, don't rebuild</h2>
+<ul>
+<li><strong>AWS compliance programs</strong> — SOC, PCI DSS, HIPAA-eligible services, ISO 27001, FedRAMP. AWS is audited once; customers <em>inherit</em> those controls for the "of the cloud" portion.</li>
+<li><strong>AWS Artifact</strong> — the self-service portal for downloading compliance reports. An auditor asks for AWS's SOC 2? You pull it from Artifact.</li>
+<li><strong>Customer compliance</strong> — you still own compliance <em>in</em> the cloud: your data handling, your access reviews, your logging. Inheritance covers the data center, not your bucket policies.</li>
+<li><strong>Encryption concepts</strong> — at rest (EBS/S3 encryption, KMS-managed keys) and in transit (TLS). KMS is the key-management service; focus on the <em>concept</em> (centralized key control, audit trail) more than the API.</li>
+</ul>
+<h2>The must-memorize table: IAM identities</h2>
+<p>Pick the right identity for the scenario.</p>
+<table>
+<thead><tr><th>Identity</th><th>What it is</th><th>Use it when</th></tr></thead>
+<tbody>
+<tr><td>Root user</td><td>The account itself, unlimited power</td><td>Initial setup only — then MFA + lock away</td></tr>
+<tr><td>IAM user</td><td>A person or app with long-term credentials</td><td>Humans who need console/CLI access</td></tr>
+<tr><td>IAM group</td><td>A collection of users</td><td>Assigning the same policies to many people</td></tr>
+<tr><td>IAM role</td><td>Temporary credentials to be assumed</td><td>EC2 apps, cross-account, federation</td></tr>
+<tr><td>Policy</td><td>JSON allow/deny document</td><td>Defining exactly what an identity may do</td></tr>
+</tbody>
+</table>
+<h2>Try it: 4 sample questions</h2>
+<p>Sample questions to check your understanding of this domain. Answers and full reasoning are tucked under each one.</p>
+<div class="q"><p><strong>1. An application running on EC2 needs to read from an S3 bucket. What is the best-practice way to grant access?</strong></p>
+<ol type="A"><li>A. A. Create an IAM user and embed its access keys in the application code</li><li>B. B. Attach an IAM role to the EC2 instance with S3 read permissions</li><li>C. C. Make the S3 bucket publicly readable</li><li>D. D. Share the root user credentials with the application</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> Roles provide <em>temporary</em> credentials automatically — no long-term keys to leak, rotate, or embed. Embedded keys (A) are the classic breach pattern; public buckets (C) expose data to the internet; root credentials (D) should never leave the safe. "Application needs AWS access" → role, every time.</p></details></div>
+<div class="q"><p><strong>2. A new AWS account is created. What is the first security action to take?</strong></p>
+<ol type="A"><li>A. A. Launch EC2 instances for the workload</li><li>B. B. Enable MFA on the root user and avoid using it for daily tasks</li><li>C. C. Create a VPC with public subnets</li><li>D. D. Enable CloudTrail in all regions</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> The root user can do <em>anything</em>, including deleting the account — so it gets MFA immediately and is then set aside in favor of IAM users/roles. Everything else (C, D) is important but secondary to locking the front door. The exam asks this constantly because real breaches start here.</p></details></div>
+<div class="q"><p><strong>3. An auditor asks for evidence of AWS's PCI DSS compliance. Where does the customer get it?</strong></p>
+<ol type="A"><li>A. A. By running their own penetration test against AWS data centers</li><li>B. B. From AWS Artifact — the compliance report portal</li><li>C. C. From CloudTrail logs</li><li>D. D. By opening a support case asking for an attestation letter</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>B.</strong> AWS Artifact is the self-service portal for compliance reports and certifications — SOC, PCI, ISO, and more. Customers inherit AWS's audited controls and prove it with Artifact documents. You cannot pentest AWS facilities yourself (A); CloudTrail (C) logs <em>your</em> API activity, not AWS's compliance.</p></details></div>
+<div class="q"><p><strong>4. A company uses RDS for its database. Who patches the database engine, and who is responsible for the data in it?</strong></p>
+<ol type="A"><li>A. A. AWS patches the engine; the customer owns the data</li><li>B. B. The customer patches everything</li><li>C. C. AWS owns both the engine and the data</li><li>D. D. Neither — RDS is fully autonomous</li></ol>
+<details><summary>Show answer &amp; reasoning</summary>
+<p><strong>A.</strong> RDS is a managed service: AWS takes the OS and engine patching ("of the cloud" grows), but the customer's data — its classification, access, backups, encryption — stays firmly "in the cloud," i.e., yours. The line moved, but data ownership never crosses it.</p></details></div>
+<div class="cta">
+<h2>This was one domain. The guide covers all 4.</h2>
+<p>This free preview covered <strong>Security and Compliance (Domain 2.0, 30%)</strong>. Not covered here: Cloud Technology and Services (Domain 3.0, 34%). The entire largest domain — every core AWS service deep-dive — plus advanced shared-responsibility scenarios and compliance-program detail stay in the paid guide and practice bank. The $5 AWS Cloud Practitioner Study Guide covers every domain in condensed review form; the $7 complete bundle adds the practice pack with full question explanations.</p>
+<a class="btn" href="https://bytebarhq.com">Get the Study Guide — $5</a>
+<a class="btn ghost" href="https://bytebarhq.com">Complete Bundle — $7</a>
+
+</div>
+<div class="nextbox"><strong>Keep learning:</strong> <a href="https://bytebarhq.com/b/FNnue">AWS Cloud Practitioner Study Guide — $5</a> · <a href="https://bytebarhq.com/blog/news/how-much-does-the-aws-cloud-practitioner-clf-c02-exam-cost-in-the-philippines-in-2026">How much does the CLF-C02 exam cost in the Philippines?</a></div>
+<div class="nextbox">
+<strong>Continue the series:</strong> <a href="https://bytebarhq.github.io/bytebar-study/aws-clf-c02/clf-c02-domain-4-billing-pricing-support/">AWS Cloud Practitioner CLF-C02 Domain 4.0: Billing, Pricing &amp; Support — Explained</a>
+</div>
+</article></main>
+<footer class="site"><div class="wrap">
+<p>© 2026 ByteBar · Free study resources. Not affiliated with Amazon Web Services, Inc..<br>
+<a href="https://bytebarhq.com">bytebarhq.com</a> · <a href="https://bytebarhq.github.io/bytebar-quiz/">Free Quiz</a></p>
+</div></footer>
+</body>
+</html>
