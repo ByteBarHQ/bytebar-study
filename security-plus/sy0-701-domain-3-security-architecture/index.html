@@ -13,7 +13,12 @@
 {"@context":"https://schema.org","@type":"Article",
 "headline":"Security+ SY0-701 Domain 3.0: Security Architecture — Explained",
 "description":"CompTIA Security+ SY0-701 Domain 3.0 explained in plain English: secure protocols, virtualization, cloud models, resilience, and physical security concepts.",
-"author":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"}}
+"author":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"},
+"publisher":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"},
+"datePublished":"2026-09-26"}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "An administrator needs to replace Telnet access to network switches. Which protocol should they deploy, and why?", "acceptedAnswer": {"@type": "Answer", "text": "B. Telnet sends everything — including passwords — in plaintext. SSH is its direct encrypted replacement: an interactive remote shell on port 22. SFTP (C) does run over SSH, but it transfers files; the need here is interactive switch administration. SNMPv3 (D) is for monitoring, not shell access."}}, {"@type": "Question", "name": "A company moves its customer database to a SaaS CRM. Under the shared responsibility model, who is now responsible for patching the database servers?", "acceptedAnswer": {"@type": "Answer", "text": "B. In SaaS, the provider manages everything below the application — servers, OS, database engine, patching. The customer's responsibility shrinks to their data, user accounts, and access configuration. That shrinking line of customer responsibility is the whole point of the shared responsibility model."}}, {"@type": "Question", "name": "A backup strategy needs the fastest possible nightly backups, and restore speed is a secondary concern. Which method fits?", "acceptedAnswer": {"@type": "Answer", "text": "B. Incremental backups copy only what changed since the last backup of any kind, so each nightly run is tiny and fast. The tradeoff — slower restores, since you replay the full plus every incremental — is acceptable here because the requirement prioritizes backup speed. Differential (C) is the middle ground; full (A) is slowest nightly. RAID (D) is disk redundancy, not a backup method."}}, {"@type": "Question", "name": "A file server holds data classified as \"restricted.\" It is being decommissioned. Which destruction method is appropriate?", "acceptedAnswer": {"@type": "Answer", "text": "B. \"Restricted\" is the highest sensitivity tier — simple deletion or reformatting (A, D) leaves recoverable data on the platters. Degaussing (for magnetic media) or physical destruction guarantees the data cannot be recovered. The destruction method must match the classification: the more sensitive the data, the more certain the destruction."}}]}
 </script>
 <style>
 :root{--navy:#0a1628;--navy2:#0e1e38;--navy3:#132a4d;--cyan:#22d3ee;--slate:#94a3b8;--white:#f1f5f9;--green:#34d399;--amber:#fbbf24}
@@ -152,12 +157,13 @@ footer.site a{color:var(--cyan);text-decoration:none}
 <details><summary>Show answer &amp; reasoning</summary>
 <p><strong>B.</strong> "Restricted" is the highest sensitivity tier — simple deletion or reformatting (A, D) leaves recoverable data on the platters. Degaussing (for magnetic media) or physical destruction guarantees the data cannot be recovered. The destruction method must match the classification: the more sensitive the data, the more certain the destruction.</p></details></div>
 <div class="cta">
-<h2>This was one domain. The guide covers all 5.</h2>
-<p>This free preview covered <strong>Security Architecture (Domain 3.0, 18%)</strong>. Not covered here: Threats, Vulnerabilities & Mitigations (Domain 2.0, 22%); Security Operations (Domain 4.0, 28%). The two highest-weight domains — hands-on threat scenarios, incident response, and security operations — stay in the paid guide and practice bank. The $5 Security+ Study Guide covers every domain in condensed review form; the $7 complete bundle adds the practice pack with full question explanations.</p>
-<a class="btn" href="https://bytebarhq.com">Get the Study Guide — $5</a>
-<a class="btn ghost" href="https://bytebarhq.com">Complete Bundle — $7</a>
+<h2>This was one domain. The simulator drills all 5.</h2>
+<p>This free preview covered <strong>Security Architecture (Domain 3.0, 18%)</strong>. Not covered here: Threats, Vulnerabilities & Mitigations (Domain 2.0, 22%); Security Operations (Domain 4.0, 28%). The two highest-weight domains — hands-on threat scenarios, incident response, and security operations — stay in the paid guide and practice bank. The ByteBar Practice Exam Simulator drills every domain with 1,000 exam-style questions — $9.99 one-time unlocks all 19 exams. Prefer to read? The full Security+ Study Guide is in the ByteBar shop on Etsy.</p>
+<a class="btn" href="https://bytebarhq.github.io/bytebar-quiz/sim-preview/?exam=secplus">Practice Exam Simulator — $9.99 one-time, all 19 exams</a>
+<a class="btn ghost" href="https://www.etsy.com/shop/ByteBarExamPrep">Full Study Guides on Etsy</a>
 <p class="quizline">Want reps? <a href="https://bytebarhq.github.io/bytebar-quiz/">Try the free Security+ quiz</a>.</p>
 </div>
+<div class="nextbox"><strong>Keep learning:</strong> <a href="https://bytebarhq.github.io/bytebar-quiz/sim-preview/?exam=secplus">Security+ Practice Exam Simulator — $9.99</a> · <a href="https://bytebarhq.com/blog/news/how-long-does-it-take-to-study-for-security-sy0-701">How long does it take to study for Security+ SY0-701?</a></div>
 <div class="nextbox">
 <strong>Continue the series:</strong> <a href="https://bytebarhq.github.io/bytebar-study/security-plus/sy0-701-domain-5-security-program-management/">Security+ SY0-701 Domain 5.0: Security Program Management — Explained</a>
 </div>
