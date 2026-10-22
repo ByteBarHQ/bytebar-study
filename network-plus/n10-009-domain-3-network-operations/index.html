@@ -13,7 +13,12 @@
 {"@context":"https://schema.org","@type":"Article",
 "headline":"Network+ N10-009 Domain 3.0: Network Operations — Explained",
 "description":"CompTIA Network+ N10-009 Domain 3.0 explained in plain English: monitoring, performance metrics, logs, high availability, and disaster recovery concepts.",
-"author":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"}}
+"author":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"},
+"publisher":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"},
+"datePublished":"2026-09-26"}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Users report that voice calls are choppy but file downloads are fine. Latency averages 80ms. What should the technician investigate?", "acceptedAnswer": {"@type": "Answer", "text": "B. Voice is sensitive to jitter (variation in delay), not just delay itself — 80ms of steady latency is fine for calls, but 80ms swinging wildly between 20 and 200 makes audio choppy. File downloads don't care about jitter at all, which matches the symptom pattern. Bandwidth (A) would hurt downloads too."}}, {"@type": "Question", "name": "A core switch begins logging a rising count of CRC errors on a single uplink port. All other ports are clean. What is the most likely cause?", "acceptedAnswer": {"@type": "Answer", "text": "B. CRC errors on one port point at the physical path of that port: the cable, the transceiver, or the port hardware itself. A broadcast storm (A) would hit many ports; DHCP (C) doesn't cause CRC errors; congestion (D) causes discards, not CRC errors. Isolate to one port → think Layer 1."}}, {"@type": "Question", "name": "The business requires being operational within 4 hours of a disaster and losing no more than 1 hour of data. Which objectives are these?", "acceptedAnswer": {"@type": "Answer", "text": "B. RTO (Recovery Time Objective) is about speed of recovery — 4 hours. RPO (Recovery Point Objective) is about data loss — 1 hour of transactions. The mnemonic: Time = how long you're down; Point = how far back your data goes."}}, {"@type": "Question", "name": "During a \"network is slow\" complaint, which data source best answers \"who is using all the bandwidth and talking to whom?\"", "acceptedAnswer": {"@type": "Answer", "text": "B. NetFlow/IPFIX records conversations — source, destination, ports, byte counts — which is exactly the \"who is hogging the link\" question. Syslog (A) carries events, not traffic volumes; DHCP (C) only maps IPs to hosts; community strings (D) are SNMP credentials, not data."}}]}
 </script>
 <style>
 :root{--navy:#0a1628;--navy2:#0e1e38;--navy3:#132a4d;--cyan:#22d3ee;--slate:#94a3b8;--white:#f1f5f9;--green:#34d399;--amber:#fbbf24}
@@ -136,12 +141,13 @@ footer.site a{color:var(--cyan);text-decoration:none}
 <details><summary>Show answer &amp; reasoning</summary>
 <p><strong>B.</strong> NetFlow/IPFIX records <em>conversations</em> — source, destination, ports, byte counts — which is exactly the "who is hogging the link" question. Syslog (A) carries events, not traffic volumes; DHCP (C) only maps IPs to hosts; community strings (D) are SNMP credentials, not data.</p></details></div>
 <div class="cta">
-<h2>This was one domain. The guide covers all 5.</h2>
-<p>This free preview covered <strong>Network Operations (Domain 3.0, 18%)</strong>. Not covered here: Network Implementation (Domain 2.0, 20%); Network Troubleshooting (Domain 5.0, 24%). The hands-on domains — device configuration and scenario troubleshooting — stay in the paid guide and practice bank. The $5 Network+ Study Guide covers every domain in condensed review form; the $7 complete bundle adds the practice pack with full question explanations.</p>
-<a class="btn" href="https://bytebarhq.com">Get the Study Guide — $5</a>
-<a class="btn ghost" href="https://bytebarhq.com">Complete Bundle — $7</a>
+<h2>This was one domain. The simulator drills all 5.</h2>
+<p>This free preview covered <strong>Network Operations (Domain 3.0, 18%)</strong>. Not covered here: Network Implementation (Domain 2.0, 20%); Network Troubleshooting (Domain 5.0, 24%). The hands-on domains — device configuration and scenario troubleshooting — stay in the paid guide and practice bank. The ByteBar Practice Exam Simulator drills every domain with 1,000 exam-style questions — $9.99 one-time unlocks all 19 exams. Prefer to read? The full Network+ Study Guide is in the ByteBar shop on Etsy.</p>
+<a class="btn" href="https://bytebarhq.github.io/bytebar-quiz/sim-preview/?exam=netplus">Practice Exam Simulator — $9.99 one-time, all 19 exams</a>
+<a class="btn ghost" href="https://www.etsy.com/shop/ByteBarExamPrep">Full Study Guides on Etsy</a>
 
 </div>
+<div class="nextbox"><strong>Keep learning:</strong> <a href="https://bytebarhq.github.io/bytebar-quiz/sim-preview/?exam=netplus">Network+ Practice Exam Simulator — $9.99</a> · <a href="https://bytebarhq.com/blog/news/comptia-a-vs-network-which-should-you-get-first">A+ vs Network+: which should you get first?</a></div>
 <div class="nextbox">
 <strong>Continue the series:</strong> <a href="https://bytebarhq.github.io/bytebar-study/network-plus/n10-009-domain-4-network-security/">Network+ N10-009 Domain 4.0: Network Security — Explained</a>
 </div>
