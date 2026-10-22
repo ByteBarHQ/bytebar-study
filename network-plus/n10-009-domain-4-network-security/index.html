@@ -13,7 +13,12 @@
 {"@context":"https://schema.org","@type":"Article",
 "headline":"Network+ N10-009 Domain 4.0: Network Security — Explained",
 "description":"CompTIA Network+ N10-009 Domain 4.0 explained in plain English: firewalls, VPNs, access control, wireless security, and physical security concepts.",
-"author":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"}}
+"author":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"},
+"publisher":{"@type":"Organization","name":"ByteBar","url":"https://bytebarhq.com"},
+"datePublished":"2026-09-26"}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "A firewall rule set has \"permit web to server\" as rule 10 and \"deny all to server\" as rule 5. Web traffic to the server is blocked. Why?", "acceptedAnswer": {"@type": "Answer", "text": "B. ACLs are first-match-wins, evaluated top to bottom. Rule 5's deny matches the traffic before rule 10's permit is ever consulted — so the permit is dead text. The fix is reordering, not new hardware. (The implicit deny sits at the very bottom and isn't the culprit here.)"}}, {"@type": "Question", "name": "A company wants branch offices connected to HQ with no user action required, encrypting all inter-site traffic. Which solution fits?", "acceptedAnswer": {"@type": "Answer", "text": "B. Site-to-site connects networks, always on, invisible to users — exactly the requirement. Tunnel mode encrypts the whole packet between sites. Client VPNs (A, C) are per-device and require user action; a DMZ (D) is a server segment, not a WAN link."}}, {"@type": "Question", "name": "An office replaces its WPA2-Personal Wi-Fi with WPA3. What is the main security gain?", "acceptedAnswer": {"@type": "Answer", "text": "C. WPA2-Personal's weakness is its 4-way handshake: capture it once, guess passwords offline forever. WPA3's SAE (Simultaneous Authentication of Equals) makes each guess require interacting with the AP, killing offline attacks. It's a protocol fix, not a password-length rule (B) or a roaming feature (A)."}}, {"@type": "Question", "name": "A switch port is configured for 802.1X. A device with no credentials is plugged in. What happens?", "acceptedAnswer": {"@type": "Answer", "text": "C. That's the entire point of 802.1X port-based access control: no authentication, no network. (A guest VLAN can be configured as a fallback, but the default and the exam's expected answer is denial.) The port stays unauthorized — the device is effectively unplugged."}}]}
 </script>
 <style>
 :root{--navy:#0a1628;--navy2:#0e1e38;--navy3:#132a4d;--cyan:#22d3ee;--slate:#94a3b8;--white:#f1f5f9;--green:#34d399;--amber:#fbbf24}
@@ -132,12 +137,13 @@ footer.site a{color:var(--cyan);text-decoration:none}
 <details><summary>Show answer &amp; reasoning</summary>
 <p><strong>C.</strong> That's the entire point of 802.1X port-based access control: no authentication, no network. (A guest VLAN <em>can</em> be configured as a fallback, but the default and the exam's expected answer is denial.) The port stays unauthorized — the device is effectively unplugged.</p></details></div>
 <div class="cta">
-<h2>This was one domain. The guide covers all 5.</h2>
-<p>This free preview covered <strong>Network Security (Domain 4.0, 15%)</strong>. Not covered here: Network Implementation (Domain 2.0, 20%); Network Troubleshooting (Domain 5.0, 24%). The hands-on domains — device configuration and scenario troubleshooting — stay in the paid guide and practice bank. The $5 Network+ Study Guide covers every domain in condensed review form; the $7 complete bundle adds the practice pack with full question explanations.</p>
-<a class="btn" href="https://bytebarhq.com">Get the Study Guide — $5</a>
-<a class="btn ghost" href="https://bytebarhq.com">Complete Bundle — $7</a>
+<h2>This was one domain. The simulator drills all 5.</h2>
+<p>This free preview covered <strong>Network Security (Domain 4.0, 15%)</strong>. Not covered here: Network Implementation (Domain 2.0, 20%); Network Troubleshooting (Domain 5.0, 24%). The hands-on domains — device configuration and scenario troubleshooting — stay in the paid guide and practice bank. The ByteBar Practice Exam Simulator drills every domain with 1,000 exam-style questions — $9.99 one-time unlocks all 19 exams. Prefer to read? The full Network+ Study Guide is in the ByteBar shop on Etsy.</p>
+<a class="btn" href="https://bytebarhq.github.io/bytebar-quiz/sim-preview/?exam=netplus">Practice Exam Simulator — $9.99 one-time, all 19 exams</a>
+<a class="btn ghost" href="https://www.etsy.com/shop/ByteBarExamPrep">Full Study Guides on Etsy</a>
 
 </div>
+<div class="nextbox"><strong>Keep learning:</strong> <a href="https://bytebarhq.github.io/bytebar-quiz/sim-preview/?exam=netplus">Network+ Practice Exam Simulator — $9.99</a> · <a href="https://bytebarhq.com/blog/news/comptia-a-vs-network-which-should-you-get-first">A+ vs Network+: which should you get first?</a></div>
 <div class="nextbox">
 <strong>Continue the series:</strong> <a href="https://bytebarhq.github.io/bytebar-study/network-plus/">back to the CompTIA Network+ index</a>
 </div>
